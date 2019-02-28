@@ -1,0 +1,5 @@
+{
+  "jwtPrivateKey": "This is a test",
+  "db": "mongodb://localhost:3200/auto-ecole-test"
+
+}

@@ -1,0 +1,21 @@
+{
+  "name": "back",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "config": "^3.0.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-async-errors": "^3.1.1",
+    "joi": "^14.3.1",
+    "joi-objectid": "^2.0.0",
+    "mongoose": "^5.4.16",
+    "morgan": "~1.9.0",
+    "winston": "^3.2.1",
+    "winston-mongodb": "^4.0.3"
+  }
+}
