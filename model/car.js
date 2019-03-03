@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Joi = require('joi');
+const JoiExtended = require('../startup/validation');
 
 const carSchema = new mongoose.Schema({
     num: {
@@ -16,32 +16,31 @@ const carSchema = new mongoose.Schema({
       maxLength: 15
     },
     model: {
-        type: {
             type: String,
             required: true,
             trim: true,
             minLength: 1,
             maxLength: 25
-        }
     },
     state: {
         type: String, //TODO add enum for car state
-        required: true,
         trim: true,
         default: null,
     },
+    agency: mongoose.Types.ObjectId,
 });
 
 const Car = mongoose.model('Cars', carSchema);
 
 function validateSchema(car) {
     const schema = {
-        num: Joi.string().length(11).required(),
-        mark: Joi.string().min(3).max(15).required(),
-        model: Joi.string().min(1).max(25).required(),
-        state: Joi.string(), // TODO: add joi validation for state enum
+        num: JoiExtended.string().length(11).required(),
+        mark: JoiExtended.string().min(3).max(15).required(),
+        model: JoiExtended.string().min(1).max(25).required(),
+        state: JoiExtended.string(), // TODO: add joi validation for state enum
+        agency: JoiExtended.string().objectId().required()
     };
-    return Joi.validate(car, schema);
+    return JoiExtended.validate(car, schema);
 }
 
 exports.carSchema = carSchema;

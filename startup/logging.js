@@ -6,8 +6,9 @@ require('express-async-errors');
 
 
 // create  custom logger
-const myFormat = printf(({ level, message, label, timestamp }) => {
-    return `${timestamp} [${label}] ${level}: ${message}`;
+const myFormat = printf(({ level, message, label, timestamp, stack }) => {
+    if (stack === undefined) stack = '';
+    return `${timestamp} [${label}] ${level}: ${message} ${stack}`;
 });
 
 logger = createLogger({

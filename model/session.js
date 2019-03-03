@@ -51,7 +51,6 @@ const sessionSchema = new mongoose.Schema({
                 required: true,
             },
         }),
-        required: true,
     },
     car: {
         type: new mongoose.Schema({
@@ -77,7 +76,6 @@ const sessionSchema = new mongoose.Schema({
 
             },
         }),
-        required: true,
     },
     reservationDate: {
         type: Date,
@@ -87,13 +85,14 @@ const sessionSchema = new mongoose.Schema({
         type: String, //TODO add enum for session state
         required: true,
         trim: true,
-        default: "Pending"
+        default: null
     },
     isPayed: {
         type: Boolean,
         default: false,
         required: true,
-    }
+    },
+    agency: mongoose.Types.ObjectId,
 });
 
 const Session = mongoose.model('Session', sessionSchema);
@@ -101,9 +100,10 @@ const Session = mongoose.model('Session', sessionSchema);
 function validateSchema(session) {
     const schema = {
         clientId: Joi.objectId().required(),
-        carId: Joi.objectId().required(),
-        monitorId: Joi.objectId().required(),
+        carId: Joi.objectId(),
+        monitorId: Joi.objectId(),
         state: Joi.string(), // TODO: add joi validation for state enum
+        agency: Joi.ObjectId().required()
     };
     return Joi.validate(session, schema);
 }
