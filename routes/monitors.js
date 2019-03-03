@@ -22,8 +22,8 @@ router.post('/', async (req, res) => {
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     // verify that the agency exist
-    const agency = Agency.find({_id: req.body.agency});
-    if (!agency) if (!monitor) return res.status(404).send(' The agency with the giving id was not found');
+    const agency = await Agency.find({_id: req.body.agency});
+    if (!agency) return res.status(404).send(' The agency with the giving id was not found');
     // save the new monitor
     const monitor = new Monitor(req.body);
     await monitor.save();
@@ -31,15 +31,15 @@ router.post('/', async (req, res) => {
 });
 
 // UPDATE Monitor
-router.post('/:id', validateObjectId, async (req, res) => {
+router.put('/:id', validateObjectId, async (req, res) => {
     // validate the request schema
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     // verify that the agency exist
-    const agency = Agency.find({_id: req.body.agency});
+    const agency = await Agency.findOne({_id: req.body.agency});
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
     // update the monitor with the giving id
-    const monitor = await Monitor.findOneAndUpdate(req.body._id, req.body);
+    const monitor = await Monitor.findOneAndUpdate(req.params.id, req.body, { new: true});
     // if the monitor wan not found return an error
     if (!monitor) return res.status(404).send(' The monitor with the giving id was not found');
     res.send(monitor);

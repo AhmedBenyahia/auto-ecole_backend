@@ -7,7 +7,7 @@ const joiExtended = Joi.extend({
     language: {
         mobile: 'needs to be a valid phone number according to E.164 international format',
         email: 'needs to be a valid email format',
-        objectId: 'needs to be a valid agency ID'
+        objectId: 'needs to be a valid ID'
 
     },
     rules: [{

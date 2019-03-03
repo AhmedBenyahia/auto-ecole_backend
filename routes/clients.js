@@ -1,4 +1,4 @@
-const {Car, validate} = require('../model/car');
+const {Client, validate} = require('../model/client');
 const {Agency} = require('../model/agency');
 const express = require('express');
 const router = express.Router();
@@ -6,31 +6,31 @@ const validateObjectId = require('../middleware/validateObjectId');
 
 // GET ALL
 router.get('/', async (req, res) => {
-    res.send(await Car.find());
+    res.send(await Client.find());
 });
 
 // GET BY ID
 router.get('/:id', validateObjectId, async (req, res) => {
-    const car = await Car.findOne({_id: req.params.id});
-    if (!car) return res.status(404).send(' The car with the giving id was not found');
-    res.send(car);
+    const client = await Client.findOne({_id: req.params.id});
+    if (!client) return res.status(404).send(' The client with the giving id was not found');
+    res.send(client);
 });
 
-// ADD New Car
+// ADD New Client
 router.post('/', async (req, res) => {
     // validate the request schema
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.body.agency});
-    if (!agency) if (!car) return res.status(404).send(' The agency with the giving id was not found');
-    // save the new car
-    const car = new Car(req.body);
-    await car.save();
-    res.send(car);
+    if (!agency) if (!client) return res.status(404).send(' The agency with the giving id was not found');
+    // save the new client
+    const client = new Client(req.body);
+    await client.save();
+    res.send(client);
 });
 
-// UPDATE Car
+// UPDATE Client
 router.put('/:id', validateObjectId, async (req, res) => {
     // validate the request schema
     const {error} = validate(req.body);
@@ -38,18 +38,18 @@ router.put('/:id', validateObjectId, async (req, res) => {
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.body.agency});
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
-    // update the car with the giving id
-    const car = await Car.findOneAndUpdate(req.params.id, req.body, { new: true});
-    // if the car wan not found return an error
-    if (!car) return res.status(404).send(' The car with the giving id was not found');
-    res.send(car);
+    // update the client with the giving id
+    const client = await Client.findOneAndUpdate(req.params.id, req.body, { new: true});
+    // if the client wan not found return an error
+    if (!client) return res.status(404).send(' The client with the giving id was not found');
+    res.send(client);
 });
 
-// DELETE Car
+// DELETE Client
 router.delete('/:id', validateObjectId, async (req, res) => {
-    const car = await Car.findOneAndDelete(req.params.id);
-    // if the car wan not found return an error
-    if (!car) return res.status(404).send(' The car with the giving id was not found');
-    res.send(car);
+    const client = await Client.findOneAndDelete(req.params.id);
+    // if the client wan not found return an error
+    if (!client) return res.status(404).send(' The client with the giving id was not found');
+    res.send(client);
 });
 module.exports = router;

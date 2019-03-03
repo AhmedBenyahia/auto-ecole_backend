@@ -1,5 +1,5 @@
 const {logger} = require('../startup/logging');
-module.exports = (err, req, res) => {
+module.exports = (err, req, res, next) => {
     //Log Error
     logger.log({
         level: 'error',

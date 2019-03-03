@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
+const JoiExtended = require('../startup/validation');
 
 const clientSchema = new mongoose.Schema({
    username: {
@@ -60,17 +61,14 @@ const clientSchema = new mongoose.Schema({
        maxLength: 6,
        trim: true,
        default: null,
-       required: true,
    },
    state: {
        type: String, //TODO add enum for client state
-       required: true,
        trim: true,
        default: null,
    },
    hasPack: {
        type: Boolean,
-       required: true,
        default: false,
    },
     agency: mongoose.Types.ObjectId,
@@ -85,14 +83,13 @@ function validateSchema(client) {
         name: Joi.string().min(4).max(55).required(),
         surname: Joi.string().min(4).max(55).required(),
         address: Joi.string().max(255).min(5),
-        phone: Joi.string().min(8).max(13).required(),
+        phone: JoiExtended.string().phone().required(),
         postalCode: Joi.string().min(4).max(10),
         drivingLicence: Joi.string().min(1).max(6), // TODO: add joi validation for driving licence type with enum
         state: Joi.string(), // TODO: add joi validation for state enum
         hasPack: Joi.boolean(),
-        agency: Joi.ObjectId().required(),
-        email: Joi.string().min(5).max(255).regex(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)
-            .required().label("invalid email"),
+        email: JoiExtended.string().email().required(),
+        agency: JoiExtended.string().objectId().required(),
     };
     return Joi.validate(client, schema);
 }

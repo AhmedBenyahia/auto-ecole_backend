@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-
+const JoiExtended = require('../startup/validation');
 const sessionSchema = new mongoose.Schema({
 
     client: {
@@ -83,7 +83,6 @@ const sessionSchema = new mongoose.Schema({
     },
     state: {
         type: String, //TODO add enum for session state
-        required: true,
         trim: true,
         default: null
     },
@@ -99,11 +98,12 @@ const Session = mongoose.model('Session', sessionSchema);
 
 function validateSchema(session) {
     const schema = {
-        clientId: Joi.objectId().required(),
-        carId: Joi.objectId(),
-        monitorId: Joi.objectId(),
+        clientId: JoiExtended.string().objectId().required(),
+        carId: JoiExtended.string().objectId(),
+        monitorId: JoiExtended.string().objectId(),
+        reservationDate: Joi.string().isoDate().required(),
         state: Joi.string(), // TODO: add joi validation for state enum
-        agency: Joi.ObjectId().required()
+        agency: JoiExtended.string().objectId().required()
     };
     return Joi.validate(session, schema);
 }

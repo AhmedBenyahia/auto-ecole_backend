@@ -12,6 +12,7 @@ router.post('/', async (req, res) => {
     // validate the request body
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
+    // save the new agency
     const agency = new Agency(req.body);
     // TODO put this inside Task
     const manager = new Manager({
