@@ -55,13 +55,20 @@ const clientSchema = new mongoose.Schema({
        minLength: 4,
        maxLength: 10,
    },
-   drivingLicence: {
+   drivingLicenceType: {
        type: String, // TODO: add enum att
        minLength: 1,
        maxLength: 6,
        trim: true,
        default: null,
    },
+    drivingLicenceNum: {
+        type: String,
+        minLength: 8,
+        maxLength: 8,
+        trim: true,
+        default: null,
+    },
    state: {
        type: String, //TODO add enum for client state
        trim: true,
@@ -85,7 +92,8 @@ function validateSchema(client) {
         address: Joi.string().max(255).min(5),
         phone: JoiExtended.string().phone().required(),
         postalCode: Joi.string().min(4).max(10),
-        drivingLicence: Joi.string().min(1).max(6), // TODO: add joi validation for driving licence type with enum
+        drivingLicenceType: Joi.string().min(1).max(6), // TODO: add joi validation for driving licence type with enum
+        drivingLicenceNum: Joi.string().length(8),
         state: Joi.string(), // TODO: add joi validation for state enum
         hasPack: Joi.boolean(),
         email: JoiExtended.string().email().required(),
