@@ -54,6 +54,9 @@ const monitorSchema = new mongoose.Schema({
         trim: true,
         required: true,
     },
+    certificationDate: {
+        type: Date,
+    },
     state: {
         type: String, //TODO add enum for monitor state
         trim: true,
@@ -76,6 +79,7 @@ function validateSchema(monitor) {
         phone: JoiExtended.string().phone().required(),
         postalCode: Joi.string().min(4).max(10),
         certification: Joi.string().min(1).max(6).required(), // TODO: add joi validation for monitor certification  type with enum
+        certificationDate: Joi.date(),
         state: Joi.string(), // TODO: add joi validation for state enum
         agency: JoiExtended.string().objectId().required(),
 
