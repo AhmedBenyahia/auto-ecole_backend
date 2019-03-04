@@ -62,7 +62,7 @@ const clientSchema = new mongoose.Schema({
        trim: true,
        default: null,
    },
-    drivingLicenceNum: {
+   drivingLicenceNum: {
         type: String,
         minLength: 8,
         maxLength: 8,
@@ -78,7 +78,7 @@ const clientSchema = new mongoose.Schema({
        type: Boolean,
        default: false,
    },
-    agency: mongoose.Types.ObjectId,
+   agency: mongoose.Types.ObjectId,
 });
 
 const Client = mongoose.model('Clients', clientSchema);
@@ -94,8 +94,8 @@ function validateSchema(client) {
         postalCode: Joi.string().min(4).max(10),
         drivingLicenceType: Joi.string().min(1).max(6), // TODO: add joi validation for driving licence type with enum
         drivingLicenceNum: Joi.string().length(8),
-        state: Joi.string(), // TODO: add joi validation for state enum
-        hasPack: Joi.boolean(),
+        // state: Joi.string(), // TODO: add joi validation for state enum
+        // hasPack: Joi.boolean(),
         email: JoiExtended.string().email().required(),
         agency: JoiExtended.string().objectId().required(),
     };

@@ -37,7 +37,7 @@ function validateSchema(car) {
         num: JoiExtended.string().length(11).required(),
         mark: JoiExtended.string().min(3).max(15).required(),
         model: JoiExtended.string().min(1).max(25).required(),
-        state: JoiExtended.string(), // TODO: add joi validation for state enum
+        // state: JoiExtended.string(), // TODO: add joi validation for state enum
         agency: JoiExtended.string().objectId().required()
     };
     return JoiExtended.validate(car, schema);
