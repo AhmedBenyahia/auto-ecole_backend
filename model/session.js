@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const JoiExtended = require('../startup/validation');
+
+const sessionState = ['REQUESTED', 'APPROVED', 'CANCELED', 'CANCELLATION_REQUESTED', 'PENDING', 'FINISHED'];
+
 const sessionSchema = new mongoose.Schema({
 
     client: {
@@ -23,6 +26,13 @@ const sessionSchema = new mongoose.Schema({
                 type: String, //TODO add enum for client state
                 required: true,
                 trim: true,
+            },
+            drivingLicence: {
+                type: String, // TODO: add enum att and num licence if exist
+                minLength: 1,
+                maxLength: 6,
+                trim: true,
+                default: null,
             }
         }),
         required: true,
@@ -83,13 +93,13 @@ const sessionSchema = new mongoose.Schema({
     },
     state: {
         type: String, //TODO add enum for session state
+        enum: sessionState,
         trim: true,
-        default: null
+        default: sessionState[0],
     },
     isPayed: {
         type: Boolean,
         default: false,
-        required: true,
     },
     agency: mongoose.Types.ObjectId,
 });
@@ -102,8 +112,9 @@ function validateSchema(session) {
         carId: JoiExtended.string().objectId(),
         monitorId: JoiExtended.string().objectId(),
         reservationDate: Joi.string().isoDate().required(),
-        state: Joi.string(), // TODO: add joi validation for state enum
-        agency: JoiExtended.string().objectId().required()
+        state: Joi.string().valid(sessionState),
+        agency: JoiExtended.string().objectId().required(),
+        isPayed: Joi.boolean(),
     };
     return Joi.validate(session, schema);
 }
@@ -111,3 +122,4 @@ function validateSchema(session) {
 exports.sessionSchema = sessionSchema;
 exports.Session = Session;
 exports.validate = validateSchema;
+exports.sessionState = sessionState;
