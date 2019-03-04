@@ -3,11 +3,13 @@ const Joi = require('joi');
 const JoiExtended = require('../startup/validation');
 
 const sessionState = ['REQUESTED', 'APPROVED', 'CANCELED', 'CANCELLATION_REQUESTED', 'PENDING', 'FINISHED'];
+const DAY = 24*60*60*1000;
 
 const sessionSchema = new mongoose.Schema({
 
     client: {
         type: new mongoose.Schema({
+            _id: mongoose.Types.ObjectId,
             name: {
                 type: String,
                 required: true,
@@ -39,6 +41,7 @@ const sessionSchema = new mongoose.Schema({
     },
     monitor: {
         type: new mongoose.Schema({
+            _id: mongoose.Types.ObjectId,
             name: {
                 type: String,
                 required: true,
@@ -64,6 +67,7 @@ const sessionSchema = new mongoose.Schema({
     },
     car: {
         type: new mongoose.Schema({
+            _id: mongoose.Types.ObjectId,
             num: {
                 type: String,
                 required: true,
@@ -106,20 +110,27 @@ const sessionSchema = new mongoose.Schema({
 
 const Session = mongoose.model('Session', sessionSchema);
 
-function validateSchema(session) {
+function validateReservationSchema(session) {
     const schema = {
         clientId: JoiExtended.string().objectId().required(),
-        carId: JoiExtended.string().objectId(),
-        monitorId: JoiExtended.string().objectId(),
-        reservationDate: Joi.string().isoDate().required(),
-        state: Joi.string().valid(sessionState),
+        reservationDate: Joi.date().iso().min(Date.now()).max(Date.now() + DAY*30*6).required(),
         agency: JoiExtended.string().objectId().required(),
-        isPayed: Joi.boolean(),
+        // state: Joi.string().valid(sessionState),
+        // isPayed: Joi.boolean(),
+    };
+    return Joi.validate(session, schema);
+}
+
+function validateApproveSchema(session) {
+    const schema = {
+        carId: JoiExtended.string().objectId().required(),
+        monitorId: JoiExtended.string().objectId().required(),
     };
     return Joi.validate(session, schema);
 }
 
 exports.sessionSchema = sessionSchema;
 exports.Session = Session;
-exports.validate = validateSchema;
+exports.validateReservation = validateReservationSchema;
+exports.validateApproving = validateApproveSchema;
 exports.sessionState = sessionState;
