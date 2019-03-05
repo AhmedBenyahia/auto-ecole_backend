@@ -11,7 +11,8 @@ require('./startup/validation');
 
 // run the server
 const port = process.env.PORT || 3000;
-const server = app.listen(port, () => logger.info(`Listening on port ${port}...`));
+const server = app.listen(port, () => logger.info(`Listening on port ${port}...`)) ;
+// fg
 
 module.exports = server;
 
