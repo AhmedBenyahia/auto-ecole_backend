@@ -6,7 +6,7 @@ const { handleRejection, logger } = require('./startup/logging');
 handleRejection();
 require('./startup/routes')(app);
 require('./startup/db')();
-require('./startup/config')();
+require('./startup/config')(app);
 require('./startup/validation');
 
 // run the server
