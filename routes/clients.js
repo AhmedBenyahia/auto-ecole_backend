@@ -3,6 +3,8 @@ const {Agency} = require('../model/agency');
 const express = require('express');
 const router = express.Router();
 const validateObjectId = require('../middleware/validateObjectId');
+const _ = require('lodash');
+const bcrypt = require("bcrypt");
 
 // GET ALL
 router.get('/', async (req, res) => {
@@ -25,7 +27,9 @@ router.post('/', async (req, res) => {
     const agency = await Agency.findOne({_id: req.body.agency});
     if (!agency) if (!client) return res.status(404).send(' The agency with the giving id was not found');
     // save the new client
-    const client = new Client(req.body);
+    const client = new Client(_.omit(req.body,['password']));
+    const salt = await bcrypt.genSalt(10);
+    client.password = await bcrypt.hash(req.body.password, salt);
     await client.save();
     res.send(client);
 });
@@ -38,6 +42,7 @@ router.put('/:id', validateObjectId, async (req, res) => {
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.body.agency});
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
+    // verify if we are updating the password
     // update the client with the giving id
     const client = await Client.findOneAndUpdate(req.params.id, req.body, { new: true});
     // if the client wan not found return an error

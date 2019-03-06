@@ -3,6 +3,8 @@ const {Agency} = require('../model/agency');
 const express = require('express');
 const router = express.Router();
 const validateObjectId = require('../middleware/validateObjectId');
+const _ = require('lodash');
+const bcrypt = require("bcrypt");
 
 // GET ALL
 router.get('/', async (req, res) => {
@@ -25,7 +27,9 @@ router.post('/', async (req, res) => {
     const agency = await Agency.find({_id: req.body.agency});
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
     // save the new monitor
-    const monitor = new Monitor(req.body);
+    const monitor = new Monitor(_.omit(req.body,['password']));
+    const salt = await bcrypt.genSalt(10);
+    monitor.password = await bcrypt.hash(req.body.password, salt);
     await monitor.save();
     res.send(monitor);
 });
