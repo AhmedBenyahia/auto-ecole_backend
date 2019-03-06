@@ -5,3 +5,6 @@
 
 ## Other configuration
 - set the environment variable `PORT` to chose what port the server should listen to
+
+### Description of the API
+####

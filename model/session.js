@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const JoiExtended = require('../startup/validation');
 
-const sessionState = ['REQUESTED', 'APPROVED', 'CANCELED', 'CANCELLATION_REQUESTED', 'PENDING', 'FINISHED'];
+    const sessionState = ['REQUESTED', 'APPROVED', 'CANCELED', 'CANCELLATION_REQUESTED', 'PENDING', 'FINISHED'];
 const DAY = 24*60*60*1000;
 
 const sessionSchema = new mongoose.Schema({
@@ -129,8 +129,18 @@ function validateApproveSchema(session) {
     return Joi.validate(session, schema);
 }
 
+function validateUpdateSchema(session) {
+    const schema = {
+        reservationDate: Joi.date().iso().min(Date.now()).max(Date.now() + DAY*30*6),
+        carId: JoiExtended.string().objectId(),
+        monitorId: JoiExtended.string().objectId(),
+    };
+    return Joi.validate(session, schema);
+}
+
 exports.sessionSchema = sessionSchema;
 exports.Session = Session;
 exports.validateReservation = validateReservationSchema;
 exports.validateApproving = validateApproveSchema;
+exports.validateUpdating = validateUpdateSchema;
 exports.sessionState = sessionState;

@@ -6,14 +6,16 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "config": "^3.0.1",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
+    "debug": "^2.6.9",
     "express": "~4.16.0",
     "express-async-errors": "^3.1.1",
     "generate-password": "^1.4.1",
     "joi": "^14.3.1",
     "joi-objectid": "^2.0.0",
+    "jsonwebtoken": "^8.5.0",
     "lodash": "latest",
     "mongoose": "^5.4.16",
     "morgan": "~1.9.0",
