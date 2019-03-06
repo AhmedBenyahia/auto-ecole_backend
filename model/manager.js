@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
-
+const JoiExtended = require('../startup/validation');
 const managerSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -15,6 +15,14 @@ const managerSchema = new mongoose.Schema({
         minlength: 8,
         maxlength: 255,
     },
+    email : {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true,
+        maxlength: 255,
+        minlength: 5,
+    },
     role: {
         type: String,
         required: true,
@@ -28,7 +36,9 @@ function validateSchema(manager) {
     const schema = {
         username: Joi.string().min(4).max(55).required(),
         password: Joi.string().min(8).max(255).required(),
-        role: Joi.number().required()
+        email: JoiExtended.string().email().required(),
+        role: Joi.string().required(), //TODO add manager role enum
+        agency: JoiExtended.string().objectId().required(),
     };
     return Joi.validate(manager, schema);
 }

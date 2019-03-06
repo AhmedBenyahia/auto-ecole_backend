@@ -68,6 +68,7 @@ const clientSchema = new mongoose.Schema({
         maxLength: 8,
         trim: true,
         default: null,
+        unique: true
     },
    state: {
        type: String, //TODO add enum for client state
@@ -93,7 +94,7 @@ function validateSchema(client) {
         phone: JoiExtended.string().phone().required(),
         postalCode: Joi.string().min(4).max(10),
         drivingLicenceType: Joi.string().min(1).max(6), // TODO: add joi validation for driving licence type with enum
-        drivingLicenceNum: Joi.string().length(8),
+        drivingLicenceNum: Joi.string().length(8), // TODO add validation of num (number only)
         // state: Joi.string(), // TODO: add joi validation for state enum
         // hasPack: Joi.boolean(),
         email: JoiExtended.string().email().required(),

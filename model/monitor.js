@@ -72,8 +72,7 @@ function validateSchema(monitor) {
         username: Joi.string().min(4).max(55).required(),
         name: Joi.string().min(4).max(55).required(),
         surname: Joi.string().min(4).max(55).required(),
-        email: JoiExtended.string().min(5).max(255).email()
-            .required(),
+        email: JoiExtended.string().min(5).max(255).email().required(),
         password: Joi.string().min(8).max(255).required(),
         address: Joi.string().max(255).min(5),
         phone: JoiExtended.string().phone().required(),
