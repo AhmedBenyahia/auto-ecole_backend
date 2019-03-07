@@ -10,4 +10,4 @@
 #### For Windows user:
 set db="mongodb://localhost:3200/auto-ecole-dev";  set auto_ecole_jwtPrivateKey="secretKe_y"; nodemon app.js ;
 #### For Linux user
-export db="mongodb://localhost:3200/auto-ecole-dev" && export auto_ecole_jwtPrivateKey="secretKe_y" && nodemon
+export auto_ecole_db="mongodb://localhost:3200/auto-ecole-dev" && export auto_ecole_jwtPrivateKey="secretKe_y" && nodemon
