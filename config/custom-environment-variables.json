@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey": "auto_ecole_jwtPrivateKey"
+  "jwtPrivateKey": "auto_ecole_jwtPrivateKey",
+  "db": "auto_ecole_db"
 }

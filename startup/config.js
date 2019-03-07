@@ -5,6 +5,9 @@ module.exports = (app) => {
        if (!config.get('jwtPrivateKey')) {
            throw new Error('FATAL ERROR: jwtPrivateKey is not defined.');
        }
+        if (!config.get('db')) {
+            throw new Error('FATAL ERROR: db is not defined: no database was provided');
+        }
         app.use(function(req, res, next) {
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");

@@ -1,12 +1,12 @@
 // import modules and libs
 const express = require('express');
 const app = express();
-const { handleRejection, logger } = require('./startup/logging');
 
+require('./startup/config')(app);
+const { handleRejection, logger } = require('./startup/logging');
 handleRejection();
 require('./startup/routes')(app);
 require('./startup/db')();
-require('./startup/config')(app);
 require('./startup/validation');
 
 // run the server
