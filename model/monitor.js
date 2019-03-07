@@ -67,23 +67,45 @@ const monitorSchema = new mongoose.Schema({
 
 const Monitor = mongoose.model('Monitor', monitorSchema);
 
-function validateSchema(monitor) {
+function validateSchema(monitor, newMonitor) {
     const schema = {
-        username: Joi.string().min(4).max(55).required(),
-        name: Joi.string().min(4).max(55).required(),
-        surname: Joi.string().min(4).max(55).required(),
-        email: JoiExtended.string().min(5).max(255).email().required(),
-        password: Joi.string().min(8).max(255).required(),
+        username: Joi.string().min(4).max(55)
+            .when('$condition', {
+                is: Joi.boolean().valid(true),
+                then: Joi.required()}),
+        name: Joi.string().min(4).max(55)
+            .when('$condition', {
+                is: Joi.boolean().valid(true),
+                then: Joi.required()}),
+        surname: Joi.string().min(4).max(55)
+            .when('$condition', {
+                is: Joi.boolean().valid(true),
+                then: Joi.required()}),
+        email: JoiExtended.string().min(5).max(255).email()
+            .when('$condition', {
+                is: Joi.boolean().valid(true),
+                then: Joi.required()}),
+        password: Joi.string().min(8).max(255)
+            .when('$condition', {
+                is: Joi.boolean().valid(true),
+                then: Joi.required(),
+                otherwise: Joi.forbidden()}),
         address: Joi.string().max(255).min(5),
-        phone: JoiExtended.string().phone().required(),
+        phone: JoiExtended.string().phone()
+            .when('$condition', {
+                is: Joi.boolean().valid(true),
+                then: Joi.required()}),
         postalCode: Joi.string().min(4).max(10),
-        certification: Joi.string().min(1).max(6).required(), // TODO: add joi validation for monitor certification  type with enum
+        certification: Joi.string().min(1).max(6)
+            .when('$condition', {
+                is: Joi.boolean().valid(true),
+                then: Joi.required()}), // TODO: add joi validation for monitor certification  type with enum
         certificationDate: Joi.date(),
-        state: Joi.string(), // TODO: add joi validation for state enum
+        // state: Joi.string(), // TODO: add joi validation for state enum
         agency: JoiExtended.string().objectId().required(),
 
 };
-    return Joi.validate(monitor, schema);
+    return Joi.validate(monitor, schema, {context: {condition: newMonitor}});
 }
 
 exports.monitorSchema = monitorSchema;
