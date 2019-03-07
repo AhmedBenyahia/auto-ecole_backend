@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     if (error) return res.status(400).send(error.details[0].message);
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.body.agency});
-    if (!agency) if (!client) return res.status(404).send(' The agency with the giving id was not found');
+    if (!agency) return res.status(404).send(' The agency with the giving id was not found');
     // save the new client
     const client = new Client(_.omit(req.body,['password']));
     const salt = await bcrypt.genSalt(10);

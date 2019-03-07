@@ -4,7 +4,7 @@ module.exports = (err, req, res, next) => {
     logger.log({
         level: 'error',
         message: 'Something failed:  ' + err.message,
-        meta: err.stack
+        stack: err.stack
     });
     res.status(500).send('Something failed')
 };
