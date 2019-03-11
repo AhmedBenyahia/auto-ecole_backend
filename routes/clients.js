@@ -6,6 +6,8 @@ const validateObjectId = require('../middleware/validateObjectId');
 const _ = require('lodash');
 const bcrypt = require("bcrypt");
 const Joi = require('joi');
+const client_auth = require('../middleware/client_auth');
+const clientDebug = require('debug')('app:client');
 // GET ALL
 router.get('/', async (req, res) => {
     res.send(await Client.find());
@@ -20,6 +22,7 @@ router.get('/:id', validateObjectId, async (req, res) => {
 
 // ADD New Client
 router.post('/', async (req, res) => {
+    clientDebug('POST:/client');
     // validate the request schema
     const {error} = validate(req.body, true);
     if (error) return res.status(400).send(error.details[0].message);
