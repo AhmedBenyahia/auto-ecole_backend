@@ -24,6 +24,12 @@ router.get('/:id', validateObjectId, async (req, res) => {
     res.send(session);
 });
 
+// TODO prevent other client from accessing this route
+// GET Client Session
+router.get('/client/:id', async (req, res) => {
+    res.send(await Session.find({ 'client._id': req.user._id}));
+});
+
 // Request Session Reservation
 router.post('/reserve', async (req, res) => {
     sessionDebug('debugging /reserve endpoint');
