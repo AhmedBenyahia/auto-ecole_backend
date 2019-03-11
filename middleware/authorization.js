@@ -13,9 +13,12 @@ const publicRoutes = [
 // Client only routes
 const clientRoutes = [
     'PUT:/client',
+    'GET:/client/:id',
     'PUT:/client/:id',
     'PATCH:/client/password/:id', //TODO my the client should send he's id ??
-    'GET:/session/client',
+    'GET:/session/client/:id',
+    'POST:/session/reserve',
+    'PATCH:/session/cancel/:id' //TODO the client can only delete his session
 ];
 // Monitor only routes
 const monitorRoutes = [
@@ -26,7 +29,7 @@ const monitorRoutes = [
 ];
 // Admin routes
 const adminRoutes = [
-    '*', //TODO add reg expression support
+    '*', //TODO add reg expression s    upport
 
     'GET:/monitor',
     'GET:/monitor/:id',
@@ -66,6 +69,7 @@ const adminRoutes = [
 module.exports = function(req, res, next) {
     authorDebug('Debugging authorization middleware');
     authorDebug('   req:', compact(req.method, req.url));
+    // Exclude option request
     if (req.method === "OPTIONS") return next();
     // verify if it's a public routes
     if (publicRoutes.indexOf(compact(req.method, req.url)) > -1) {
@@ -80,7 +84,7 @@ module.exports = function(req, res, next) {
         req.user = jwt.verify(token, config.get('jwtPrivateKey'));
         authorDebug('   token payload: user role is', req.user.role);
         // if he is an admin verify if he has the authorization de visit the req route
-        authorDebug('he is admin and he has the permission so let his, pass: ' + adminRoutes.indexOf(compact(req.method, req.url)) > -1);
+        // authorDebug('he is admin and he has the permission so let his, pass: ' + adminRoutes.indexOf(compact(req.method, req.url)) > -1);
         if (req.user.role.toLowerCase().toLowerCase().indexOf('admin') > -1 && adminRoutes.indexOf(compact(req.method, req.url)) > -1) {
             authorDebug('   Access route with admin permission');
             return next();
@@ -95,6 +99,7 @@ module.exports = function(req, res, next) {
             authorDebug('   Access route with monitor permission');
             return next();
         }
+        authorDebug('   --> Forbidden, can access route');
         return res.status(403).send('Access denied. You don\'t have the right permission')
     } catch(err) {
         res.status(400).send(' Invalid token.') ;
