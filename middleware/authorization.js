@@ -66,6 +66,7 @@ const adminRoutes = [
 module.exports = function(req, res, next) {
     authorDebug('Debugging authorization middleware');
     authorDebug('   req:', compact(req.method, req.url));
+    if (req.method === "OPTIONS") return next();
     // verify if it's a public routes
     if (publicRoutes.indexOf(compact(req.method, req.url)) > -1) {
         authorDebug('   Access route with public permission:');
