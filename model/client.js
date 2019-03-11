@@ -73,7 +73,7 @@ const clientSchema = new mongoose.Schema({
    state: {
        type: String, //TODO add enum for client state
        trim: true,
-       default: null,
+       default: "Active",
    },
    hasPack: {
        type: Boolean,

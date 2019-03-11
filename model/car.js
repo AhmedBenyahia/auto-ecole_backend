@@ -25,7 +25,7 @@ const carSchema = new mongoose.Schema({
     state: {
         type: String, //TODO add enum for car state
         trim: true,
-        default: null,
+        default: "Active",
     },
     agency: mongoose.Types.ObjectId,
 });

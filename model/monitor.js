@@ -60,7 +60,7 @@ const monitorSchema = new mongoose.Schema({
     state: {
         type: String, //TODO add enum for monitor state
         trim: true,
-        default: null,
+        default: "Active",
     },
     agency: mongoose.Types.ObjectId,
 });
