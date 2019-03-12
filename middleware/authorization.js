@@ -7,6 +7,8 @@ const publicRoutes = [
     'POST:/client',
     'GET:/agency',
     'POST:/login',
+    'POST:/manager',
+    'GET:/session',
     'GET:/whoami', //TODO it's public and not in the same time ,
                     //TODO: so we need the jwt role and id to be send to the method
 ];
@@ -18,7 +20,7 @@ const clientRoutes = [
     'PATCH:/client/password/:id', //TODO my the client should send he's id ??
     'GET:/session/client/:id',
     'POST:/session/reserve',
-    'PATCH:/session/cancel/:id' //TODO the client can only delete his session
+    'PATCH:/session/cancel/:id'  //TODO the client can only delete his session
 ];
 // Monitor only routes
 const monitorRoutes = [
@@ -58,6 +60,7 @@ const adminRoutes = [
     'GET:/session/client/:id',
     'GET:/session/monitor/:id',
     'GET:/session/:id',
+    'PUT:/session/:id',
     'POST:/session/reserve',
     'PATCH:/session/approve/:id',
     'PATCH:/session/cancel/:id',

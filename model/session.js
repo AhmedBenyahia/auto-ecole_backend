@@ -113,7 +113,7 @@ const Session = mongoose.model('Session', sessionSchema);
 function validateReservationSchema(session) {
     const schema = {
         clientId: JoiExtended.string().objectId().required(),
-        reservationDate: Joi.date().iso().min(Date.now()).max(Date.now() + DAY*30*6).required(),
+        reservationDate: Joi.date().iso().min(Date.now()).min(Date.now() + DAY).required(),
         agency: JoiExtended.string().objectId().required(),
         // state: Joi.string().valid(sessionState),
         // isPayed: Joi.boolean(),
