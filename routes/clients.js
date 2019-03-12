@@ -47,7 +47,7 @@ router.put('/:id', validateObjectId, async (req, res) => {
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
     // verify if we are updating the password
     // update the client with the giving id
-    const client = await Client.findOneAndUpdate(req.params.id, req.body, { new: true});
+    const client = await Client.findOneAndUpdate({ _id: req.params.id}, req.body, { new: true});
     // if the client wan not found return an error
     if (!client) return res.status(404).send(' The client with the giving id was not found');
     res.send(client);
@@ -78,7 +78,7 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
 
 // DELETE Client
 router.delete('/:id', validateObjectId, async (req, res) => {
-    const client = await Client.findOneAndDelete(req.params.id);
+    const client = await Client.findOneAndDelete({ _id: req.params.id});
     // if the client wan not found return an error
     if (!client) return res.status(404).send(' The client with the giving id was not found');
     res.send(client);
