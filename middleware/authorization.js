@@ -7,8 +7,8 @@ const publicRoutes = [
     'POST:/client',
     'GET:/agency',
     'POST:/login',
+    'POST:/agency',
     'POST:/manager',
-    'GET:/session',
     'GET:/whoami', //TODO it's public and not in the same time ,
                     //TODO: so we need the jwt role and id to be send to the method
 ];

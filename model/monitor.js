@@ -81,10 +81,6 @@ function validateSchema(monitor, newMonitor) {
             .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
-        email: JoiExtended.string().min(5).max(255).email()
-            .when('$condition', {
-                is: Joi.boolean().valid(true),
-                then: Joi.required()}),
         password: Joi.string().min(8).max(255)
             .when('$condition', {
                 is: Joi.boolean().valid(true),

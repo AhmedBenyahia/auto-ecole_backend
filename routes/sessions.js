@@ -14,7 +14,7 @@ sessionDebug('session debugging is enabled');
 
 // GET ALL
 router.get('/', async (req, res) => {
-    res.send(await Session.find());
+    res.send(await Session.find({ agency: req.user.agency}));
 });
 
 // GET BY ID

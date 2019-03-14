@@ -34,7 +34,7 @@ const Car = mongoose.model('Cars', carSchema);
 
 function validateSchema(car) {
     const schema = {
-        num: JoiExtended.string().length(11).required(),
+        num: JoiExtended.string().length(7).required(),
         mark: JoiExtended.string().min(3).max(15).required(),
         model: JoiExtended.string().min(1).max(25).required(),
         // state: JoiExtended.string(), // TODO: add joi validation for state enum

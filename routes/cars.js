@@ -7,7 +7,7 @@ const debugCars = require('debug')('app:cars');
 
 // GET ALL
 router.get('/', async (req, res) => {
-    res.send(await Car.find());
+    res.send(await Car.find({ agency: req.user.agency}));
 });
 
 // GET BY ID

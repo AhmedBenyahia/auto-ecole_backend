@@ -6,11 +6,10 @@ const validateObjectId = require('../middleware/validateObjectId');
 const _ = require('lodash');
 const bcrypt = require("bcrypt");
 const Joi = require('joi');
-const client_auth = require('../middleware/client_auth');
 const clientDebug = require('debug')('app:client');
 // GET ALL
 router.get('/', async (req, res) => {
-    res.send(await Client.find());
+    res.send(await Client.find({ agency: req.user.agency}));
 });
 
 // GET BY ID

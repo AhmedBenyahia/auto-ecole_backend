@@ -9,7 +9,7 @@ const Joi =require('joi');
 
 // GET ALL
 router.get('/', async (req, res) => {
-    res.send(await Monitor.find());
+    res.send(await Monitor.find({ agency: req.user.agency}));
 });
 
 // GET BY ID
