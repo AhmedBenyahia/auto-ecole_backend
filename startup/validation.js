@@ -7,7 +7,8 @@ const joiExtended = Joi.extend({
     language: {
         mobile: 'needs to be a valid phone number according to E.164 international format',
         email: 'needs to be a valid email format',
-        objectId: 'needs to be a valid ID'
+        objectId: 'needs to be a valid ID',
+        cin: 'needs to be a valid cin number'
 
     },
     rules: [{
@@ -36,6 +37,15 @@ const joiExtended = Joi.extend({
                 return this.createError('string.objectId', {v: value}, state, options);
             }
             return value;
+        }
+    },{
+        name: 'cin',
+        validate(params, value, state, options) {
+            const reg = RegExp(/^[0-9]{8}$/);
+            if (!reg.test(value)) {
+                return this.createError('string.cin', {v: value}, state, options);
+            }
+            return value
         }
     }]
 });
