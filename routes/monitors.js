@@ -5,11 +5,9 @@ const router = express.Router();
 const validateObjectId = require('../middleware/validateObjectId');
 const usernameGenerator = require('username-generator');
 const  passwordGenerator = require('generate-password');
-
-const _ = require('lodash');
 const bcrypt = require("bcrypt");
 const Joi =require('joi');
-
+const sendMail = require('../startup/mailer');
 // GET ALL
 router.get('/', async (req, res) => {
     res.send(await Monitor.find({ agency: req.user.agency}));
@@ -40,6 +38,12 @@ router.post('/', async (req, res) => {
     monitor.password = await bcrypt.hash(password, salt);
         // save in the db
     await monitor.save();
+        // send mail to admin with the username and password of the added monitor
+    sendMail('ahmedbenyahiakanansa@gmail.com', //TODO: change this with admin mail
+          'Ajout d\' un nouveau moniteur',
+           'Un nouveau moniteur  a ete ajouter: <br>' +
+                `Nom: ${monitor.name}, prenom: ${monitor.surname} <br>` +
+                `Username: ${monitor.username} Password: ${password} <br>`);
     // send the new monitor object to the client with the password in plain  text
     monitor.password = password;
     res.send(monitor);

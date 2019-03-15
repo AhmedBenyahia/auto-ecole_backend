@@ -1,14 +1,21 @@
 <component name="ProjectDictionaryState">
   <dictionary name="sayto">
     <words>
+      <w>ajout</w>
+      <w>ajouter</w>
       <w>bcrypt</w>
       <w>ecole</w>
       <w>expesstion</w>
       <w>forbideen</w>
+      <w>gmail</w>
       <w>incanceling</w>
       <w>jsonwebtoken</w>
+      <w>moniteur</w>
       <w>nbre</w>
+      <w>nodemailer</w>
       <w>nodemon</w>
+      <w>nouveau</w>
+      <w>prenom</w>
       <w>printf</w>
       <w>visite</w>
       <w>whoami</w>
