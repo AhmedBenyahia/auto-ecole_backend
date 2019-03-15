@@ -3,6 +3,9 @@ const {Agency} = require('../model/agency');
 const express = require('express');
 const router = express.Router();
 const validateObjectId = require('../middleware/validateObjectId');
+const usernameGenerator = require('username-generator');
+const  passwordGenerator = require('generate-password');
+
 const _ = require('lodash');
 const bcrypt = require("bcrypt");
 const Joi =require('joi');
@@ -28,10 +31,17 @@ router.post('/', async (req, res) => {
     const agency = await Agency.find({_id: req.body.agency});
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
     // save the new monitor
-    const monitor = new Monitor(_.omit(req.body,['password']));
+    const monitor = new Monitor(req.body);
+        //generate a username
+    monitor.username = usernameGenerator.generateUsername("-");
     const salt = await bcrypt.genSalt(10);
-    monitor.password = await bcrypt.hash(req.body.password, salt);
+        // generate a password and hash it
+    const password = passwordGenerator.generate({length: 8, numbers: true});
+    monitor.password = await bcrypt.hash(password, salt);
+        // save in the db
     await monitor.save();
+    // send the new monitor object to the client with the password in plain  text
+    monitor.password = password;
     res.send(monitor);
 });
 
