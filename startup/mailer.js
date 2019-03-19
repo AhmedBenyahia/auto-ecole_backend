@@ -1,5 +1,5 @@
 const mailer = require('nodemailer');
-const mailDebuger = require('debug')('app:mail');
+const mailDebug = require('debug')('app:mail');
 
 // configure the nodemailer
 const mailServer = mailer.createTransport({
@@ -11,7 +11,7 @@ const mailServer = mailer.createTransport({
 });
 
 module.exports = function (to, subject, body) {
-    mailDebuger('Debugging mailer');
+    mailDebug('Debugging mailer');
     const mailOptions = {
         from: 'ahmedbenyahiakanansa@gmail.com', // sender address
         to: to, // list of receivers
@@ -19,7 +19,7 @@ module.exports = function (to, subject, body) {
         html: `<p>${body}</p>`// plain text body
     };
     mailServer.sendMail(mailOptions, (err, info) => {
-        if (err) mailDebuger("The mail send was failed:" + err);
-        else mailDebuger("Mail successful sent" + info);
+        if (err) mailDebug("The mail send was failed:" + err);
+        else mailDebug("Mail successful sent" + info);
     });
 };

@@ -19,6 +19,7 @@
     "lodash": "latest",
     "mongoose": "^5.4.16",
     "morgan": "~1.9.0",
+    "nodemailer": "^5.1.1",
     "username-generator": "^1.1.0",
     "winston": "^3.2.1",
     "winston-mongodb": "^4.0.3"
