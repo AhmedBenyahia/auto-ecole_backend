@@ -9,7 +9,7 @@ const validateObjectId = require('../middleware/validateObjectId');
 const _ = require('lodash');
 const sessionDebug = require('debug')('app:session');
 const DAY = 24*60*60*1000;
-
+const isFullReservation = require('../middleware/isFullReservation');
 sessionDebug('session debugging is enabled');
 
 // GET ALL
@@ -19,28 +19,32 @@ router.get('/', async (req, res) => {
 
 // GET BY ID
 router.get('/:id', validateObjectId, async (req, res) => {
-    const session = await Session.findOne({_id: req.params.id});
+    const session = await Session.findOne({_id: req.params.id, agency: req.user.agency});
     if (!session) return res.status(404).send(' The session with the giving id was not found');
     res.send(session);
 });
 
-// TODO prevent other client from accessing this route
 // GET Client Session
 router.get('/client/:id', async (req, res) => {
-    res.send(await Session.find({ 'client._id': req.user._id}));
+    res.send(await Session.find({ 'client._id': req.params._id}));
+});
+
+// GET Monitor Session
+router.get('/monitor/:id', async (req, res) => {
+    res.send(await Session.find({ 'monitor._id': req.params._id}));
 });
 
 // Request Session Reservation
-router.post('/reserve', async (req, res) => {
+router.post('/reserve', isFullReservation, async (req, res) => {
     sessionDebug('debugging /reserve endpoint');
     // validate the request schema
     const {error} = validateReservation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     // verify that the agency exist
-    const agency = await Agency.findOne({_id: req.body.agency});
+    const agency = await Agency.findOne({_id: req.user.agency});
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
     // verify that the client exist
-    const client = await Client.findOne({_id: req.body.clientId});
+    const client = await Client.findOne({_id: req.body.clientId, agency: req.user.agency});
     if (!client) return res.status(404).send(' The client with the giving id was not found');
     // verify that the client doesn't have a reservation in the same date and it's APPROVED
     let session = await Session
@@ -59,9 +63,9 @@ router.post('/reserve', async (req, res) => {
     }
     // save the new session
      session = new Session({
-        client: _.pick(client, ['_id','name', 'surname', 'state', 'drivingLicence']),
+        client: _.pick(client, ['_id','name', 'surname', 'state', 'drivingLicenceType']),
         reservationDate: req.body.reservationDate,
-        agency: req.body.agency,
+        agency: req.user.agency,
     });
     await session.save();
     res.send(session);
@@ -73,20 +77,19 @@ router.patch('/approve/:id', async (req, res) => {
     const {error} = validateApproving(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     // verify that the session exist
-    let session = await Session.findOne({ _id: req.params.id});
+    let session = await Session.findOne({ _id: req.params.id, agency: req.user.agency});
     if (!session) return res.status(404).send(' The session with the giving id was not found');
     // verify if the state of the session is REQUESTED
     sessionDebug('  Session State: ', session.state);
     if (session.state !== sessionState[0]) return res.status(406).send('Only approve session with REQUESTED state');
     // verify that the car exist
-    const car = await Car.findOne({_id: req.body.carId});
+    const car = await Car.findOne({_id: req.body.carId, agency: req.user.agency});
     if (!car) return res.status(404).send(' The car with the giving id was not found');
     // verify that the car is not reserved on the specified date
     let otherSession = await Session
         .find({
             reservationDate: session.reservationDate,
-            'car._id': car._id // TODO: Why it's working for the car and not for the client
-                    // TODO: It's because you updated the client schema and u didn't delete the collection
+            'car._id': car._id
         })
         .or([
             {state: sessionState[0]},
@@ -97,7 +100,7 @@ router.patch('/approve/:id', async (req, res) => {
         otherSession.length !== 0," Nbre: ", otherSession.length);
     if (otherSession.length !== 0) return res.status(400).send('The giving car is not available on the reservation date');
     // verify that the monitor exist
-    const monitor = await Monitor.findOne({_id: req.body.monitorId});
+    const monitor = await Monitor.findOne({_id: req.body.monitorId, agency: req.user.agency});
     if (!monitor) return res.status(404).send(' The monitor with the giving id was not found');
     // verify that the monitor is not reserved on the specified date
      otherSession = await Session
@@ -130,7 +133,7 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
     const {error} = validateUpdating(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     //verify the existence of the session
-    let session = await Session.findOne({ _id: req.params.id});
+    let session = await Session.findOne({ _id: req.params.id, agency: req.user.agency});
     if (!session) return res.status(404).send(' The session with the giving id was not found');
     // verify if the state of the session is APPROVED, PENDING or FINISHED
     sessionDebug('  session state:', session.state);
@@ -151,7 +154,7 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
         : session.car._id;
 
     // verify that the car exist
-    const car = await Car.findOne({_id: carId});
+    const car = await Car.findOne({_id: carId, agency: req.user.agency});
     sessionDebug('  we are updating the session with this car: ', carId);
     if (!car) return res.status(404).send(' The car with the giving id was not found');
     // verify that the car is not reserved on the reservation date
@@ -162,7 +165,7 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
     if (otherSession) return res.status(400).send('The giving car is not available on the reservation date');
 
     // verify that the monitor exist
-    const monitor = await Monitor.findOne({_id: monitorId});
+    const monitor = await Monitor.findOne({_id: monitorId, agency: req.user.agency});
     sessionDebug('  we are updating the session with this monitor: ', monitorId);
     if (!monitor) return res.status(404).send(' The monitor with the giving id was not found');
     // verify that the monitor is not reserved on the reservation date
@@ -183,7 +186,7 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
 
 // REJECT Session
 router.delete('/reject/:id', validateObjectId, async (req, res) => {
-    const session = await Session.findOne({ _id: req.params.id });
+    const session = await Session.findOne({ _id: req.params.id, agency: req.user.agency });
     // if the session was not found return an error
     if (!session) return res.status(404).send(' The session with the giving id was not found');
     // if the status of the session is REQUESTED
@@ -197,7 +200,7 @@ router.delete('/reject/:id', validateObjectId, async (req, res) => {
 // CANCEL Session
 router.patch('/cancel/:id', validateObjectId, async (req, res) => {
     // if the session wan not found return an error
-    const session = await Session.findOne({_id: req.params.id});
+    const session = await Session.findOne({_id: req.params.id, agency: req.user.agency});
     if (!session) return res.status(404).send(' The session with the giving id was not found');
     // if the status of the session is REQUESTED
     if (session.state === sessionState[0]) { // TODO: add forwarding

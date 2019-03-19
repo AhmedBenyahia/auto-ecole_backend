@@ -7,14 +7,15 @@ const _ = require('lodash');
 const bcrypt = require("bcrypt");
 const Joi = require('joi');
 const clientDebug = require('debug')('app:client');
+
 // GET ALL
 router.get('/', async (req, res) => {
-    res.send(await Client.find({ agency: req.user.agency}));
+    res.send(await Client.find({ agency: req.body.agency}));
 });
 
 // GET BY ID
 router.get('/:id', validateObjectId, async (req, res) => {
-    const client = await Client.findOne({_id: req.params.id});
+    const client = await Client.findOne({_id: req.params.id, agency: req.body.agency});
     if (!client) return res.status(404).send(' The client with the giving id was not found');
     res.send(client);
 });
@@ -46,7 +47,7 @@ router.put('/:id', validateObjectId, async (req, res) => {
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
     // verify if we are updating the password
     // update the client with the giving id
-    const client = await Client.findOneAndUpdate({ _id: req.params.id}, req.body, { new: true});
+    const client = await Client.findOneAndUpdate({ _id: req.params.id, agency: req.body.agency}, req.body, { new: true});
     // if the client wan not found return an error
     if (!client) return res.status(404).send(' The client with the giving id was not found');
     res.send(client);
@@ -61,7 +62,7 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
     });
     if (error) return res.status(400).send(error.details[0].message);
     // verify if client exist
-    let client = await Client.findOne({ _id: req.params.id });
+    let client = await Client.findOne({ _id: req.params.id, agency: req.body.agency });
     if (!client) return res.status(404).send(' The client with the giving id was not found');
     // verify if the old password is valid
     if (await bcrypt.compare(req.body.oldPassword, client.password)) {
@@ -77,7 +78,7 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
 
 // DELETE Client
 router.delete('/:id', validateObjectId, async (req, res) => {
-    const client = await Client.findOneAndDelete({ _id: req.params.id});
+    const client = await Client.findOneAndDelete({ _id: req.params.id, agency: req.body.agency});
     // if the client wan not found return an error
     if (!client) return res.status(404).send(' The client with the giving id was not found');
     res.send(client);

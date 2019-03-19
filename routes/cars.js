@@ -7,12 +7,12 @@ const debugCars = require('debug')('app:cars');
 
 // GET ALL
 router.get('/', async (req, res) => {
-    res.send(await Car.find({ agency: req.user.agency}));
+    res.send(await Car.find({ agency: req.body.agency}));
 });
 
 // GET BY ID
 router.get('/:id', validateObjectId, async (req, res) => {
-    const car = await Car.findOne({_id: req.params.id});
+    const car = await Car.findOne({_id: req.params.id, agency: req.body.agency});
     if (!car) return res.status(404).send(' The car with the giving id was not found');
     res.send(car);
 });
@@ -26,7 +26,8 @@ router.post('/', async (req, res) => {
     const agency = await Agency.findOne({_id: req.body.agency});
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
     // save the new car
-    const car = new Car(req.body);
+    let car = new Car(req.body);
+    car.agency = agency._id;
     await car.save();
     res.send(car);
 });
@@ -39,10 +40,10 @@ router.put('/:id', validateObjectId, async (req, res) => {
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     // verify that the agency exist
-    const agency = await Agency.findOne({_id: req.body.agency});
+    const agency = await Agency.findOne({_id: req.body.agency, });
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
     // update the car with the giving id
-    const car = await Car.findOneAndUpdate({ _id: req.params.id}, req.body, { new: true});
+    const car = await Car.findOneAndUpdate({ _id: req.params.id, agency: req.body.agency}, req.body, { new: true});
     // if the car wan not found return an error
     if (!car) return res.status(404).send(' The car with the giving id was not found');
     res.send(car);
@@ -50,7 +51,7 @@ router.put('/:id', validateObjectId, async (req, res) => {
 
 // DELETE Car
 router.delete('/:id', validateObjectId, async (req, res) => {
-    const car = await Car.findOneAndDelete({ _id: req.params.id}.id);
+    const car = await Car.findOneAndDelete({ _id: req.params.id, agency: req.body.agency});
     // if the car wan not found return an error
     if (!car) return res.status(404).send(' The car with the giving id was not found');
     res.send(car);

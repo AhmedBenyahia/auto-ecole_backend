@@ -7,31 +7,31 @@ const publicRoutes = [
     'POST:/client',
     'GET:/agency',
     'POST:/login',
-    'POST:/agency',
-    'POST:/manager',
-    'GET:/whoami', //TODO it's public and not in the same time ,
+    'POST:/agency',    //TODO add super admin and delete those
+    'GET:/whoami',   //TODO it's public and not in the same time ,
                     //TODO: so we need the jwt role and id to be send to the method
 ];
 // Client only routes
 const clientRoutes = [
+    'GET:/whoami',
+    'GET:/client',
     'PUT:/client',
-    'GET:/client/:id',
-    'PUT:/client/:id',
-    'PATCH:/client/password/:id', //TODO my the client should send he's id ??
-    'GET:/session/client/:id',
+    'PATCH:/client/password',
+    'GET:/session/client',
     'POST:/session/reserve',
-    'PATCH:/session/cancel/:id'  //TODO the client can only delete his session
+    'PATCH:/session/cancel',
 ];
 // Monitor only routes
 const monitorRoutes = [
-    'PUT:/monitor/:id',
-    'PATCH:/monitor/password/:id',
+    'PUT:/monitor',
+    'PATCH:/monitor/password',
+    'POST:/session/reserve',
     'GET:/whoami',
     'GET:/session/monitor'
 ];
 // Admin routes
 const adminRoutes = [
-    '*', //TODO add reg expression s    upport
+    '*', //TODO add reg expression support
 
     'GET:/monitor',
     'GET:/monitor/:id',
@@ -85,6 +85,7 @@ module.exports = function(req, res, next) {
     // verify the validation of the token
     try {
         req.user = jwt.verify(token, config.get('jwtPrivateKey'));
+        req.body.agency = req.user.agency;
         authorDebug('   token payload: user role is', req.user.role);
         // if he is an admin verify if he has the authorization de visit the req route
         // authorDebug('he is admin and he has the permission so let his, pass: ' + adminRoutes.indexOf(compact(req.method, req.url)) > -1);
@@ -95,11 +96,13 @@ module.exports = function(req, res, next) {
         // if he is an admin verify if he has the authorization de visit the req route
         if (req.user.role.toLowerCase().indexOf('client') > -1 && clientRoutes.indexOf(compact(req.method, req.url)) > -1) {
             authorDebug('   Access route with client permission');
+            if (req.method !== 'POST') req.url = req.url + '/' + req.user._id;
             return next();
         }
         // if he is an admin verify if he has the authorization de visit the req route
         if (req.user.role.toLowerCase().indexOf('monitor') > -1 && monitorRoutes.indexOf(compact(req.method, req.url)) > -1) {
             authorDebug('   Access route with monitor permission');
+            req.url = req.url + '/' + req.user._id;
             return next();
         }
         authorDebug('   --> Forbidden, can access route');
