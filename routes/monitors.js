@@ -8,14 +8,15 @@ const  passwordGenerator = require('generate-password');
 const bcrypt = require("bcrypt");
 const Joi =require('joi');
 const sendMail = require('../startup/mailer');
+const config = require('config');
 // GET ALL
 router.get('/', async (req, res) => {
-    res.send(await Monitor.find({ agency: req.user.agency}));
+    res.send(await Monitor.find({ agency: req.body.agency}));
 });
 
 // GET BY ID
 router.get('/:id', validateObjectId, async (req, res) => {
-    const monitor = await Monitor.findOne({_id: req.params.id});
+    const monitor = await Monitor.findOne({_id: req.params.id, agency: req.body.agency});
     if (!monitor) return res.status(404).send(' The monitor with the giving id was not found');
     res.send(monitor);
 });
@@ -26,7 +27,7 @@ router.post('/', async (req, res) => {
     const {error} = validate(req.body, true);
     if (error) return res.status(400).send(error.details[0].message);
     // verify that the agency exist
-    const agency = await Agency.find({_id: req.body.agency});
+    const agency = await Agency.findOne({_id: req.body.agency});
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
     // save the new monitor
     const monitor = new Monitor(req.body);
@@ -36,10 +37,11 @@ router.post('/', async (req, res) => {
         // generate a password and hash it
     const password = passwordGenerator.generate({length: 8, numbers: true});
     monitor.password = await bcrypt.hash(password, salt);
+    monitor.agency = agency._id;
         // save in the db
     await monitor.save();
         // send mail to admin with the username and password of the added monitor
-    sendMail('ahmedbenyahiakanansa@gmail.com', //TODO: change this with admin mail
+    sendMail(config.get('email'),
           'Ajout d\' un nouveau moniteur',
            'Un nouveau moniteur  a ete ajouter: <br>' +
                 `Nom: ${monitor.name}, prenom: ${monitor.surname} <br>` +
@@ -89,7 +91,7 @@ router.put('/:id', validateObjectId, async (req, res) => {
 
 // DELETE Monitor
 router.delete('/:id', validateObjectId, async (req, res) => {
-    const monitor = await Monitor.findOneAndDelete({ _id: req.params.id});
+    const monitor = await Monitor.findOneAndDelete({ _id: req.params.id, agency: req.body.agency});
     // if the monitor wan not found return an error
     if (!monitor) return res.status(404).send(' The monitor with the giving id was not found');
     res.send(monitor);
