@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 const JoiExtended = require('../startup/validation');
 
+const carState = ['Active', 'SUSPENDED', 'RETIRED'];
+
 const carSchema = new mongoose.Schema({
     num: {
       type: String,
       required: true,
       trim: true,
-      length: 11,
+      length: 9,
     },
     mark: {
       type: String,
@@ -22,10 +24,32 @@ const carSchema = new mongoose.Schema({
             minLength: 1,
             maxLength: 25
     },
-    state: {
-        type: String, //TODO add enum for car state
+    serialNum: {
+        type: String,
+        required: true,
         trim: true,
-        default: "Active",
+        length: 17,
+    },
+    dateFirstRegistration: {
+        type: Date,
+        required: true,
+    },
+    exploitationCartDate: {
+        type: Date,
+        required: true,
+    },
+    exploitationCartNum: {
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: 20,
+        minlength: 5,
+    },
+    state: {
+        type: String,
+        trim: true,
+        enum: carState,
+        default: carState[0],
     },
     agency: mongoose.Types.ObjectId,
 });
@@ -34,10 +58,13 @@ const Car = mongoose.model('Cars', carSchema);
 
 function validateSchema(car) {
     const schema = {
-        num: JoiExtended.string().length(7).required(),
+        num: JoiExtended.string().numPlate().required(),
+        exploitationCartNum: JoiExtended.string().min(5).required(),
+        exploitationCartDate: JoiExtended.date().required(),
+        dateFirstRegistration: JoiExtended.date().required(),
+        serialNum: JoiExtended.string().length(17).required(),
         mark: JoiExtended.string().min(3).max(15).required(),
         model: JoiExtended.string().min(1).max(25).required(),
-        // state: JoiExtended.string(), // TODO: add joi validation for state enum
         agency: JoiExtended.string().objectId().required()
     };
     return JoiExtended.validate(car, schema);
@@ -46,3 +73,4 @@ function validateSchema(car) {
 exports.carSchema = carSchema;
 exports.Car = Car;
 exports.validate = validateSchema;
+exports.carState = carState;

@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const JoiExtended = require('../startup/validation');
 
+const monitorState = ['ACTIVE', 'SUSPENDED', 'RETIRED'];
+
 const monitorSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -107,9 +109,10 @@ const monitorSchema = new mongoose.Schema({
     },
 
     state: {
-        type: String, //TODO add enum for monitor state
+        type: String,
         trim: true,
-        default: "Active",
+        enum: monitorState,
+        default: monitorState[0],
     },
     agency: mongoose.Types.ObjectId,
 });
@@ -119,40 +122,40 @@ const Monitor = mongoose.model('Monitor', monitorSchema);
 function validateSchema(monitor, newMonitor) {
     const schema = Joi.object().keys({
         name: Joi.string().min(4).max(55)
-            .when('$condition', {
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
         surname: Joi.string().min(4).max(55)
-            .when('$condition', {
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
         birthday: Joi.date()
-            .when('$condition', {
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
-        cin: JoiExtended.string().cin() //TODO add custom joi method for cin validation
-            .when('$condition', {
+        cin: JoiExtended.string().cin()
+        .when('$condition', { //TODO add custom joi method for cin validation
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
         cinDate: Joi.date()
-            .when('$condition', {
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
-        drivingLicenceType: Joi.string().min(1).max(6) // TODO add enum
-            .when('$condition', {
-                is: Joi.boolean().valid(true),
+        drivingLicenceType: Joi.string().min(1).max(6)
+        .when('$condition', {
+                is: Joi.boolean().valid(true), // TODO add enum
                 then: Joi.required()}),
-        drivingLicenceNum: Joi.string().min(6).max(6)
-            .when('$condition', {
+        drivingLicenceNum: Joi.string().length(8)
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
         drivingLicenceDate: Joi.date()
-            .when('$condition', {
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
         address: Joi.string().max(255).min(5),
         phone: JoiExtended.string().phone()
-            .when('$condition', {
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
         postalCode: Joi.string().min(4).max(10),
@@ -161,10 +164,9 @@ function validateSchema(monitor, newMonitor) {
             certificationDate: Joi.date().required(),
             certificationNum: Joi.string().min(8).max(8).required(),
         }).min(1)
-            .when('$condition', {
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}), // TODO: add joi validation for monitor certification  type with enum
-
         agency: JoiExtended.string().objectId().required(),
 
 });
@@ -174,3 +176,4 @@ function validateSchema(monitor, newMonitor) {
 exports.monitorSchema = monitorSchema;
 exports.Monitor = Monitor;
 exports.validate = validateSchema;
+exports.monitorState = monitorState;

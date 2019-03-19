@@ -33,26 +33,22 @@ const managerSchema = new mongoose.Schema({
 const Manager = mongoose.model('Managers', managerSchema);
 
 function validateSchema(manager, newManager) {
-    const schema = {
-        username: Joi.string().min(4).max(55)
-            .when('$condition', {
-                is: Joi.boolean().valid(true),
-                then: Joi.required()}),
+    const schema = Joi.object().keys({
         password: Joi.string().min(8).max(255)
-            .when('$condition', {
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required(),
                 otherwise: Joi.forbidden()}),
         email: JoiExtended.string().email()
-            .when('$condition', {
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
         role: Joi.string()
-            .when('$condition', {
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}), //TODO add manager role enum
         agency: JoiExtended.string().objectId().required(),
-    };
+    });
     return Joi.validate(manager, schema, {context: { condition: newManager}});
 }
 

@@ -111,13 +111,22 @@ const sessionSchema = new mongoose.Schema({
 const Session = mongoose.model('Session', sessionSchema);
 
 function validateReservationSchema(session) {
-    const schema = {
+    const schema = Joi.object().keys({
         clientId: JoiExtended.string().objectId().required(),
         reservationDate: Joi.date().iso().min(Date.now()).min(Date.now() + DAY).required(),
+        carId: JoiExtended.string().objectId().when('isFullReservation', {
+            is: Joi.boolean().valid(true),
+            then: Joi.required(),
+            otherwise: Joi.forbidden()
+        }),
+        monitorId: JoiExtended.string().objectId().when('isFullReservation', {
+            is: Joi.boolean().valid(true),
+            then: Joi.required(),
+            otherwise: Joi.forbidden()
+        }),
+        isFullReservation: Joi.boolean().required(),
         agency: JoiExtended.string().objectId().required(),
-        // state: Joi.string().valid(sessionState),
-        // isPayed: Joi.boolean(),
-    };
+    });
     return Joi.validate(session, schema);
 }
 
@@ -125,6 +134,7 @@ function validateApproveSchema(session) {
     const schema = {
         carId: JoiExtended.string().objectId().required(),
         monitorId: JoiExtended.string().objectId().required(),
+        agency: JoiExtended.string().objectId().required(),
     };
     return Joi.validate(session, schema);
 }
@@ -134,6 +144,7 @@ function validateUpdateSchema(session) {
         reservationDate: Joi.date().iso().min(Date.now()).max(Date.now() + DAY*30*6),
         carId: JoiExtended.string().objectId(),
         monitorId: JoiExtended.string().objectId(),
+        agency: JoiExtended.string().objectId().required(),
     };
     return Joi.validate(session, schema);
 }
