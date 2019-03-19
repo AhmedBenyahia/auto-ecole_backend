@@ -134,7 +134,7 @@ function validateSchema(monitor, newMonitor) {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
         cin: JoiExtended.string().cin()
-        .when('$condition', { //TODO add custom joi method for cin validation
+        .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
         cinDate: Joi.date()

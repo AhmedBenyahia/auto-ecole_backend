@@ -25,6 +25,18 @@ const clientSchema = new mongoose.Schema({
        maxLength: 55,
        trim: true,
    },
+    cin: {
+        type: String,
+        minlength: 8,
+        maxlength: 8,
+        trim: true,
+        required: true,
+        unique: true,
+    },
+    cinDate: {
+        type: Date,
+        required: true,
+    },
    surname: {
        type: String,
        required: true,
@@ -106,6 +118,14 @@ function validateSchema(client, newClient) {
         .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
+        cin: JoiExtended.string().cin()
+            .when('$condition', {
+                is: Joi.boolean().valid(true),
+                then: Joi.required()}),
+        cinDate: Joi.date()
+            .when('$condition', {
+                is: Joi.boolean().valid(true),
+                then: Joi.required()}),
         phone: JoiExtended.string().phone()
         .when('$condition', {
                 is: Joi.boolean().valid(true),
@@ -114,7 +134,7 @@ function validateSchema(client, newClient) {
         .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
-        agency: JoiExtended.string().objectId().required(),
+            agency: JoiExtended.string().objectId().required(),
         address: Joi.string().max(255).min(5),
         postalCode: Joi.string().min(4).max(10),
         drivingLicenceType: Joi.string().min(1).max(6), // TODO: add joi validation for driving licence type with enum
