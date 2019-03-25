@@ -10,6 +10,8 @@ const monitor  = require('../routes/monitors');
 const session  = require('../routes/sessions');
 const authentication  = require('../routes/authentication');
 const manager  = require('../routes/managers');
+const document  = require('../routes/document');
+
 const authorDebug = require('debug')('app:authorization');
 
 module.exports = (app) => {
@@ -25,6 +27,7 @@ module.exports = (app) => {
     app.use('/session', session);
     app.use('/', authentication);
     app.use('/manager', manager);
+    app.use('/', document);
 // handling requests error
     app.use(error);
 };

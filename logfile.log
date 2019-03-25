@@ -1,0 +1,188 @@
+2019-03-19T11:34:16.061Z [right now!] info: Listening on port 3000... 
+2019-03-19T11:34:16.121Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T13:16:28.061Z [right now!] info: Listening on port 3000... 
+2019-03-19T13:16:28.164Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T13:23:38.283Z [right now!] info: Listening on port 3000... 
+2019-03-19T13:23:38.350Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T13:25:21.341Z [right now!] info: Listening on port 3000... 
+2019-03-19T13:25:21.401Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T13:37:13.730Z [right now!] info: Listening on port 3000... 
+2019-03-19T13:37:13.805Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T13:38:57.844Z [right now!] info: Listening on port 3000... 
+2019-03-19T13:38:57.905Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T13:45:07.723Z [right now!] info: Listening on port 3000... 
+2019-03-19T13:45:07.789Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T13:48:03.737Z [right now!] info: Listening on port 3000... 
+2019-03-19T13:48:03.818Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T13:48:52.388Z [right now!] error: Something failed:  Unexpected token } in JSON at position 20 SyntaxError: Unexpected token } in JSON at position 20
+    at JSON.parse (<anonymous>)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:89:19)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-19T13:49:03.692Z [right now!] error: Something failed:  Unexpected token } in JSON at position 37 SyntaxError: Unexpected token } in JSON at position 37
+    at JSON.parse (<anonymous>)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:89:19)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-19T13:53:23.928Z [right now!] error: Something failed:  Unexpected token } in JSON at position 66 SyntaxError: Unexpected token } in JSON at position 66
+    at JSON.parse (<anonymous>)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:89:19)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-19T14:00:38.486Z [right now!] error: Something failed:  Cannot read property 'cin' of undefined TypeError: Cannot read property 'cin' of undefined
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/routes/document.js:28:40
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2019-03-19T14:02:25.322Z [right now!] error: Something failed:  Cannot read property 'cin' of undefined TypeError: Cannot read property 'cin' of undefined
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/routes/document.js:28:40
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2019-03-19T14:03:00.592Z [right now!] error: Something failed:  Cannot read property 'cin' of undefined TypeError: Cannot read property 'cin' of undefined
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/routes/document.js:28:40
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2019-03-19T14:03:47.129Z [right now!] info: Listening on port 3000... 
+2019-03-19T14:03:47.188Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T14:03:54.585Z [right now!] error: Something failed:  Cannot read property 'cin' of undefined TypeError: Cannot read property 'cin' of undefined
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/routes/document.js:28:40
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2019-03-19T14:06:36.396Z [right now!] info: Listening on port 3000... 
+2019-03-19T14:06:36.460Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T14:08:18.693Z [right now!] error: Something failed:  Cannot read property 'cin' of undefined TypeError: Cannot read property 'cin' of undefined
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/routes/document.js:28:40
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2019-03-19T14:09:46.951Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T14:10:01.932Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T14:11:12.852Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T14:12:12.814Z [right now!] info: Listening on port 3000... 
+2019-03-19T14:12:12.872Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T14:12:18.392Z [right now!] error: Something failed:  Cannot read property 'cin' of null TypeError: Cannot read property 'cin' of null
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/routes/document.js:28:41
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2019-03-19T14:15:36.123Z [right now!] info: Listening on port 3000... 
+2019-03-19T14:15:36.194Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T14:15:42.663Z [right now!] error: Something failed:  Cannot read property 'cin' of null TypeError: Cannot read property 'cin' of null
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/routes/document.js:28:41
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2019-03-19T14:15:43.954Z [right now!] error: Something failed:  Cannot read property 'cin' of null TypeError: Cannot read property 'cin' of null
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/routes/document.js:28:41
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2019-03-19T14:15:56.087Z [right now!] info: Listening on port 3000... 
+2019-03-19T14:15:56.150Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T14:18:54.760Z [right now!] error: Something failed:  Cannot read property 'cin' of null TypeError: Cannot read property 'cin' of null
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/routes/document.js:28:41
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2019-03-19T14:19:03.468Z [right now!] info: Listening on port 3000... 
+2019-03-19T14:19:03.557Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T14:19:39.093Z [right now!] info: Listening on port 3000... 
+2019-03-19T14:19:39.153Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T14:20:15.454Z [right now!] info: Listening on port 3000... 
+2019-03-19T14:20:15.515Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T14:20:33.689Z [right now!] info: Listening on port 3000... 
+2019-03-19T14:20:33.777Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-19T16:30:52.453Z [right now!] info: Listening on port 3000... 
+2019-03-19T16:30:52.524Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-21T07:04:06.920Z [right now!] info: Listening on port 3000... 
+2019-03-21T07:04:06.985Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-21T07:05:59.018Z [right now!] info: Listening on port 3000... 
+2019-03-21T07:05:59.098Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-21T08:45:03.564Z [right now!] error: Something failed:  Unexpected token } in JSON at position 217 SyntaxError: Unexpected token } in JSON at position 217
+    at JSON.parse (<anonymous>)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:89:19)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-21T09:00:38.431Z [right now!] error: Something failed:  Unexpected token r in JSON at position 3 SyntaxError: Unexpected token r in JSON at position 3
+    at JSON.parse (<anonymous>)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:89:19)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-21T09:00:49.535Z [right now!] error: Something failed:  Unexpected token r in JSON at position 3 SyntaxError: Unexpected token r in JSON at position 3
+    at JSON.parse (<anonymous>)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:89:19)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-21T09:04:36.747Z [right now!] info: Listening on port 3000... 
+2019-03-21T09:04:36.810Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-21T09:08:22.100Z [right now!] info: Listening on port 3000... 
+2019-03-21T09:08:22.170Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-21T09:12:10.008Z [right now!] info: Listening on port 3000... 
+2019-03-21T09:12:10.076Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-21T09:33:09.860Z [right now!] info: Listening on port 3000... 
+2019-03-21T09:33:09.927Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-21T09:48:43.766Z [right now!] info: Listening on port 3000... 
+2019-03-21T09:48:43.843Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-21T09:49:29.002Z [right now!] info: Listening on port 3000... 
+2019-03-21T09:49:29.094Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-22T06:54:34.563Z [right now!] info: Listening on port 3000... 
+2019-03-22T06:54:34.722Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-22T07:16:34.874Z [right now!] info: Listening on port 3000... 
+2019-03-22T07:16:34.942Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-22T08:02:29.800Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-22T08:30:13.773Z [right now!] info: Listening on port 3000... 
+2019-03-22T08:30:13.839Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-22T12:32:24.867Z [right now!] info: Listening on port 3000... 
+2019-03-22T12:32:24.951Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-25T07:20:15.975Z [right now!] info: Listening on port 3000... 
+2019-03-25T07:20:16.056Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-25T07:54:04.746Z [right now!] info: Listening on port 3000... 
+2019-03-25T07:54:04.811Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 

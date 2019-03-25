@@ -1,6 +1,13 @@
 // import modules and libs
 const express = require('express');
 const app = express();
+const cors = require('cors');
+const fileUpload = require('express-fileupload');
+
+app.use(cors());
+
+app.use(fileUpload());
+
 
 require('./startup/config')(app);
 const { handleRejection, logger } = require('./startup/logging');
