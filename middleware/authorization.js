@@ -23,7 +23,7 @@ const clientRoutes = [
     // to fix
     'POST:/session/reserve',
     'PATCH:/session/cancel',
-        'DELETE:/session/reject/:id',
+    'DELETE:/session/reject/:id',
 
 ];
 // Monitor only routes
@@ -39,7 +39,13 @@ const monitorRoutes = [
 // Admin routes
 const adminRoutes = [
     '*', //TODO add reg expression support
-
+   
+   'GET:/exame',
+    'PUT:/exame/:id',
+    'PATCH:/exame/succeed/:id',
+    'PATCH:/exame/reset/:id',
+    'PATCH:/exame/failed/:id',
+    'POST:/exame/scheduleed',
     'GET:/monitor',
     'GET:/monitor/:id',
     'POST:/monitor',
@@ -77,7 +83,6 @@ const adminRoutes = [
     'PATCH:/session/approve/:id',
     'PATCH:/session/cancel/:id',
     'PATCH:/session/update/:id',
-    'DELETE:/session/reject/:id',
 
 ];
 

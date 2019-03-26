@@ -6,6 +6,7 @@ const validateObjectId = require('../middleware/validateObjectId');
 const _ = require('lodash');
 const bcrypt = require("bcrypt");
 const Joi = require('joi');
+const JoiExtended = require('../startup/validation');
 const clientDebug = require('debug')('app:client');
 
 // GET ALL
@@ -25,7 +26,9 @@ router.post('/', async (req, res) => {
     clientDebug('POST:/client');
     // validate the request schema
     const {error} = validate(req.body, true);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({
+        message: error.details[0].message
+    });
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.body.agency});
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
@@ -58,9 +61,12 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
     // validate the request schema
     const {error} = Joi.validate(req.body, {
         newPassword: Joi.string().min(8).max(255).required(),
-        oldPassword: Joi.string().min(8).max(255).required()
+        oldPassword: Joi.string().min(8).max(255).required(),
+        agency: JoiExtended.string().objectId().required(),
     });
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({
+        message: error.details[0].message
+    });
     // verify if client exist
     let client = await Client.findOne({ _id: req.params.id, agency: req.body.agency });
     if (!client) return res.status(404).send(' The client with the giving id was not found');
