@@ -13,16 +13,23 @@ const publicRoutes = [
 ];
 // Client only routes
 const clientRoutes = [
+    'POST:/upload/permi',
+    'POST:/upload/cin',
     'GET:/whoami',
     'GET:/client',
     'PUT:/client',
     'PATCH:/client/password',
     'GET:/session/client',
+    // to fix
     'POST:/session/reserve',
     'PATCH:/session/cancel',
+    'DELETE:/session/reject/:id',
+
 ];
 // Monitor only routes
 const monitorRoutes = [
+    'POST:/upload/permi',
+    'POST:/upload/cin',
     'PUT:/monitor',
     'PATCH:/monitor/password',
     'POST:/session/reserve',
@@ -32,18 +39,29 @@ const monitorRoutes = [
 // Admin routes
 const adminRoutes = [
     '*', //TODO add reg expression support
-
+   
+   'GET:/exame',
+    'PUT:/exame/:id',
+    'PATCH:/exame/succeed/:id',
+    'PATCH:/exame/reset/:id',
+    'PATCH:/exame/failed/:id',
+    'POST:/exame/scheduleed',
     'GET:/monitor',
     'GET:/monitor/:id',
     'POST:/monitor',
     'PUT:/monitor/:id',
     'DELETE:/monitor/:id',
 
+
+//
+//postclient passiv
+'POST:/client',
     'GET:/client',
     'GET:/client/:id',
     'PUT:/client/:id',
     'DELETE:/client/:id',
 
+    // fixed
     'GET:/car',
     'GET:/car/:id',
     'POST:/car',
@@ -65,7 +83,6 @@ const adminRoutes = [
     'PATCH:/session/approve/:id',
     'PATCH:/session/cancel/:id',
     'PATCH:/session/update/:id',
-    'DELETE:/session/reject/:id',
 
 ];
 
@@ -96,7 +113,9 @@ module.exports = function(req, res, next) {
         // if he is an admin verify if he has the authorization de visit the req route
         if (req.user.role.toLowerCase().indexOf('client') > -1 && clientRoutes.indexOf(compact(req.method, req.url)) > -1) {
             authorDebug('   Access route with client permission');
-            if (req.method !== 'POST') req.url = req.url + '/' + req.user._id;
+            //TODO: fix this if the  are a error
+            if (req.method !== 'POST')req.url = req.url + '/' + req.user._id;
+            else req.body.clientId = req.user._id;
             return next();
         }
         // if he is an admin verify if he has the authorization de visit the req route
