@@ -26,12 +26,13 @@ router.get('/:id', validateObjectId, async (req, res) => {
 
 // GET Client Session
 router.get('/client/:id', async (req, res) => {
-    res.send(await Session.find({ 'client._id': req.params._id}));
+    sessionDebug('debugging session/client/:id endpoint');
+    res.send(await Session.find({ 'client._id': req.params.id}));
 });
 
 // GET Monitor Session
 router.get('/monitor/:id', async (req, res) => {
-    res.send(await Session.find({ 'monitor._id': req.params._id}));
+    res.send(await Session.find({ 'monitor._id': req.params.id}));
 });
 
 // Request Session Reservation

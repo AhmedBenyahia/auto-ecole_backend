@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const JoiExtended = require('../startup/validation');
 
-    const sessionState = ['REQUESTED', 'APPROVED', 'CANCELED', 'CANCELLATION_REQUESTED', 'PENDING', 'FINISHED'];
+const sessionState = ['REQUESTED', 'APPROVED', 'CANCELED', 'CANCELLATION_REQUESTED', 'PENDING', 'FINISHED'];
 const DAY = 24*60*60*1000;
 
 const sessionSchema = new mongoose.Schema({
@@ -57,11 +57,27 @@ const sessionSchema = new mongoose.Schema({
                 trim: true,
             },
             certification: {
-                type: String, // TODO: add enum att to certification
-                minLength: 1,
-                maxLength: 6,
-                trim: true,
-                required: true,
+                type: [new mongoose.Schema({
+                    certificationType: {
+                        type: String,
+                        minLength: 1,
+                        maxLength: 6,
+                        trim: true,
+                        required: true
+                    },
+                    certificationDate: {
+                        type: Date,
+                        required: true,
+                    },
+                    certificationNum: {
+                        type: String,
+                        minLength: 8,
+                        maxLength: 8,
+                        trim: true,
+                        unique: true,
+                        required: true
+                    }
+                })]
             },
         }),
     },

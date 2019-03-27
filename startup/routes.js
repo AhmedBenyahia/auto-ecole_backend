@@ -15,7 +15,7 @@ const authorDebug = require('debug')('app:authorization');
 module.exports = (app) => {
 
 // Authorization check
-    app.use(express.json());
+    app.use(express.json()) ;
     app.use(authorization);
 // routes chain goes here
     app.use('/agency', agency);

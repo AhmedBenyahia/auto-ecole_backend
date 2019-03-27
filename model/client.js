@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const JoiExtended = require('../startup/validation');
 
-const clientState = ['ACTIVE', 'SUSPENDED', 'RETIRED']; //TODO Do This
+const clientState = ['UNVERIFIED','PROFILE_NOT_COMPLETED','READY','LEARNING',
+                                                'DRIVING', 'SUSPENDED', 'RETIRED'];
+            //TODO: The client state should give you witch phase
+           //TODO: the client has reach in his driving licence (code, conduite)
 
 const clientSchema = new mongoose.Schema({
    username: {
@@ -25,7 +28,7 @@ const clientSchema = new mongoose.Schema({
        maxLength: 55,
        trim: true,
    },
-    cin: {
+   cin: {
         type: String,
         minlength: 8,
         maxlength: 8,
@@ -33,7 +36,7 @@ const clientSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    cinDate: {
+   cinDate: {
         type: Date,
         required: true,
     },
@@ -82,7 +85,6 @@ const clientSchema = new mongoose.Schema({
         maxLength: 8,
         trim: true,
         default: null,
-        unique: true
     },
    state: {
        type: String, //TODO add enum for client state
