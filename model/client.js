@@ -3,7 +3,7 @@ const Joi = require('joi');
 const JoiExtended = require('../startup/validation');
 
 const clientState = ['UNVERIFIED','PROFILE_NOT_COMPLETED','READY','LEARNING',
-                                                'DRIVING', 'SUSPENDED', 'RETIRED'];
+                     'DRIVING', 'INACTIVE', 'SUSPENDED', 'RETIRED'];
             //TODO: The client state should give you witch phase
            //TODO: the client has reach in his driving licence (code, conduite)
 

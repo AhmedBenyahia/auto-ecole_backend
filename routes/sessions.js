@@ -40,7 +40,7 @@ router.post('/reserve', isFullReservation, async (req, res) => {
     sessionDebug('debugging /reserve endpoint');
     // validate the request schema
     const {error} = validateReservation(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({message: error.details[0].message});
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.user.agency});
     if (!agency) return res.status(404).send(' The agency with the giving id was not found');
@@ -76,7 +76,7 @@ router.patch('/approve/:id', async (req, res) => {
     sessionDebug('debugging /approve endpoint');
     // validate the request schema
     const {error} = validateApproving(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({message: error.details[0].message});
     // verify that the session exist
     let session = await Session.findOne({ _id: req.params.id, agency: req.user.agency});
     if (!session) return res.status(404).send(' The session with the giving id was not found');
@@ -132,7 +132,7 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
     sessionDebug('Debugging /update/:id session endpoint');
     // validate the request schema
     const {error} = validateUpdating(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({message: error.details[0].message});
     //verify the existence of the session
     let session = await Session.findOne({ _id: req.params.id, agency: req.user.agency});
     if (!session) return res.status(404).send(' The session with the giving id was not found');
@@ -187,6 +187,7 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
 
 // REJECT Session
 router.delete('/reject/:id', validateObjectId, async (req, res) => {
+    sessionDebug('Debugging /session/reject/:id');
     const session = await Session.findOne({ _id: req.params.id, agency: req.user.agency });
     // if the session was not found return an error
     if (!session) return res.status(404).send(' The session with the giving id was not found');
@@ -211,7 +212,7 @@ router.patch('/cancel/:id', validateObjectId, async (req, res) => {
     // if the status of the session is APPROVED
     if (session.state === sessionState[1]) {
         // verify if we are 24H far from the date of the reservation
-        sessionDebug('verifying time remaining before the session is greater than 24H: ', session.reservationDate - Date.now() > DAY," ",session.reservationDate - Date.now())
+        sessionDebug('verifying time remaining before the session is greater than 24H: ', session.reservationDate - Date.now() > DAY," ",session.reservationDate - Date.now());
         if (session.reservationDate - Date.now() > DAY) {
             // if so change the state of the session to canceled
             session.state = sessionState[2];

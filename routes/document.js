@@ -38,7 +38,7 @@ if (req.user.role ==='monitor'){
 });
 
 
-router.post('/upload/permi', async function(req, res) {
+router.post('/upload/license/:id', async function(req, res) {
     
     if (Object.keys(req.files).length === 0) {
         return res.status(400).send('No files were uploaded.');

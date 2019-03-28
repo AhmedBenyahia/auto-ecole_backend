@@ -12,7 +12,7 @@ const config = require('config');
 router.post('/login', async (req, res) => {
     // validate request body
     const {error} = validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({message: error.details[0].message});
 
     // verify if it's a client
     const client = await Client.findOne({ username: req.body.username });
@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
     if (manager && await bcrypt.compare(req.body.password, manager.password)) {
         return res.send(generateAuthToken(manager));
     }
-    return res.status(400).send('Invalid username or password');
+    return res.status(400).send({message: 'Invalid username or password'});
 });
 
 // information about the login user
