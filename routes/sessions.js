@@ -159,28 +159,28 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
     sessionDebug('  we are updating the session with this car: ', carId);
     if (!car) return res.status(404).send(' The car with the giving id was not found');
     // verify that the car is not reserved on the reservation date
-    let otherSession = await Session.findOne({
+    let otherSession = await Session.find({
         reservationDate: reservationDate,
         'car._id': car._id
     });
-    if (otherSession) return res.status(400).send('The giving car is not available on the reservation date');
+    if (otherSession.length > 1) return res.status(400).send('The giving car is not available on the reservation date');
 
     // verify that the monitor exist
     const monitor = await Monitor.findOne({_id: monitorId, agency: req.user.agency});
     sessionDebug('  we are updating the session with this monitor: ', monitorId);
     if (!monitor) return res.status(404).send(' The monitor with the giving id was not found');
     // verify that the monitor is not reserved on the reservation date
-     otherSession = await Session.findOne({
+     otherSession = await Session.find({
         reservationDate: reservationDate,
         'monitor._id': monitor._id
     });
-    if (otherSession) return res.status(400).send('The giving monitor is not available on the reservation date');
+    if (otherSession.length > 1) return res.status(400).send({message: 'The giving monitor is not available on the reservation date'});
 
     // update the session if everything is OK
     sessionDebug('  we are updating the session with this dare: ', reservationDate);
     if (req.body.reservationDate) session.reservationDate = reservationDate;
     if (req.body.carId) session.car = _.pick(car, ['num', 'mark', 'model']);
-    if (req.body.monitorId) session.monitor = _.pick(monitor, ['num', 'mark', 'model']);
+    if (req.body.monitorId) session.monitor = _.pick(monitor, ['_id','name', 'surname', 'certification']);
     await session.save();
     res.send(session);
 });
