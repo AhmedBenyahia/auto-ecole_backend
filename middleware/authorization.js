@@ -21,7 +21,7 @@
       { route: "PATCH:/client/password",     secure: true  },
       { route: "GET:/session/client",        secure: true  },
       { route: "POST:/session/reserve",      secure: false  },
-      { route: "PATCH:/session/cancel",      secure: false },
+      { route: "PATCH:/session/cancel/:id",  secure: false },
       { route: "DELETE:/session/reject/:id", secure: false },
   ];
   // Monitor only routes
