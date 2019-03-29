@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 // GET BY ID
 router.get('/:id', validateObjectId, async (req, res) => {
     const exame = await Exame.findOne({_id: req.params.id, agency: req.user.agency});
-    if (!exame) return res.status(404).send(' The exame with the giving id was not found');
+    if (!exame) return res.status(404).send({message: ' The exame with the giving id was not found'});
     res.send(exame);
 });
 
@@ -64,7 +64,7 @@ router.patch('/succeed/:id', async (req, res) => {
     exameDebug('debugging /exame endpoint');
     // validate the request schema
     const {error} = succeedexam(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({message: error.details[0].message});
     // verify that the session exist
     let exame = await Exame.findOne({ _id: req.params.id, agency: req.user.agency});
     if (!exame) return res.status(404).send(' The exame with the giving id was not found');
@@ -92,7 +92,7 @@ router.patch('/failed/:id', async (req, res) => {
     exameDebug('debugging /exame endpoint');
     // validate the request schema
     const {error} = faildeexam(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({message: error.details[0].message});
     // verify that the session exist
     let exame = await Exame.findOne({ _id: req.params.id, agency: req.user.agency});
     if (!exame) return res.status(404).send(' The exame with the giving id was not found');
