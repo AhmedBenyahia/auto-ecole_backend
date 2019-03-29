@@ -43,6 +43,7 @@
     '*', //TODO add reg expression support
 
     'GET:/exam',
+    'GET:/exam/:id',
     'PUT:/exam/:id',
     'PATCH:/exam/succeed/:id',
     'PATCH:/exam/reset/:id',
