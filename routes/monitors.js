@@ -57,7 +57,8 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
     // validate the request schema
     const {error} = Joi.validate(req.body, {
         newPassword: Joi.string().min(8).max(255).required(),
-        oldPassword: Joi.string().min(8).max(255).required()
+        oldPassword: Joi.string().min(8).max(255).required(),
+        agency: Joi.string().required(),
     });
     if (error) return res.status(400).send(error.details[0].message);
     // verify if monitor exist
