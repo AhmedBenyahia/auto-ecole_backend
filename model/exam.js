@@ -2,13 +2,11 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const JoiExtended = require('../startup/validation');
 
-const exameState = ['scheduleed', 'succeed','failed'];
+const examState = ['scheduled', 'succeed', 'failed'];
 const DAY = 24*60*60*1000;
 
 
-
-const exameSchema = new mongoose.Schema({
-
+const examSchema = new mongoose.Schema({
 
     numexam: {
         type: String,
@@ -17,7 +15,6 @@ const exameSchema = new mongoose.Schema({
         maxLength: 18,
         unique: true
     },
-
     client: {
         type: new mongoose.Schema({
             _id: mongoose.Types.ObjectId,
@@ -102,28 +99,25 @@ const exameSchema = new mongoose.Schema({
             },
         }),
     },
-    
     state: {
         type: String, //TODO add enum for session state
-        enum: exameState,
+        enum: examState,
         trim: true,
-        default: exameState[0],
+        default: examState[0],
     },
-    
     examDate: {
         type: Date,
         required: true
     },
     examinateur:{
         type: String ,
-        
     },
     agency: mongoose.Types.ObjectId,
 });
-const Exame = mongoose.model('Exame', exameSchema);
+const Exam = mongoose.model('Exam', examSchema);
 
 
-function validatescheduleed(exame) {
+function validatesScheduled(exam) {
     const schema = Joi.object().keys({
         numexam: Joi.string().min(8).max(18).required(),
         clientId: JoiExtended.string().objectId().required(),
@@ -132,32 +126,31 @@ function validatescheduleed(exame) {
         monitorId: JoiExtended.string().objectId().required(),
         examDate: Joi.date().iso().min(Date.now()).min(Date.now() + (5*DAY)).required(),
 
-
 });
-    return Joi.validate(exame, schema);
+    return Joi.validate(exam, schema);
 }
 
-function succeedexam(exame) {
+function succeedExam(exam) {
     const schema = {
       
         examinateur: Joi.string().min(4).max(25).required(),
         agency: JoiExtended.string().objectId().required(),    
    
     };
-    return Joi.validate(exame, schema);
+    return Joi.validate(exam, schema);
 }
 
 
-function faildeexam(exame) {
+function failedExam(exam) {
     const schema = {
         examinateur: Joi.string().min(4).max(25).required(),
         agency: JoiExtended.string().objectId().required(),    
     };
-    return Joi.validate(exame, schema);
+    return Joi.validate(exam, schema);
 
 }
 
-function validateUpdate(exame,newExame) {
+function validateUpdate(exam, newExam) {
     const schema = Joi.object().keys({
         numexam: Joi.string().min(8).max(18)
         .when('$condition', {
@@ -170,23 +163,16 @@ function validateUpdate(exame,newExame) {
             monitorId: JoiExtended.string().objectId().required(),
         
     });
-    return Joi.validate(exame, schema, {context: {condition: newExame}});
+    return Joi.validate(exam, schema, {context: {condition: newExam}});
 }
 
-
-
-
-
-
-
-
 exports.validateUpdate = validateUpdate;
-exports.faildeexam = faildeexam;
-exports.succeedexam = succeedexam;
-exports.validatescheduleed = validatescheduleed;
-exports.Exame = Exame; 
-exports.exameSchema = exameSchema;
-exports.exameState = exameState;
+exports.failedExam = failedExam;
+exports.succeedExam = succeedExam;
+exports.validatesScheduled = validatesScheduled;
+exports.Exam = Exam;
+exports.examSchema = examSchema;
+exports.examState = examState;
 
 
 

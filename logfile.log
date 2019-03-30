@@ -293,7 +293,7 @@
 2019-03-26T09:21:35.774Z [right now!] info: Listening on port 3000... 
 2019-03-26T09:21:35.836Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
 2019-03-26T09:21:49.086Z [right now!] error: Something failed:  JoiExtended is not defined ReferenceError: JoiExtended is not defined
-    at validatescheduleed (/home/pipo/Documents/autoecole/auto-ecole_backend/model/exame.js:123:19)
+    at validatescheduleed (/home/pipo/Documents/autoecole/auto-ecole_backend/model/exam.js:123:19)
     at router.post (/home/pipo/Documents/autoecole/auto-ecole_backend/routes/exames.js:34:21)
     at newFn (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express-async-errors/index.js:16:20)
     at Layer.handle [as handle_request] (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/layer.js:95:5)
@@ -360,7 +360,7 @@
     at _combinedTickCallback (internal/process/next_tick.js:138:11)
     at process._tickCallback (internal/process/next_tick.js:180:9)
 2019-03-26T09:46:43.151Z [right now!] error: Something failed:  JoiExtended is not defined ReferenceError: JoiExtended is not defined
-    at validatescheduleed (/home/pipo/Documents/autoecole/auto-ecole_backend/model/exame.js:123:19)
+    at validatescheduleed (/home/pipo/Documents/autoecole/auto-ecole_backend/model/exam.js:123:19)
     at router.post (/home/pipo/Documents/autoecole/auto-ecole_backend/routes/exames.js:34:21)
     at newFn (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express-async-errors/index.js:16:20)
     at Layer.handle [as handle_request] (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/layer.js:95:5)
@@ -379,7 +379,7 @@
 2019-03-26T09:47:09.371Z [right now!] info: Listening on port 3000... 
 2019-03-26T09:47:09.437Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
 2019-03-26T09:47:36.469Z [right now!] error: Something failed:  JoiExtended is not defined ReferenceError: JoiExtended is not defined
-    at validatescheduleed (/home/pipo/Documents/autoecole/auto-ecole_backend/model/exame.js:123:19)
+    at validatescheduleed (/home/pipo/Documents/autoecole/auto-ecole_backend/model/exam.js:123:19)
     at router.post (/home/pipo/Documents/autoecole/auto-ecole_backend/routes/exames.js:34:21)
     at newFn (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express-async-errors/index.js:16:20)
     at Layer.handle [as handle_request] (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/layer.js:95:5)
@@ -596,3 +596,444 @@
 2019-03-29T14:34:52.548Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
 2019-03-29T19:00:00.366Z [right now!] info: Listening on port 3000... 
 2019-03-29T19:00:00.483Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T19:46:45.932Z [right now!] info: Listening on port 3000... 
+2019-03-29T19:46:46.234Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T20:27:49.080Z [right now!] info: Listening on port 3000... 
+2019-03-29T20:27:49.244Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T20:29:14.683Z [right now!] info: Listening on port 3000... 
+2019-03-29T20:29:14.763Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T20:32:48.893Z [right now!] info: Listening on port 3000... 
+2019-03-29T20:32:48.937Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T20:35:41.191Z [right now!] info: Listening on port 3000... 
+2019-03-29T20:35:41.218Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:28:42.827Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:28:43.171Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:29:19.833Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:29:19.896Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:29:34.269Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:29:34.349Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:31:36.147Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:31:36.226Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:32:55.732Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:32:55.796Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:36:06.527Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:36:06.577Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:36:22.026Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:36:22.070Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:37:15.118Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:37:15.169Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:37:49.396Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:37:49.434Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:38:44.218Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:38:44.276Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:38:45.349Z [right now!] error: Something failed:  Converting circular structure to JSON TypeError: Converting circular structure to JSON
+    at JSON.stringify (<anonymous>)
+    at stringify (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:1119:12)
+    at ServerResponse.json (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:260:14)
+    at ServerResponse.send (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:158:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:102:9)
+    at newFn (/home/sayto/Desktop/SFE/code/back/node_modules/express-async-errors/index.js:16:20)
+    at Layer.handle [as handle_request] (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/route.js:112:3)
+    at newFn (/home/sayto/Desktop/SFE/code/back/node_modules/express-async-errors/index.js:16:20)
+    at Layer.handle [as handle_request] (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/layer.js:95:5)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/index.js:174:3)
+    at router (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/index.js:47:12)
+2019-03-29T21:38:58.245Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:38:58.310Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:47:35.899Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:47:35.948Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:47:38.763Z [right now!] error: Something failed:  Cannot read property 'mark' of undefined TypeError: Cannot read property 'mark' of undefined
+    at sessions.forEach (/home/sayto/Desktop/SFE/code/back/routes/document.js:86:19)
+    at Array.forEach (<anonymous>)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:82:14)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T21:48:55.954Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:48:56.022Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:53:04.956Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:53:05.009Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:54:06.899Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:54:06.928Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:55:27.850Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:55:27.891Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:57:34.846Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:57:34.867Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:58:00.814Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:58:00.842Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T21:59:29.961Z [right now!] info: Listening on port 3000... 
+2019-03-29T21:59:29.984Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:00:36.463Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:00:36.485Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:00:37.207Z [right now!] error: Something failed:  path must be absolute or specify root to res.sendFile TypeError: path must be absolute or specify root to res.sendFile
+    at ServerResponse.sendFile (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:421:11)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:97:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:00:38.765Z [right now!] error: Something failed:  path must be absolute or specify root to res.sendFile TypeError: path must be absolute or specify root to res.sendFile
+    at ServerResponse.sendFile (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:421:11)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:97:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:00:44.474Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:00:44.508Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:00:45.538Z [right now!] error: Something failed:  path must be absolute or specify root to res.sendFile TypeError: path must be absolute or specify root to res.sendFile
+    at ServerResponse.sendFile (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:421:11)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:97:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:00:46.585Z [right now!] error: Something failed:  path must be absolute or specify root to res.sendFile TypeError: path must be absolute or specify root to res.sendFile
+    at ServerResponse.sendFile (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:421:11)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:97:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:01:56.379Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:01:56.416Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:01:57.285Z [right now!] error: Something failed:  path is not defined ReferenceError: path is not defined
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:97:18)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:02:57.900Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:02:57.937Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:03:00.880Z [right now!] error: Something failed:  ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/back/index1.html' Error: ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/back/index1.html'
+2019-03-29T22:03:16.860Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:03:16.899Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:03:22.593Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:03:22.642Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:03:23.902Z [right now!] error: Something failed:  ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/back/routes/example.pdf' Error: ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/back/routes/example.pdf'
+2019-03-29T22:03:25.250Z [right now!] error: Something failed:  ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/back/routes/example.pdf' Error: ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/back/routes/example.pdf'
+2019-03-29T22:03:38.628Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:03:38.667Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:07:48.070Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:07:48.110Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:08:14.963Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:08:15.026Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:09:15.262Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:09:15.331Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:09:36.591Z [right now!] error: Something failed:  ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/back/output.pdf' Error: ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/back/output.pdf'
+    at Object.statSync (fs.js:872:3)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:100:21)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:10:00.112Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:10:00.147Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:10:30.853Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:10:30.922Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:11:00.526Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:11:00.557Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:12:08.356Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:12:08.382Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:12:27.937Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:12:27.977Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:14:19.161Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:14:19.187Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:14:22.551Z [right now!] error: Something failed:  path.substring is not a function TypeError: path.substring is not a function
+    at exports.isAbsolute (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/utils.js:59:23)
+    at ServerResponse.sendFile (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:420:22)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:105:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:14:22.843Z [right now!] error: Something failed:  path.substring is not a function TypeError: path.substring is not a function
+    at exports.isAbsolute (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/utils.js:59:23)
+    at ServerResponse.sendFile (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:420:22)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:105:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:14:27.423Z [right now!] error: Something failed:  path.substring is not a function TypeError: path.substring is not a function
+    at exports.isAbsolute (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/utils.js:59:23)
+    at ServerResponse.sendFile (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:420:22)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:105:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:14:32.576Z [right now!] error: Something failed:  path.substring is not a function TypeError: path.substring is not a function
+    at exports.isAbsolute (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/utils.js:59:23)
+    at ServerResponse.sendFile (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:420:22)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:105:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:14:59.349Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:14:59.370Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:15:01.202Z [right now!] error: Something failed:  Converting circular structure to JSON TypeError: Converting circular structure to JSON
+    at JSON.stringify (<anonymous>)
+    at stringify (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:1119:12)
+    at ServerResponse.json (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:260:14)
+    at ServerResponse.send (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:158:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:105:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:15:02.947Z [right now!] error: Something failed:  Converting circular structure to JSON TypeError: Converting circular structure to JSON
+    at JSON.stringify (<anonymous>)
+    at stringify (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:1119:12)
+    at ServerResponse.json (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:260:14)
+    at ServerResponse.send (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:158:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:105:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:15:03.071Z [right now!] error: Something failed:  Converting circular structure to JSON TypeError: Converting circular structure to JSON
+    at JSON.stringify (<anonymous>)
+    at stringify (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:1119:12)
+    at ServerResponse.json (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:260:14)
+    at ServerResponse.send (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/response.js:158:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:105:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:15:14.976Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:15:15.019Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:15:52.474Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:15:52.517Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:17:41.250Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:17:41.299Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:18:07.752Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:18:07.806Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:18:25.542Z [right now!] error: Something failed:  data is not defined ReferenceError: data is not defined
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:109:27)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:19:14.084Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:19:14.132Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:19:16.120Z [right now!] error: Something failed:  Invalid value "undefined" for header "Content-Length" TypeError [ERR_HTTP_INVALID_HEADER_VALUE]: Invalid value "undefined" for header "Content-Length"
+    at ServerResponse.setHeader (_http_outgoing.js:485:3)
+    at ServerResponse.writeHead (_http_server.js:231:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:106:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:19:16.289Z [right now!] error: Something failed:  Invalid value "undefined" for header "Content-Length" TypeError [ERR_HTTP_INVALID_HEADER_VALUE]: Invalid value "undefined" for header "Content-Length"
+    at ServerResponse.setHeader (_http_outgoing.js:485:3)
+    at ServerResponse.writeHead (_http_server.js:231:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:106:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:19:16.971Z [right now!] error: Something failed:  Invalid value "undefined" for header "Content-Length" TypeError [ERR_HTTP_INVALID_HEADER_VALUE]: Invalid value "undefined" for header "Content-Length"
+    at ServerResponse.setHeader (_http_outgoing.js:485:3)
+    at ServerResponse.writeHead (_http_server.js:231:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:106:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:19:18.140Z [right now!] error: Something failed:  Invalid value "undefined" for header "Content-Length" TypeError [ERR_HTTP_INVALID_HEADER_VALUE]: Invalid value "undefined" for header "Content-Length"
+    at ServerResponse.setHeader (_http_outgoing.js:485:3)
+    at ServerResponse.writeHead (_http_server.js:231:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:106:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:19:18.809Z [right now!] error: Something failed:  Invalid value "undefined" for header "Content-Length" TypeError [ERR_HTTP_INVALID_HEADER_VALUE]: Invalid value "undefined" for header "Content-Length"
+    at ServerResponse.setHeader (_http_outgoing.js:485:3)
+    at ServerResponse.writeHead (_http_server.js:231:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:106:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:19:23.930Z [right now!] error: Something failed:  Invalid value "undefined" for header "Content-Length" TypeError [ERR_HTTP_INVALID_HEADER_VALUE]: Invalid value "undefined" for header "Content-Length"
+    at ServerResponse.setHeader (_http_outgoing.js:485:3)
+    at ServerResponse.writeHead (_http_server.js:231:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:106:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:20:29.773Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:20:29.853Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:20:35.005Z [right now!] error: Something failed:  Invalid value "undefined" for header "Content-Length" TypeError [ERR_HTTP_INVALID_HEADER_VALUE]: Invalid value "undefined" for header "Content-Length"
+    at ServerResponse.setHeader (_http_outgoing.js:485:3)
+    at ServerResponse.writeHead (_http_server.js:231:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:106:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:21:05.144Z [right now!] error: Something failed:  Invalid value "undefined" for header "Content-Length" TypeError [ERR_HTTP_INVALID_HEADER_VALUE]: Invalid value "undefined" for header "Content-Length"
+    at ServerResponse.setHeader (_http_outgoing.js:485:3)
+    at ServerResponse.writeHead (_http_server.js:231:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:106:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:21:17.568Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:21:17.617Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:21:18.888Z [right now!] error: Something failed:  Invalid value "undefined" for header "Content-Length" TypeError [ERR_HTTP_INVALID_HEADER_VALUE]: Invalid value "undefined" for header "Content-Length"
+    at ServerResponse.setHeader (_http_outgoing.js:485:3)
+    at ServerResponse.writeHead (_http_server.js:231:21)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:106:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:21:40.797Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:21:40.854Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:22:30.342Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:22:30.388Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:22:57.219Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:22:57.270Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:23:26.479Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:23:26.517Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:23:40.085Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:23:40.124Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:23:41.986Z [right now!] error: Something failed:  The "chunk" argument must be one of type string or Buffer. Received type object TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be one of type string or Buffer. Received type object
+    at ServerResponse.end (_http_outgoing.js:702:13)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:111:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:23:42.037Z [right now!] error: Something failed:  The "chunk" argument must be one of type string or Buffer. Received type object TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be one of type string or Buffer. Received type object
+    at ServerResponse.end (_http_outgoing.js:702:13)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:111:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:23:42.082Z [right now!] error: Something failed:  The "chunk" argument must be one of type string or Buffer. Received type object TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be one of type string or Buffer. Received type object
+    at ServerResponse.end (_http_outgoing.js:702:13)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:111:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:23:43.881Z [right now!] error: Something failed:  The "chunk" argument must be one of type string or Buffer. Received type object TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be one of type string or Buffer. Received type object
+    at ServerResponse.end (_http_outgoing.js:702:13)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:111:9)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-29T22:23:57.023Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:23:57.062Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:25:38.391Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:25:38.415Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-29T22:26:08.898Z [right now!] info: Listening on port 3000... 
+2019-03-29T22:26:08.954Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:20:07.083Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:20:07.219Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:24:30.262Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:24:30.303Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:26:16.047Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:26:16.070Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:26:52.635Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:26:52.667Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:26:54.752Z [right now!] error: Something failed:  ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/home/sayto/Desktop/SFE/code/back/routes/example.pdf' Error: ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/home/sayto/Desktop/SFE/code/back/routes/example.pdf'
+2019-03-30T08:27:46.619Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:27:46.644Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:28:41.262Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:28:41.293Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:28:42.466Z [right now!] error: Something failed:  ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/example.pdf' Error: ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/example.pdf'
+2019-03-30T08:29:23.773Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:29:23.808Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:29:29.774Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:29:29.821Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:29:34.148Z [right now!] error: Something failed:  ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/back/routes/example.pdf' Error: ENOENT: no such file or directory, stat '/home/sayto/Desktop/SFE/code/back/routes/example.pdf'
+2019-03-30T08:30:00.353Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:30:00.377Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:30:44.965Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:30:45.009Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:31:45.093Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:31:45.126Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:32:29.838Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:32:29.915Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:33:50.617Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:33:50.637Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:34:50.573Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:34:50.596Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:35:34.139Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:35:34.162Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:36:01.850Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:36:01.871Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:36:24.464Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:36:24.513Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:36:59.175Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:36:59.209Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:37:19.860Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:37:19.880Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:37:29.170Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:37:29.195Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:37:59.746Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:37:59.799Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:38:27.795Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:38:27.816Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:39:05.687Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:39:05.748Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:40:14.090Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:40:14.124Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:41:08.372Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:41:08.412Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:45:05.332Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:45:05.353Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:45:24.494Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:45:24.520Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:45:43.096Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:45:43.116Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:46:43.180Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:46:43.201Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:47:27.577Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:47:27.597Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:48:13.433Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:48:13.478Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:53:08.378Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:53:08.465Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:54:37.491Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:54:37.542Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T08:55:54.010Z [right now!] info: Listening on port 3000... 
+2019-03-30T08:55:54.038Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:00:32.284Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:00:32.313Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:05:26.978Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:05:27.011Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:14:59.992Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:15:00.026Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:15:38.445Z [right now!] error: Something failed:  ENOENT: no such file or directory, open 'fonts/PalatinoBold.ttf' Error: ENOENT: no such file or directory, open 'fonts/PalatinoBold.ttf'
+    at Object.openSync (fs.js:449:3)
+    at Object.readFileSync (fs.js:349:35)
+    at Object.fontkit.openSync (/home/sayto/Desktop/SFE/code/back/node_modules/fontkit/index.js:43:19)
+    at Function.open (/home/sayto/Desktop/SFE/code/back/node_modules/pdfkit/js/pdfkit.js:2657:22)
+    at PDFDocumentWithTables.font (/home/sayto/Desktop/SFE/code/back/node_modules/pdfkit/js/pdfkit.js:2720:33)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:85:9)
+    at newFn (/home/sayto/Desktop/SFE/code/back/node_modules/express-async-errors/index.js:16:20)
+    at Layer.handle [as handle_request] (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/route.js:112:3)
+    at newFn (/home/sayto/Desktop/SFE/code/back/node_modules/express-async-errors/index.js:16:20)
+    at Layer.handle [as handle_request] (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/layer.js:95:5)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/index.js:281:22
+    at param (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/index.js:354:14)
+    at param (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/index.js:365:14)
+    at Function.process_params (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/router/index.js:410:3)
+2019-03-30T09:15:55.048Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:15:55.075Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:16:48.714Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:16:48.741Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:16:59.065Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:16:59.110Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:18:02.120Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:18:02.142Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:20:11.461Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:20:11.518Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:21:11.173Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:21:11.205Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:22:16.070Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:22:16.098Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:22:29.620Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:22:29.661Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:22:54.805Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:22:54.840Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:23:49.275Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:23:49.303Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:24:52.998Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:24:53.035Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:24:58.982Z [right now!] error: Something failed:  doc.font(...).paddingTop is not a function TypeError: doc.font(...).paddingTop is not a function
+    at prepareHeader (/home/sayto/Desktop/SFE/code/back/routes/document.js:106:57)
+    at PDFDocumentWithTables.table (/home/sayto/Desktop/SFE/code/back/middleware/pdfkit-tables.js:57:9)
+    at router.get (/home/sayto/Desktop/SFE/code/back/routes/document.js:105:20)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-03-30T09:26:04.806Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:26:04.833Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:26:20.096Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:26:20.134Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:26:32.992Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:26:33.031Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:26:57.872Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:26:57.918Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:27:33.435Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:27:33.473Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:27:54.274Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:27:54.327Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:28:24.198Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:28:24.249Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:28:39.317Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:28:39.358Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:28:59.742Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:28:59.808Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:29:11.296Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:29:11.340Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:29:24.419Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:29:24.451Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:29:39.856Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:29:39.884Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:30:12.527Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:30:12.566Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:30:31.573Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:30:31.600Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:30:49.461Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:30:49.509Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:31:00.027Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:31:00.067Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:31:24.141Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:31:24.173Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:31:42.370Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:31:42.397Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:31:50.339Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:31:50.368Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:32:00.008Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:32:00.040Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:32:43.758Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:32:43.799Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:33:26.103Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:33:26.131Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:33:44.285Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:33:44.314Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:44:51.331Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:44:51.366Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:53:59.152Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:53:59.177Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:56:22.623Z [right now!] info: Listening on port 3000... 
+2019-03-30T09:56:22.670Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T09:56:35.573Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T10:03:19.341Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T10:04:01.925Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 

@@ -488,3 +488,301 @@ SyntaxError: Unexpected string
     at Module.require (module.js:596:17)
     at require (internal/module.js:11:18)
     at Object.<anonymous> (/home/pipo/Documents/autoecole/auto-ecole_backend/startup/routes.js:2:23)
+2019-03-29T20:21:47.088Z [right now!] error: uncaughtException: Cannot find module '../model/exame'
+Error: Cannot find module '../model/exame'
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:611:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:537:25)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/routes/exames.js:1:159)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/startup/routes.js:14:15)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32) Error: Cannot find module '../model/exame'
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:611:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:537:25)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/routes/exames.js:1:159)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/startup/routes.js:14:15)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+2019-03-29T22:09:36.597Z [right now!] error: uncaughtException: ENOENT: no such file or directory, open '/home/sayto/Desktop/SFE/code/back/output.pdf'
+Error: ENOENT: no such file or directory, open '/home/sayto/Desktop/SFE/code/back/output.pdf' Error: ENOENT: no such file or directory, open '/home/sayto/Desktop/SFE/code/back/output.pdf'
+2019-03-30T08:30:58.809Z [right now!] error: uncaughtException: Unexpected token .
+/home/sayto/Desktop/SFE/code/back/routes/document.js:105
+    res.download('path.join('..', __dirname, 'example.pdf')');
+                              ^
+
+SyntaxError: Unexpected token .
+    at new Script (vm.js:84:7)
+    at createScript (vm.js:264:10)
+    at Object.runInThisContext (vm.js:312:10)
+    at Module._compile (internal/modules/cjs/loader.js:696:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/startup/routes.js:13:19)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3) /home/sayto/Desktop/SFE/code/back/routes/document.js:105
+    res.download('path.join('..', __dirname, 'example.pdf')');
+                              ^
+
+SyntaxError: Unexpected token .
+    at new Script (vm.js:84:7)
+    at createScript (vm.js:264:10)
+    at Object.runInThisContext (vm.js:312:10)
+    at Module._compile (internal/modules/cjs/loader.js:696:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/startup/routes.js:13:19)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+2019-03-30T08:31:04.901Z [right now!] error: uncaughtException: Unexpected token .
+/home/sayto/Desktop/SFE/code/back/routes/document.js:105
+    res.download('path.join('..', __dirname, 'example.pdf')');
+                              ^
+
+SyntaxError: Unexpected token .
+    at new Script (vm.js:84:7)
+    at createScript (vm.js:264:10)
+    at Object.runInThisContext (vm.js:312:10)
+    at Module._compile (internal/modules/cjs/loader.js:696:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/startup/routes.js:13:19)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3) /home/sayto/Desktop/SFE/code/back/routes/document.js:105
+    res.download('path.join('..', __dirname, 'example.pdf')');
+                              ^
+
+SyntaxError: Unexpected token .
+    at new Script (vm.js:84:7)
+    at createScript (vm.js:264:10)
+    at Object.runInThisContext (vm.js:312:10)
+    at Module._compile (internal/modules/cjs/loader.js:696:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/startup/routes.js:13:19)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+2019-03-30T08:46:47.032Z [right now!] error: uncaughtException: file is not defined
+ReferenceError: file is not defined
+    at WriteStream.ws.on (/home/sayto/Desktop/SFE/code/back/routes/document.js:103:9)
+    at WriteStream.emit (events.js:197:13)
+    at fs.close (internal/fs/streams.js:209:14)
+    at FSReqCallback.args [as oncomplete] (fs.js:146:20) ReferenceError: file is not defined
+    at WriteStream.ws.on (/home/sayto/Desktop/SFE/code/back/routes/document.js:103:9)
+    at WriteStream.emit (events.js:197:13)
+    at fs.close (internal/fs/streams.js:209:14)
+    at FSReqCallback.args [as oncomplete] (fs.js:146:20)
+2019-03-30T09:31:17.803Z [right now!] error: uncaughtException: Unexpected token ,
+/home/sayto/Desktop/SFE/code/back/routes/document.js:105
+    doc.moveDown().table(tab, , 200,  {
+                              ^
+
+SyntaxError: Unexpected token ,
+    at new Script (vm.js:84:7)
+    at createScript (vm.js:264:10)
+    at Object.runInThisContext (vm.js:312:10)
+    at Module._compile (internal/modules/cjs/loader.js:696:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/startup/routes.js:13:19)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3) /home/sayto/Desktop/SFE/code/back/routes/document.js:105
+    doc.moveDown().table(tab, , 200,  {
+                              ^
+
+SyntaxError: Unexpected token ,
+    at new Script (vm.js:84:7)
+    at createScript (vm.js:264:10)
+    at Object.runInThisContext (vm.js:312:10)
+    at Module._compile (internal/modules/cjs/loader.js:696:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/startup/routes.js:13:19)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+2019-03-30T09:32:28.865Z [right now!] error: uncaughtException: Unexpected token .
+/home/sayto/Desktop/SFE/code/back/routes/document.js:103
+        .fontSize(20)
+        ^
+
+SyntaxError: Unexpected token .
+    at new Script (vm.js:84:7)
+    at createScript (vm.js:264:10)
+    at Object.runInThisContext (vm.js:312:10)
+    at Module._compile (internal/modules/cjs/loader.js:696:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/startup/routes.js:13:19)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3) /home/sayto/Desktop/SFE/code/back/routes/document.js:103
+        .fontSize(20)
+        ^
+
+SyntaxError: Unexpected token .
+    at new Script (vm.js:84:7)
+    at createScript (vm.js:264:10)
+    at Object.runInThisContext (vm.js:312:10)
+    at Module._compile (internal/modules/cjs/loader.js:696:28)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Module.require (internal/modules/cjs/loader.js:665:17)
+    at require (internal/modules/cjs/helpers.js:20:18)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/startup/routes.js:13:19)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+2019-03-30T09:56:35.487Z [right now!] error: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1256:14)
+    at listenInCluster (net.js:1304:12)
+    at Server.listen (net.js:1392:7)
+    at Function.listen (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/application.js:618:24)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/app.js:21:20)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:801:12)
+    at executeUserCode (internal/bootstrap/node.js:526:15)
+    at startMainThreadExecution (internal/bootstrap/node.js:439:3) Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1256:14)
+    at listenInCluster (net.js:1304:12)
+    at Server.listen (net.js:1392:7)
+    at Function.listen (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/application.js:618:24)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/app.js:21:20)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:801:12)
+    at executeUserCode (internal/bootstrap/node.js:526:15)
+    at startMainThreadExecution (internal/bootstrap/node.js:439:3)
+2019-03-30T10:03:19.289Z [right now!] error: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1256:14)
+    at listenInCluster (net.js:1304:12)
+    at Server.listen (net.js:1392:7)
+    at Function.listen (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/application.js:618:24)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/app.js:21:20)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:801:12)
+    at executeUserCode (internal/bootstrap/node.js:526:15)
+    at startMainThreadExecution (internal/bootstrap/node.js:439:3) Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1256:14)
+    at listenInCluster (net.js:1304:12)
+    at Server.listen (net.js:1392:7)
+    at Function.listen (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/application.js:618:24)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/app.js:21:20)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:801:12)
+    at executeUserCode (internal/bootstrap/node.js:526:15)
+    at startMainThreadExecution (internal/bootstrap/node.js:439:3)
+2019-03-30T10:04:01.871Z [right now!] error: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1256:14)
+    at listenInCluster (net.js:1304:12)
+    at Server.listen (net.js:1392:7)
+    at Function.listen (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/application.js:618:24)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/app.js:21:20)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:801:12)
+    at executeUserCode (internal/bootstrap/node.js:526:15)
+    at startMainThreadExecution (internal/bootstrap/node.js:439:3) Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1256:14)
+    at listenInCluster (net.js:1304:12)
+    at Server.listen (net.js:1392:7)
+    at Function.listen (/home/sayto/Desktop/SFE/code/back/node_modules/express/lib/application.js:618:24)
+    at Object.<anonymous> (/home/sayto/Desktop/SFE/code/back/app.js:21:20)
+    at Module._compile (internal/modules/cjs/loader.js:736:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:747:10)
+    at Module.load (internal/modules/cjs/loader.js:628:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:568:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:560:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:801:12)
+    at executeUserCode (internal/bootstrap/node.js:526:15)
+    at startMainThreadExecution (internal/bootstrap/node.js:439:3)

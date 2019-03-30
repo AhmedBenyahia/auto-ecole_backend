@@ -10,6 +10,7 @@
     'POST:/agency',    //TODO add super admin and delete those
     'GET:/whoami',   //TODO it's public and not in the same time ,
                     //TODO: so we need the jwt role and id to be send to the method
+      'GET:/calendar-session-pdf/monitor/:id',
   ];
   // Client only routes
   const clientRoutes = [
