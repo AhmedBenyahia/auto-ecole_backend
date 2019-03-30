@@ -62,12 +62,53 @@ router.post('/reserve', isFullReservation, async (req, res) => {
     if (session.length !== 0) {
         return res.status(400).send(' The giving client has already a session on the reservation date');
     }
-    // save the new session
-     session = new Session({
-        client: _.pick(client, ['_id','name', 'surname', 'state', 'drivingLicenceType']),
+    // add the client, reservation to the new session
+    session = new Session({
+        client: _.pick(client, ['_id', 'name', 'surname', 'state', 'drivingLicenceType']),
         reservationDate: req.body.reservationDate,
         agency: req.user.agency,
     });
+    if (req.body.isFullReservation) {
+        // verify that the car exist
+        const car = await Car.findOne({_id: req.body.carId, agency: req.user.agency});
+        if (!car) return res.status(404).send(' The car with the giving id was not found');
+        // verify that the car is not reserved on the specified date
+        let otherSession = await Session
+            .find({
+                reservationDate: session.reservationDate,
+                'car._id': car._id
+            })
+            .or([
+                {state: sessionState[0]},
+                {state: sessionState[1]},
+                {state: sessionState[4]},
+            ]);
+        sessionDebug('  Duplicated reservation with the same car and same date:',
+            otherSession.length !== 0, " Nbre: ", otherSession.length);
+        if (otherSession.length !== 0) return res.status(400).send('The giving car is not available on the reservation date');
+        // verify that the monitor exist
+        const monitor = await Monitor.findOne({_id: req.body.monitorId, agency: req.user.agency});
+        if (!monitor) return res.status(404).send(' The monitor with the giving id was not found');
+        // verify that the monitor is not reserved on the specified date
+        otherSession = await Session
+            .find({
+                reservationDate: session.reservationDate,
+                'monitor._id': monitor._id
+            })
+            .or([
+                {state: sessionState[0]},
+                {state: sessionState[1]},
+                {state: sessionState[4]},
+            ]);
+        sessionDebug('  Duplicated reservation with the same monitor and same date:',
+            otherSession.length !== 0, " Nbre: ", otherSession.length);
+        if (otherSession.length !== 0) return res.status(400).send('The giving monitor is not available on the reservation date');
+
+        // add the car and monitor if the session isFullReservation
+        session.car = _.pick(car, ['_id', 'num', 'mark', 'model']);
+        session.monitor = _.pick(monitor, ['_id', 'name', 'surname', 'certification']);
+    }
+    // save the new session
     await session.save();
     res.send(session);
 });
@@ -93,9 +134,8 @@ router.patch('/approve/:id', async (req, res) => {
             'car._id': car._id
         })
         .or([
-            {state: sessionState[0]},
             {state: sessionState[1]},
-            {state: sessionState[4]},
+            {state: sessionState[3]},
         ]);
     sessionDebug('  Duplicated reservation with the same car and same date:',
         otherSession.length !== 0," Nbre: ", otherSession.length);
@@ -110,7 +150,6 @@ router.patch('/approve/:id', async (req, res) => {
             'monitor._id': monitor._id
         })
         .or([
-            {state: sessionState[0]},
             {state: sessionState[1]},
             {state: sessionState[4]},
         ]);

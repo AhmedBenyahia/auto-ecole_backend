@@ -6,7 +6,6 @@ const sessionState = ['REQUESTED', 'APPROVED', 'CANCELED', 'FINISHED'];
 const DAY = 24*60*60*1000;
 // create session schema
 let sessionSchema = new mongoose.Schema({
-
     client: {
         type: new mongoose.Schema({
             _id: mongoose.Types.ObjectId,

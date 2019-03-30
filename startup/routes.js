@@ -11,7 +11,7 @@ const session  = require('../routes/sessions');
 const authentication  = require('../routes/authentication');
 const manager  = require('../routes/managers');
 const document  = require('../routes/document');
-const exam  = require('../routes/exames');
+const exam = require('../routes/exams');
 
 
 const authorDebug = require('debug')('app:authorization');
