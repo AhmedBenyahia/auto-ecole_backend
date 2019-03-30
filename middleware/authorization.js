@@ -10,7 +10,6 @@
     'POST:/agency',    //TODO add super admin and delete those
     'GET:/whoami',   //TODO it's public and not in the same time ,
                     //TODO: so we need the jwt role and id to be send to the method
-      'GET:/calendar-session-pdf/monitor/:id',
   ];
   // Client only routes
   const clientRoutes = [
@@ -21,7 +20,8 @@
       { route: "PUT:/client",                secure: true  },
       { route: "PATCH:/client/password",     secure: true  },
       { route: "GET:/session/client",        secure: true  },
-      { route: "POST:/session/reserve",      secure: false  },
+      {route: "GET:/timetable/client", secure: true},
+      {route: "POST:/session/reserve", secure: false},
       { route: "PATCH:/session/cancel/:id",  secure: false },
       { route: "DELETE:/session/reject/:id", secure: false },
   ];
@@ -38,6 +38,7 @@
     { route: "GET:/car",                secure: false },
     { route: "GET:/client",             secure: false },
     { route: "GET:/monitor",            secure: false },
+      {route: "GET:/history/monitor", secure: true},
   ];
   // Admin routes
   const adminRoutes = [

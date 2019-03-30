@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const JoiExtended = require('../startup/validation');
-
-const sessionState = ['REQUESTED', 'APPROVED', 'CANCELED', 'CANCELLATION_REQUESTED', 'PENDING', 'FINISHED'];
+const sessionSchemaDebug = require('debug')('app:sessionSchemaMiddleware');
+const sessionState = ['REQUESTED', 'APPROVED', 'CANCELED', 'FINISHED'];
 const DAY = 24*60*60*1000;
-
-const sessionSchema = new mongoose.Schema({
+// create session schema
+let sessionSchema = new mongoose.Schema({
 
     client: {
         type: new mongoose.Schema({
@@ -123,6 +123,30 @@ const sessionSchema = new mongoose.Schema({
     },
     agency: mongoose.Types.ObjectId,
 });
+// def post middleware to update the session state is it's finished
+sessionSchema.post('find', function (result) {
+    sessionSchemaDebug('Session State checked!!');
+    result.forEach((res) => {
+        if (res.state === sessionState[1]
+            && Date.now() >= res.reservationDate) {
+            sessionSchemaDebug('res');
+            res.state = sessionState[3];
+            res.save();
+            sessionSchemaDebug('SessionState updated!!');
+        }
+    })
+});
+
+sessionSchema.post('findOne', function (res) {
+    sessionSchemaDebug('Session State checked!!');
+    if (res.state === sessionState[1]
+        && Date.now() >= res.reservationDate) {
+        sessionSchemaDebug('res');
+        res.state = sessionState[3];
+        res.save();
+        sessionSchemaDebug('SessionState updated!!');
+    }
+});
 
 const Session = mongoose.model('Session', sessionSchema);
 
@@ -164,6 +188,7 @@ function validateUpdateSchema(session) {
     };
     return Joi.validate(session, schema);
 }
+
 
 exports.sessionSchema = sessionSchema;
 exports.Session = Session;
