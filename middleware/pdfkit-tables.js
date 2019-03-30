@@ -25,7 +25,7 @@ class PDFDocumentWithTables extends PDFDocument {
         const columnSpacing = options.columnSpacing || 15;
         const rowSpacing = options.rowSpacing || 5;
         const usableWidth = options.width || (this.page.width - this.page.margins.left - this.page.margins.right);
-
+        const cellWidthPercentage = options.cellWidth;
         const prepareHeader = options.prepareHeader || (() => {
         });
         const prepareRow = options.prepareRow || (() => {
@@ -43,7 +43,13 @@ class PDFDocumentWithTables extends PDFDocument {
 
             return result + rowSpacing;
         };
-
+        const computeCellWidth = (i) => {
+            if (cellWidthPercentage === undefined) {
+                return columnContainerWidth;
+            }
+            //if the cell width is not giving pass 0
+            return (1 + (cellWidthPercentage[i] || 0)) * columnContainerWidth;
+        };
         const columnContainerWidth = usableWidth / columnCount;
         const columnWidth = columnContainerWidth - columnSpacing;
         const maxY = this.page.height - this.page.margins.bottom;
@@ -64,8 +70,8 @@ class PDFDocumentWithTables extends PDFDocument {
 
         // Print all headers
         table.headers.forEach((header, i) => {
-            this.text(header, startX + i * columnContainerWidth, startY, {
-                width: columnWidth,
+            this.text(header, startX + i * computeCellWidth(i), startY, {
+                width: computeCellWidth(i),
                 align: 'left'
             });
         });
@@ -94,8 +100,8 @@ class PDFDocumentWithTables extends PDFDocument {
 
             // Print all cells of the current row
             row.forEach((cell, i) => {
-                this.text(cell, startX + i * columnContainerWidth, startY, {
-                    width: columnWidth,
+                this.text(cell, startX + i * computeCellWidth(i), startY, {
+                    width: computeCellWidth(i),
                     align: 'left'
                 });
             });

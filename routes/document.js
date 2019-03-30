@@ -106,8 +106,8 @@ router.get('/calendar-session-pdf/monitor/:id', async (req, res) => {
         prepareHeader: () => doc.font('Helvetica-Bold').fontSize(13),
         prepareRow: (row, i) => {
             doc.font('Helvetica').fontSize(13);
-            docDebug('      Row:', row, 'i: ', i);
-        }
+        },
+        cellWidth: [0, 0.2]
     });
     //save doc
     doc.end();
