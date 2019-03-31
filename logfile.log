@@ -1037,3 +1037,271 @@
 2019-03-30T09:56:35.573Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
 2019-03-30T10:03:19.341Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
 2019-03-30T10:04:01.925Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-03-30T21:49:52.343Z [right now!] info: Listening on port 3000... 
+2019-03-30T21:49:52.420Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-30T22:25:45.100Z [right now!] info: Listening on port 3000... 
+2019-03-30T22:25:45.176Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-30T23:11:52.564Z [right now!] info: Listening on port 3000... 
+2019-03-30T23:11:52.642Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-30T23:51:25.905Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-30T23:56:31.543Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T00:00:17.556Z [right now!] info: Listening on port 3000... 
+2019-03-31T00:00:17.627Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T00:01:10.362Z [right now!] info: Listening on port 3000... 
+2019-03-31T00:01:10.438Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T00:03:52.361Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T00:14:33.748Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T00:17:19.185Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T00:18:29.829Z [right now!] info: Listening on port 3000... 
+2019-03-31T00:18:29.904Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T00:19:07.023Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T00:19:52.078Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T00:20:16.715Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T00:22:04.353Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T00:23:35.701Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T00:24:16.594Z [right now!] info: Listening on port 3000... 
+2019-03-31T00:24:16.662Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T00:24:33.527Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T00:32:34.643Z [right now!] info: Listening on port 3000... 
+2019-03-31T00:32:34.710Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T00:32:50.876Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T00:33:09.074Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T00:33:16.823Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T00:35:57.669Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T00:37:45.394Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T09:51:29.717Z [right now!] info: Listening on port 3000... 
+2019-03-31T09:51:29.791Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T09:57:31.935Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:224:16)
+    at done (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/raw-body/index.js:273:7)
+    at emitNone (events.js:106:13)
+    at IncomingMessage.emit (events.js:208:7)
+    at endReadableNT (_stream_readable.js:1064:12)
+    at _combinedTickCallback (internal/process/next_tick.js:138:11)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T11:08:09.375Z [right now!] info: Listening on port 3000... 
+2019-03-31T11:08:09.442Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T11:12:29.100Z [right now!] info: Listening on port 3000... 
+2019-03-31T11:12:29.180Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T11:13:04.737Z [right now!] error: Something failed:  sessionDebug is not defined ReferenceError: sessionDebug is not defined
+    at router.post (/home/pipo/Documents/autoecole/auto-ecole_backend/routes/absences.js:27:5)
+    at newFn (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express-async-errors/index.js:16:20)
+    at Layer.handle [as handle_request] (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/route.js:112:3)
+    at newFn (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express-async-errors/index.js:16:20)
+    at Layer.handle [as handle_request] (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/layer.js:95:5)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:174:3)
+    at router (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:47:12)
+    at newFn (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express-async-errors/index.js:16:20)
+    at Layer.handle [as handle_request] (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:317:13)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:284:7
+2019-03-31T11:13:26.274Z [right now!] error: Something failed:  sessionDebug is not defined ReferenceError: sessionDebug is not defined
+    at router.post (/home/pipo/Documents/autoecole/auto-ecole_backend/routes/absences.js:27:5)
+    at newFn (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express-async-errors/index.js:16:20)
+    at Layer.handle [as handle_request] (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/route.js:112:3)
+    at newFn (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express-async-errors/index.js:16:20)
+    at Layer.handle [as handle_request] (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/layer.js:95:5)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:174:3)
+    at router (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:47:12)
+    at newFn (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express-async-errors/index.js:16:20)
+    at Layer.handle [as handle_request] (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:317:13)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/express/lib/router/index.js:284:7
+2019-03-31T11:14:24.075Z [right now!] info: Listening on port 3000... 
+2019-03-31T11:14:24.151Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T11:19:13.247Z [right now!] error: Something failed:  client is not defined ReferenceError: client is not defined
+    at router.post (/home/pipo/Documents/autoecole/auto-ecole_backend/routes/absences.js:36:5)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+2019-03-31T11:20:27.037Z [right now!] info: Listening on port 3000... 
+2019-03-31T11:20:27.113Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T11:22:05.902Z [right now!] info: Listening on port 3000... 
+2019-03-31T11:22:05.972Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T11:22:38.338Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-dev.absencs index: monitor.certification.certificationNum_1 dup key: { : "99955500" } MongoError: E11000 duplicate key error collection: auto-ecole-dev.absencs index: monitor.certification.certificationNum_1 dup key: { : "99955500" }
+    at Function.create (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at _combinedTickCallback (internal/process/next_tick.js:131:7)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T11:23:38.298Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-dev.absencs index: monitor.certification.certificationNum_1 dup key: { : "99955500" } MongoError: E11000 duplicate key error collection: auto-ecole-dev.absencs index: monitor.certification.certificationNum_1 dup key: { : "99955500" }
+    at Function.create (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at _combinedTickCallback (internal/process/next_tick.js:131:7)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T11:25:01.694Z [right now!] info: Listening on port 3000... 
+2019-03-31T11:25:01.764Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T12:21:10.745Z [right now!] info: Listening on port 3000... 
+2019-03-31T12:21:10.882Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T12:59:30.406Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-dev.absencs index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-dev.absencs index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/pipo/Documents/autoecole/auto-ecole_backend/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at _combinedTickCallback (internal/process/next_tick.js:131:7)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+2019-03-31T13:12:08.186Z [right now!] info: Listening on port 3000... 
+2019-03-31T13:12:08.254Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-03-31T13:16:51.429Z [right now!] info: Listening on port 3000... 
+2019-03-31T13:16:51.523Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
