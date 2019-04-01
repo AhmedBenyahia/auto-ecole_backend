@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
         agency: agency._id
     });
     sendMail(agency.email,
-        'Ajout d\' un nouveau moniteur',
+        'Ajout d\' un nouveau Manager',
         'Un nouveau agence auto-ecole a ete ajouter, the admin information are: <br>' +
         `Title: ${agency.title}, email: ${agency.email} <br>` +
         `Username: ${manager.username} Password: ${password} <br>`);

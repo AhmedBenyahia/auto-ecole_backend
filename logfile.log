@@ -1305,3 +1305,176 @@
 2019-03-31T13:12:08.254Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
 2019-03-31T13:16:51.429Z [right now!] info: Listening on port 3000... 
 2019-03-31T13:16:51.523Z [right now!] info: connection to db: mongodb://localhost:27017/auto-ecole-dev succeeded 
+2019-04-01T10:47:32.122Z [right now!] info: Listening on port 3000... 
+2019-04-01T10:47:32.151Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-04-01T10:56:07.169Z [right now!] error: Something failed:  Unexpected token N in JSON at position 0 SyntaxError: Unexpected token N in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (/home/sayto/Desktop/SFE/code/back/node_modules/body-parser/lib/types/json.js:158:10)
+    at parse (/home/sayto/Desktop/SFE/code/back/node_modules/body-parser/lib/types/json.js:83:15)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/body-parser/lib/read.js:121:18
+    at invokeCallback (/home/sayto/Desktop/SFE/code/back/node_modules/raw-body/index.js:224:16)
+    at done (/home/sayto/Desktop/SFE/code/back/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/sayto/Desktop/SFE/code/back/node_modules/raw-body/index.js:273:7)
+    at IncomingMessage.emit (events.js:197:13)
+    at endReadableNT (_stream_readable.js:1129:12)
+    at processTicksAndRejections (internal/process/next_tick.js:76:17)
+2019-04-01T11:01:20.450Z [right now!] info: Listening on port 3000... 
+2019-04-01T11:01:20.495Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-04-01T11:23:49.683Z [right now!] info: Listening on port 3000... 
+2019-04-01T11:23:49.714Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-04-01T11:29:14.405Z [right now!] info: Listening on port 3000... 
+2019-04-01T11:29:14.441Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-dev succeeded 
+2019-04-01T13:31:40.600Z [right now!] info: Listening on port 3000... 
+2019-04-01T13:31:41.232Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T13:39:05.127Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:39:15.568Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:39:38.572Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:39:58.598Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:43:35.211Z [right now!] info: Listening on port 3000... 
+2019-04-01T13:43:35.238Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T13:44:24.245Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:44:44.001Z [right now!] info: Listening on port 3000... 
+2019-04-01T13:44:44.036Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T13:44:45.042Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:45:50.939Z [right now!] info: Listening on port 3000... 
+2019-04-01T13:45:50.980Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T13:45:56.036Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:46:16.568Z [right now!] info: Listening on port 3000... 
+2019-04-01T13:46:16.605Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T13:46:23.513Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:46:53.270Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:47:18.413Z [right now!] info: Listening on port 3000... 
+2019-04-01T13:47:18.447Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T13:53:24.679Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:56:26.392Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:56:46.126Z [right now!] info: Listening on port 3000... 
+2019-04-01T13:56:46.151Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T13:56:46.630Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:56:47.622Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:56:48.766Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : null }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:57:00.634Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : "15876358" } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : "15876358" }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.update (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:1414:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:57:01.826Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : "15876358" } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : "15876358" }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.update (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:1414:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:57:39.222Z [right now!] info: Listening on port 3000... 
+2019-04-01T13:57:39.255Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T13:57:41.608Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : "15876358" } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : "15876358" }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.update (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:1414:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:57:42.184Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : "15876358" } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : "15876358" }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.update (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:1414:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T13:57:42.679Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : "15876358" } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.sessions index: monitor.certification.certificationNum_1 dup key: { : "15876358" }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.update (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:1414:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T14:21:42.426Z [right now!] info: Listening on port 3000... 
+2019-04-01T14:21:42.692Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T14:21:53.890Z [right now!] info: Listening on port 3000... 
+2019-04-01T14:21:53.922Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T14:27:36.486Z [right now!] info: Listening on port 3000... 
+2019-04-01T14:27:36.517Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T14:43:02.640Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.clients index: email_1 dup key: { : "ahmedbenyahiass@gmail.com" } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.clients index: email_1 dup key: { : "ahmedbenyahiass@gmail.com" }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T14:43:29.944Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.clients index: email_1 dup key: { : "habibbenaissa83@gmail.com" } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.clients index: email_1 dup key: { : "habibbenaissa83@gmail.com" }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T15:01:27.084Z [right now!] error: Something failed:  E11000 duplicate key error collection: auto-ecole-sprint2-test.exams index: numexam_1 dup key: { : "25488452" } MongoError: E11000 duplicate key error collection: auto-ecole-sprint2-test.exams index: numexam_1 dup key: { : "25488452" }
+    at Function.create (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/error.js:43:12)
+    at toError (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/utils.js:149:22)
+    at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
+    at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at processTicksAndRejections (internal/process/next_tick.js:74:9)

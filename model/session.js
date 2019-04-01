@@ -73,7 +73,6 @@ let sessionSchema = new mongoose.Schema({
                         minLength: 8,
                         maxLength: 8,
                         trim: true,
-                        unique: true,
                         required: true
                     }
                 })]

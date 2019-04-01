@@ -102,7 +102,6 @@ const monitorSchema = new mongoose.Schema({
                 minLength: 8,
                 maxLength: 8,
                 trim: true,
-                unique: true,
                 required: true
             }
         })]
@@ -129,6 +128,11 @@ function validateSchema(monitor, newMonitor) {
         .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
+        username: Joi.string().min(4).max(55)
+            .when('$condition', {
+                is: Joi.boolean().valid(true),
+                then: Joi.forbidden()
+            }),
         birthday: Joi.date()
         .when('$condition', {
                 is: Joi.boolean().valid(true),
