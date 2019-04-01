@@ -3,7 +3,7 @@ const {
     failedExam, examState, validateUpdate
 } = require('../model/exam');
 const {Agency} = require('../model/agency');
-const {Client} = require('../model/client');
+const {Client, clientState} = require('../model/client');
 const {Monitor} = require('../model/monitor');
 const {Car} = require('../model/car');
 const express = require('express');
@@ -74,6 +74,10 @@ router.patch('/succeed/:id', async (req, res) => {
     // set the exam
     exam.examinateur = req.body.examinateur;
     exam.state = examState[1];
+    // update the client sate to DRIVING
+    const client = await Client.findOne({_id: exam.client._id});
+    client.state = clientState[4];
+    await client.save();
     await exam.save();
     res.send(exam);
 });

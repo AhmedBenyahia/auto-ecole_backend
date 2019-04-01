@@ -26,7 +26,7 @@
       { route: "DELETE:/session/reject/:id", secure: false },
   ];
   // Monitor only routes
-  const monitorRoutes =[
+  const monitorRoutes = [
     { route: "POST:/upload/license",    secure: true  },
     { route: "POST:/upload/cin",        secure: true  },
     { route: "PUT:/monitor",            secure: true  },
