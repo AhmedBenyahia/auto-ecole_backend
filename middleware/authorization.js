@@ -38,7 +38,12 @@
     { route: "GET:/car",                secure: false },
     { route: "GET:/client",             secure: false },
     { route: "GET:/monitor",            secure: false },
+    { route: "GET:/monitor/:id",            secure: false },
       {route: "GET:/history/monitor", secure: true},
+      {route: "POST:/absence/reserve", secure: false},
+      {route: "GET:/absence", secure: false},
+      {route: "DELETE:/absence/:id", secure: false},
+
   ];
   // Admin routes
   const adminRoutes = [

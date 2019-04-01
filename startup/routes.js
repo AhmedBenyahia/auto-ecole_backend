@@ -12,6 +12,8 @@ const authentication  = require('../routes/authentication');
 const manager  = require('../routes/managers');
 const document  = require('../routes/document');
 const exam = require('../routes/exams');
+const absence = require('../routes/absences');
+
 
 
 const authorDebug = require('debug')('app:authorization');
@@ -31,6 +33,7 @@ module.exports = (app) => {
     app.use('/manager', manager);
     app.use('/', document);
     app.use('/exam', exam);
+    app.use('/absence', absence);
 // handling requests error
     app.use(error);
 };
