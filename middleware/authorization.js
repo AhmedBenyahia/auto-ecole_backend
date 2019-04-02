@@ -14,24 +14,50 @@ const publicRoutes = [
 ];
 // Client only routes
 const clientRoutes = [
-    'PUT:/client',
-    'GET:/client/:id',
-    'PUT:/client/:id',
-    'PATCH:/client/password/:id', //TODO my the client should send he's id ??
-    'GET:/session/client/:id',
-    'POST:/session/reserve',
-    'PATCH:/session/cancel/:id'  //TODO the client can only delete his session
+    {route: "POST:/upload/license", secure: true},
+    {route: "POST:/upload/cin", secure: true},
+    {route: "GET:/whoami", secure: true},
+    {route: "GET:/client", secure: true},
+    {route: "PUT:/client", secure: true},
+    {route: "PATCH:/client/password", secure: true},
+    {route: "GET:/session/client", secure: true},
+    {route: "GET:/timetable/client", secure: true},
+    {route: "POST:/session/reserve", secure: false},
+    {route: "PATCH:/session/cancel/:id", secure: false},
+    {route: "DELETE:/session/reject/:id", secure: false},
 ];
 // Monitor only routes
 const monitorRoutes = [
-    'PUT:/monitor/:id',
-    'PATCH:/monitor/password/:id',
-    'GET:/whoami',
-    'GET:/session/monitor'
+    {route: "POST:/upload/license", secure: true},
+    {route: "POST:/upload/cin", secure: true},
+    {route: "PUT:/monitor", secure: true},
+    {route: "PATCH:/monitor/password", secure: true},
+    {route: "GET:/whoami", secure: true},
+    {route: "GET:/session/monitor", secure: true},
+    {route: "GET:/history/monitor", secure: true},
+    {route: "POST:/session/reserve", secure: false},
+    {route: "GET:/session", secure: false},
+    {route: "GET:/car", secure: false},
+    {route: "GET:/client", secure: false},
+    {route: "GET:/monitor", secure: false},
+    {route: "GET:/monitor/:id", secure: false},
+    {route: "POST:/absence/reserve", secure: false},
+    {route: "GET:/absence", secure: false},
+    {route: "DELETE:/absence/:id", secure: false},
+
 ];
 // Admin routes
 const adminRoutes = [
-    '*', //TODO add reg expression s    upport
+    '*', //TODO add reg expression support
+
+    'GET:/exam',
+    'GET:/exam/:id',
+    'PUT:/exam/:id',
+    'PATCH:/exam/succeed/:id',
+    'PATCH:/exam/reset/:id',
+    'PATCH:/exam/failed/:id',
+    'POST:/exam/scheduled',
+
 
     'GET:/monitor',
     'GET:/monitor/:id',
