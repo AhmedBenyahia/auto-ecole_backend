@@ -1478,3 +1478,22 @@
     at coll.s.topology.insert (/home/sayto/Desktop/SFE/code/back/node_modules/mongodb/lib/operations/collection_ops.js:859:39)
     at /home/sayto/Desktop/SFE/code/back/node_modules/mongodb-core/lib/connection/pool.js:532:18
     at processTicksAndRejections (internal/process/next_tick.js:74:9)
+2019-04-01T15:09:25.788Z [right now!] info: Listening on port 3000... 
+2019-04-01T15:09:25.879Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T15:37:09.676Z [right now!] error: Something failed:  Cannot read property 'cin' of null TypeError: Cannot read property 'cin' of null
+    at /home/sayto/Desktop/SFE/code/back/routes/document.js:32:40
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-04-01T15:38:06.350Z [right now!] info: Listening on port 3000... 
+2019-04-01T15:38:06.476Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T15:38:07.777Z [right now!] error: Something failed:  Cannot read property 'cin' of null TypeError: Cannot read property 'cin' of null
+    at /home/sayto/Desktop/SFE/code/back/routes/document.js:32:40
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-04-01T15:38:15.716Z [right now!] info: Listening on port 3000... 
+2019-04-01T15:38:15.745Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T15:39:32.354Z [right now!] info: Listening on port 3000... 
+2019-04-01T15:39:32.389Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 
+2019-04-01T15:39:36.694Z [right now!] error: Something failed:  Cannot read property 'cin' of null TypeError: Cannot read property 'cin' of null
+    at /home/sayto/Desktop/SFE/code/back/routes/document.js:32:40
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+2019-04-01T15:40:08.732Z [right now!] info: Listening on port 3000... 
+2019-04-01T15:40:08.763Z [right now!] info: connection to db: mongodb://localhost:3200/auto-ecole-sprint2-test succeeded 

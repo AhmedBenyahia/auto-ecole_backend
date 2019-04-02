@@ -18,7 +18,7 @@ router.post('/upload/cin/:id', async function(req, res) {
     }
 
     if (req.user.role === 'client') {
-        user = await Client.findOne({_id: req.body.clientId});
+        user = await Client.findOne({_id: req.params.id});
     }
 
     if (req.user.role === 'monitor') {
