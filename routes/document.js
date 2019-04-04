@@ -42,17 +42,18 @@ router.post('/upload/cin/:id', async function(req, res) {
 });
 
 router.post('/upload/license/:id', async function(req, res) {
-
+    let user;
+    
     if (Object.keys(req.files).length === 0) {
         return res.status(400).send('No files were uploaded.');
     }
 
     if (req.user.role === 'client') {
-        const user = await Client.findOne({_id: req.params.id, agency: req.body.agency});
+        user = await Client.findOne({_id: req.params.id});
     }
 
     if (req.user.role === 'monitor') {
-        const user = await Monitor.findOne({_id: req.params.id, agency: req.body.agency});
+        user = await Monitor.findOne({_id: req.params.id});
 }
 
 // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
