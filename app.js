@@ -15,6 +15,7 @@ handleRejection();
 require('./startup/routes')(app);
 require('./startup/db')();
 require('./startup/validation');
+require('./startup/prod')(app);
 
 // run the server
 const port = process.env.PORT || 3000;

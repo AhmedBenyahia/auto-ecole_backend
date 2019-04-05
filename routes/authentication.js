@@ -40,6 +40,9 @@ router.get('/whoami', async (req, res) => {
     // res.send(manager);
 });
 
+
+//
+
 function validate(req) {
     const schema = {
         username: Joi.string().min(4).max(55).required(),

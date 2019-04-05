@@ -1,4 +1,4 @@
-const {Client, validate} = require('../model/client');
+const {Client, validate, VerificationToken} = require('../model/client');
 const {Agency} = require('../model/agency');
 const express = require('express');
 const router = express.Router();
@@ -8,7 +8,8 @@ const bcrypt = require("bcrypt");
 const Joi = require('joi');
 const JoiExtended = require('../startup/validation');
 const clientDebug = require('debug')('app:client');
-
+const sendMail = require('../startup/mailer');
+const crypto = require('crypto');
 // GET ALL
 router.get('/', async (req, res) => {
     res.send(await Client.find({ agency: req.body.agency}));
@@ -37,6 +38,18 @@ router.post('/', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     client.password = await bcrypt.hash(req.body.password, salt);
     await client.save();
+
+    //create new verification token in the database
+    const token = new VerificationToken({
+        _clientId: client._id,
+        token: crypto.randomBytes(12).toString('hex')
+    });
+    token.save();
+    // send the verification token by mail to client
+    sendMail(client.email,
+        'Confirmation de compte', //TODO: send a link to angular component
+        'Bonjour Veuillez vérifier votre compte en cliquant sur le lien suivant: <br>' +
+        'http://' + req.headers.host + '/client/confirmation/' + token.token);
     res.send(client);
 });
 
@@ -88,5 +101,88 @@ router.delete('/:id', validateObjectId, async (req, res) => {
     // if the client wan not found return an error
     if (!client) return res.status(404).send(' The client with the giving id was not found');
     res.send(client);
+});
+
+// Confirm account
+router.get('/confirmation/:id', async (req, res) => {
+    clientDebug("Debugging /confirmation/:id");
+    // find the token in the data base
+    const token = await VerificationToken.findOne({token: req.params.id});
+    if (!token) return res.status(404).send({message: "verification token not find!!"});
+    //find a matching client
+    const client = await Client.findOne({_id: token._clientId});
+    if (!client) return res.status(404).send({message: "no client natch the giving token"});
+    // verify if the user already verified
+    if (client.isVerified) return res.status(400).send({message: "account already verified"});
+    //everything is Ok => confirm the client account
+    client.isVerified = true;
+    await client.save();
+    await token.remove();
+    res.send({message: 'account verified please log in!'});
+});
+
+// Resend Token
+router.get('/token/resend', async (req, res) => {
+    clientDebug("Debugging /token/resend");
+    // verify the req body
+    if (!req.body.email) return res.status(400).send({message: "email is required"});
+    //find a matching client
+    const client = await Client.findOne({email: req.body.email});
+    if (!client) return res.status(404).send({message: "no client match the giving email"});
+    // find the token in the data base
+    const token = await VerificationToken.findOne({_clientId: client._id});
+    if (!token) return res.status(404).send({message: "verification token not found!!"});
+    // send the verification token by mail to client
+    sendMail(client.email,
+        'Confirmation de compte', //TODO: send a link to angular component
+        'Bonjour Veuillez vérifier votre compte en cliquant sur le lien suivant: <br>' +
+        'http://' + req.headers.host + '/client/confirmation/' + token.token);
+    res.send({message: "the confirmation mail has been send!"});
+});
+
+// Request password Reset
+router.get('/password/reset', async (req, res) => {
+    clientDebug("Debugging /password/reset");
+    // verify the req body
+    if (!req.body.email) return res.status(400).send({message: "email is required"});
+    //find a matching client
+    const client = await Client.findOne({email: req.body.email});
+    if (!client) return res.status(404).send({message: "no client match the giving email"});
+    //create a token for password reset in the database
+    const token = new VerificationToken({
+        _clientId: client._id,
+        token: crypto.randomBytes(12).toString('hex')
+    });
+    token.save();
+    // send the verification token by mail to client
+    sendMail(client.email,
+        'Récupération de mot de pass', //TODO: send a link to angular component
+        'Bonjour une demande de récupération de votre mot de pass a ete envoyer: <br>' +
+        'http://' + req.headers.host + '/client/password/reset/' + token.token);
+    res.send({message: "Reset password mail has been sent"});
+});
+
+// Password Reset
+router.patch('/password/reset/:id', async (req, res) => {
+    clientDebug("Debugging /password/reset/:id");
+    // find the token in the database
+    const token = await VerificationToken.findOne({token: req.params.id});
+    if (!token) return res.status(404).send({message: "no token found!!"});
+    // validate the request schema
+    const {error} = Joi.validate(req.body, {
+        password: Joi.string().min(8).max(255).required(),
+    });
+    if (error) return res.status(400).send({
+        message: error.details[0].message
+    });
+    // verify if client exist
+    let client = await Client.findOne({_id: token._clientId});
+    if (!client) return res.status(404).send(' Client not Found');
+    // update the client password
+    const salt = await bcrypt.genSalt(10);
+    client.password = await bcrypt.hash(req.body.password, salt);
+    await client.save();
+    await token.remove();
+    return res.send({message: 'password has been updated'});
 });
 module.exports = router;
