@@ -1,4 +1,4 @@
-const {Client, validate, VerificationToken} = require('../model/client');
+const {Client, validate, VerificationToken, clientState} = require('../model/client');
 const {Agency} = require('../model/agency');
 const express = require('express');
 const router = express.Router();
@@ -113,9 +113,9 @@ router.get('/confirmation/:id', async (req, res) => {
     const client = await Client.findOne({_id: token._clientId});
     if (!client) return res.status(404).send({message: "no client natch the giving token"});
     // verify if the user already verified
-    if (client.isVerified) return res.status(400).send({message: "account already verified"});
+    if (client.state !== clientState[0]) return res.status(400).send({message: "account already verified"});
     //everything is Ok => confirm the client account
-    client.isVerified = true;
+    client.state = clientState[1];
     await client.save();
     await token.remove();
     res.send({message: 'account verified please log in!'});
