@@ -71,6 +71,10 @@ const agencySchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
+    Region :{
+        type: String,
+        required: true,
+    }
 });
 
 const Agency = mongoose.model('Agency', agencySchema);
@@ -87,6 +91,7 @@ function validateSchema(agency) {
         email: joiExtended.string().email().required(),
         taxRegistrationDate: Joi.date().required(),
         crnDate: Joi.date().required(),
+        Region: Joi.string().required(),
     };
     return Joi.validate(agency, schema);
 }
