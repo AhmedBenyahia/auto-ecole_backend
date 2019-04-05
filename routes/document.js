@@ -7,8 +7,6 @@ const fs = require('fs');
 const PDFDocument = require('../middleware/pdfkit-tables');
 const moment = require('moment');
 const docDebug = require('debug')('app:doc');
-const Joi = require('joi');
-const __dir__ = __dirname + '/../';
 resolve = require('path').resolve;
 
 router.post('/upload/cin/:id', async function(req, res) {

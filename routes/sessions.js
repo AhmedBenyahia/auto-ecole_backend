@@ -112,6 +112,7 @@ router.post('/reserve', isFullReservation, async (req, res) => {
     await session.save();
     res.send(session);
 });
+
 // Approve Session Reservation
 router.patch('/approve/:id', async (req, res) => {
     sessionDebug('debugging /approve endpoint');
