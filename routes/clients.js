@@ -1,4 +1,4 @@
-const {Client, validate, VerificationToken, clientState} = require('../model/client');
+const {Client, validate, clientState, VerificationToken} = require('../model/client');
 const {Agency} = require('../model/agency');
 const express = require('express');
 const router = express.Router();
@@ -101,6 +101,14 @@ router.delete('/:id', validateObjectId, async (req, res) => {
     // if the client wan not found return an error
     if (!client) return res.status(404).send(' The client with the giving id was not found');
     res.send(client);
+});
+router.put('/suspended/:id', validateObjectId, async (req, res) => {
+    const client = await Client.findOne({_id: req.params.id});
+    // if the client wan not found return an error
+    if (!client) return res.status(404).send(' The client with the giving id was not found');
+    client.state = clientState[6];
+    await client.save();
+    return res.send(client);
 });
 
 // Confirm account

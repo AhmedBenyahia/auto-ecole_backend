@@ -73,6 +73,8 @@
     'GET:/client/:id',
     'PUT:/client/:id',
     'DELETE:/client/:id',
+      'PUT:/client/suspended/:id',
+
 
     'GET:/car',
     'GET:/car/:id',

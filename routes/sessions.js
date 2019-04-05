@@ -1,6 +1,6 @@
 const {Session, validateReservation, validateApproving, validateUpdating, sessionState} = require('../model/session');
 const {Agency} = require('../model/agency');
-const {Client} = require('../model/client');
+const {Client, clientState} = require('../model/client');
 const {Monitor} = require('../model/monitor');
 const {Car} = require('../model/car');
 const express = require('express');
@@ -47,6 +47,9 @@ router.post('/reserve', isFullReservation, async (req, res) => {
     // verify that the client exist
     const client = await Client.findOne({_id: req.body.clientId, agency: req.user.agency});
     if (!client) return res.status(404).send(' The client with the giving id was not found');
+    // verify that the profile of the user is complete
+    if (client.state === clientState[1] || client.state === clientState[0]) return res.status(423)
+        .send({message: 'Verify and Complete your profile before reserving sessions'});
     // verify that the client doesn't have a reservation in the same date and it's APPROVED
     let session = await Session
         .find({
@@ -266,4 +269,5 @@ router.patch('/cancel/:id', validateObjectId, async (req, res) => {
     }
     return res.status(409).send('canceling is only allowed  if the session is REQUESTED or APPROVED');
 });
+
 module.exports = router;
