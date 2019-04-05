@@ -96,6 +96,10 @@ const clientSchema = new mongoose.Schema({
        type: Boolean,
        default: false,
    },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
    agency: mongoose.Types.ObjectId,
 });
 
@@ -145,7 +149,28 @@ function validateSchema(client, newClient) {
     return Joi.validate(client, schema, {context: {condition: newClient}});
 }
 
+const verificationTokenSchema = new mongoose.Schema({
+    _clientId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+    },
+    token: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now,
+        expires: 3600,
+        ref: Client,
+    }
+});
+
+const VerificationToken = mongoose.model('Token', verificationTokenSchema);
+
 exports.clientSchema = clientSchema;
 exports.Client = Client;
 exports.validate = validateSchema;
 exports.clientState = clientState;
+exports.VerificationToken = VerificationToken;

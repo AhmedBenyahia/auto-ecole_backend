@@ -7,6 +7,10 @@
     'POST:/client',
     'GET:/agency',
     'POST:/login',
+      'GET:/client/confirmation/:id',
+      'GET:/client/token/resend',
+      'GET:/client/password/reset',
+      'PATCH:/client/password/reset/:id',
     'POST:/agency',    //TODO add super admin and delete those
     'GET:/whoami',   //TODO it's public and not in the same time ,
                     //TODO: so we need the jwt role and id to be send to the method
