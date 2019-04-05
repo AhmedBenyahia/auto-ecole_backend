@@ -13,18 +13,17 @@ const myFormat = printf(({ level, message, label, timestamp, stack }) => {
 
 logger = createLogger({
     format: combine(
-        label({ label: 'right now!' }),
+        label({label: Date.now()}),
         timestamp(),
         myFormat
     ),
     transports: [
-        new transports.Console(),
         new transports.File({ filename: 'logfile.log' }),
         new transports.MongoDB({ db: `${config.get('db')}`})
     ],
     exceptionHandlers: [
         new transports.File({ filename: 'exceptions.log' }),
-        new transports.Console({format: myFormat})
+        new transports.Console({format: myFormat}),
     ]
 });
 

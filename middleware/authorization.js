@@ -1,7 +1,8 @@
   const jwt = require('jsonwebtoken');
   const config = require('config');
   const authorDebug = require('debug')('app:authorization');
-
+  const {handleRejection, logger} = require('../startup/logging');
+  const _ = require('lodash');
   // Public routes
   const publicRoutes = [
     'POST:/client',
@@ -98,11 +99,16 @@
 
   module.exports = function(req, res, next) {
     authorDebug('Debugging authorization middleware');
-    authorDebug('   req:', compact(req.method, req.url));
     // Exclude option request
     if (req.method === "OPTIONS") return next();
     // verify if it's a public routes
     if (publicRoutes.indexOf(compact(req.method, req.url)) > -1) {
+        // logger.log({
+        //     level: 'info',
+        //     message: `request->${compact(req.method, req.url)}`,
+        //     meta: _.pick(req, ['headers', 'originalUrl', 'params', 'body'])
+        //     }
+        // );
         authorDebug('   Access route with public permission:');
         return next();
     }

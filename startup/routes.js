@@ -13,16 +13,17 @@ const manager  = require('../routes/managers');
 const document  = require('../routes/document');
 const exam = require('../routes/exams');
 const absence = require('../routes/absences');
+const logging = require('../middleware/req-log');
 
 
-
-const authorDebug = require('debug')('app:authorization');
 
 module.exports = (app) => {
 
 // Authorization check
     app.use(express.json()) ;
     app.use(authorization);
+// log middleware
+    app.use(logging);
 // routes chain goes here
     app.use('/agency', agency);
     app.use('/car', car);
