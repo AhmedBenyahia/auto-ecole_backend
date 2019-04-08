@@ -60,18 +60,18 @@ const agencySchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    crn: {
+    cin: {
         type: String,
         minlength: 8,
         maxlength: 8,
         trim: true,
         required: true,
     },
-    crnDate: {
+    cinDate: {
         type: Date,
         required: true,
     },
-    Region :{
+    region: {
         type: String,
         required: true,
     }
@@ -83,15 +83,15 @@ function validateSchema(agency) {
     const schema = {
         title: Joi.string().min(4).max(55).required(),
         taxRegistrationNum: Joi.string().length(9).required(),
-        crn: Joi.string().length(8).required(),
+        cin: Joi.string().length(8).required(),
         address: Joi.string().max(255).min(5),
         phone: joiExtended.string().phone().min(8).max(13).required(), //TO DO add phone function
         postalCode: Joi.string().min(4).max(10),
         state: Joi.string(), // TODO: add joi validation for state enum
         email: joiExtended.string().email().required(),
         taxRegistrationDate: Joi.date().required(),
-        crnDate: Joi.date().required(),
-        Region: Joi.string().required(),
+        cinDate: Joi.date().required(),
+        region: Joi.string().required(),
     };
     return Joi.validate(agency, schema);
 }

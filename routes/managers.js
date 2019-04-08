@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 // GET BY ID
 router.get('/:id', validateObjectId, async (req, res) => {
     const manager = await Manager.findOne({_id: req.params.id, agency: req.body.agency});
-    if (!manager) return res.status(404).send(' The manager with the giving id was not found');
+    if (!manager) return res.status(404).send({message: ' The manager with the giving id was not found'});
     res.send(manager);
 });
 
@@ -27,11 +27,11 @@ router.get('/:id', validateObjectId, async (req, res) => {
 router.post('/', async (req, res) => {
     // validate request body
     const {error} = validate(req.body, true);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({message: error.details[0].message});
 
     // verify if the manager is already registered
     let manager = await Manager.findOne({ email: req.body.email });
-    if (manager) return res.status(400).send('Manager already registered !');
+    if (manager) return res.status(400).send({message: 'Manager already registered !'});
     // get the agency
     const agency = await Agency.findOne({ _id: req.body.agency });
     // create and save the new manager
@@ -58,10 +58,10 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
         newPassword: Joi.string().min(8).max(255).required(),
         oldPassword: Joi.string().min(8).max(255).required()
     });
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({message: error.details[0].message});
     // verify if manager exist
     let manager = await Manager.findOne({ _id: req.params.id });
-    if (!manager) return res.status(404).send(' The manager with the giving id was not found');
+    if (!manager) return res.status(404).send({message: ' The manager with the giving id was not found'});
     // verify if the old password is valid
     if (await bcrypt.compare(req.body.oldPassword, manager.password)) {
         const salt = await bcrypt.genSalt(10);
@@ -71,7 +71,7 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
         return res.send(manager);
     }
     // the password is incorrect
-    res.status(401).send(" Incorrect password!! ");
+    res.status(401).send({message: " Incorrect password!! "});
 });
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const {Client, validate,clientState, VerificationToken } = require('../model/client');
+const {Client, validate, clientState, VerificationToken} = require('../model/client');
 const {Agency} = require('../model/agency');
 const express = require('express');
 const router = express.Router();
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 // GET BY ID
 router.get('/:id', validateObjectId, async (req, res) => {
     const client = await Client.findOne({_id: req.params.id, agency: req.body.agency});
-    if (!client) return res.status(404).send(' The client with the giving id was not found');
+    if (!client) return res.status(404).send({message: ' The client with the giving id was not found'});
     res.send(client);
 });
 
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
     });
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.body.agency});
-    if (!agency) return res.status(404).send(' The agency with the giving id was not found');
+    if (!agency) return res.status(404).send({message: ' The agency with the giving id was not found'});
     // save the new client
     const client = new Client(_.omit(req.body,['password']));
     const salt = await bcrypt.genSalt(10);
@@ -57,15 +57,15 @@ router.post('/', async (req, res) => {
 router.put('/:id', validateObjectId, async (req, res) => {
     // validate the request schema
     const {error} = validate(req.body, false);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({message: error.details[0].message});
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.body.agency});
-    if (!agency) return res.status(404).send(' The agency with the giving id was not found');
+    if (!agency) return res.status(404).send({message: ' The agency with the giving id was not found'});
     // verify if we are updating the password
     // update the client with the giving id
     const client = await Client.findOneAndUpdate({ _id: req.params.id, agency: req.body.agency}, req.body, { new: true});
     // if the client wan not found return an error
-    if (!client) return res.status(404).send(' The client with the giving id was not found');
+    if (!client) return res.status(404).send({message: ' The client with the giving id was not found'});
     res.send(client);
 });
 
@@ -82,7 +82,7 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
     });
     // verify if client exist
     let client = await Client.findOne({ _id: req.params.id, agency: req.body.agency });
-    if (!client) return res.status(404).send(' The client with the giving id was not found');
+    if (!client) return res.status(404).send({message: ' The client with the giving id was not found'});
     // verify if the old password is valid
     if (await bcrypt.compare(req.body.oldPassword, client.password)) {
         const salt = await bcrypt.genSalt(10);
@@ -92,29 +92,26 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
         return res.send(client);
     }
     // the password is incorrect
-    res.status(401).send(" Incorrect password!! ");
+    res.status(401).send({message: " Incorrect password!! "});
 });
 
 // DELETE Client
 router.delete('/:id', validateObjectId, async (req, res) => {
     const client = await Client.findOneAndDelete({ _id: req.params.id, agency: req.body.agency});
     // if the client wan not found return an error
-    if (!client) return res.status(404).send(' The client with the giving id was not found');
+    if (!client) return res.status(404).send({message: ' The client with the giving id was not found'});
     res.send(client);
 });
-router.put('/suspended/:id', validateObjectId, async (req, res) => {
-    const client = await Client.findOne({ _id: req.params.id});
-    // if the client wan not found return an error
-    if (!client) return res.status(404).send(' The client with the giving id was not found');
 
-    
+// suspend the account of a client
+router.put('/suspended/:id', validateObjectId, async (req, res) => {
+    const client = await Client.findOne({_id: req.params.id});
+    // if the client wan not found return an error
+    if (!client) return res.status(404).send({message: ' The client with the giving id was not found'});
     client.state = clientState[6];
-    await  await client.save();
-    console.log(client);
+    await client.save();
     return res.send(client);
-    
-    
-})
+});
 
 // Confirm account
 router.get('/confirmation/:id', async (req, res) => {
@@ -126,9 +123,9 @@ router.get('/confirmation/:id', async (req, res) => {
     const client = await Client.findOne({_id: token._clientId});
     if (!client) return res.status(404).send({message: "no client natch the giving token"});
     // verify if the user already verified
-    if (client.isVerified) return res.status(400).send({message: "account already verified"});
+    if (client.state !== clientState[0]) return res.status(400).send({message: "account already verified"});
     //everything is Ok => confirm the client account
-    client.isVerified = true;
+    client.state = clientState[1];
     await client.save();
     await token.remove();
     res.send({message: 'account verified please log in!'});
@@ -190,7 +187,7 @@ router.patch('/password/reset/:id', async (req, res) => {
     });
     // verify if client exist
     let client = await Client.findOne({_id: token._clientId});
-    if (!client) return res.status(404).send(' Client not Found');
+    if (!client) return res.status(404).send({message: ' Client not Found'});
     // update the client password
     const salt = await bcrypt.genSalt(10);
     client.password = await bcrypt.hash(req.body.password, salt);

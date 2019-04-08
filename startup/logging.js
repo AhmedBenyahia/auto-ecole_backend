@@ -13,7 +13,7 @@ const myFormat = printf(({ level, message, label, timestamp, stack }) => {
 
 logger = createLogger({
     format: combine(
-        label({ label: 'right now!' }),
+        label({label: Date.now()}),
         timestamp(),
         myFormat
     ),
@@ -24,7 +24,7 @@ logger = createLogger({
     ],
     exceptionHandlers: [
         new transports.File({ filename: 'exceptions.log' }),
-        new transports.Console({format: myFormat})
+        new transports.Console({format: myFormat}),
     ]
 });
 

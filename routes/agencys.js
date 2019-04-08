@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     // validate the request body
     const {error} = validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({message: error.details[0].message});
     // save the new agency
     const agency = new Agency(req.body);
     const password = passwordGenerator.generate({ length: 10, numbers: true });

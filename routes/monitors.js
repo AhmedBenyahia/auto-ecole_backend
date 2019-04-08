@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 // GET BY ID
 router.get('/:id', validateObjectId, async (req, res) => {
     const monitor = await Monitor.findOne({_id: req.params.id, agency: req.body.agency});
-    if (!monitor) return res.status(404).send(' The monitor with the giving id was not found');
+    if (!monitor) return res.status(404).send({message: ' The monitor with the giving id was not found'});
     res.send(monitor);
 });
 
@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
         .send({message: error.details[0].message});
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.body.agency});
-    if (!agency) return res.status(404).send(' The agency with the giving id was not found');
+    if (!agency) return res.status(404).send({message: ' The agency with the giving id was not found'});
     // save the new monitor
     const monitor = new Monitor(req.body);
         //generate a username
@@ -60,10 +60,10 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
         oldPassword: Joi.string().min(8).max(255).required(),
         agency: Joi.string().required(),
     });
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) return res.status(400).send({message: error.details[0].message});
     // verify if monitor exist
     let monitor = await Monitor.findOne({ _id: req.params.id });
-    if (!monitor) return res.status(404).send(' The monitor with the giving id was not found');
+    if (!monitor) return res.status(404).send({message: ' The monitor with the giving id was not found'});
     // verify if the old password is valid
     if (await bcrypt.compare(req.body.oldPassword, monitor.password)) {
         const salt = await bcrypt.genSalt(10);
@@ -73,7 +73,7 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
         return res.send(monitor);
     }
     // the password is incorrect
-    res.status(401).send(" Incorrect password!! ");
+    res.status(401).send({message: " Incorrect password!! "});
 });
 
 // UPDATE Monitor
@@ -85,11 +85,11 @@ router.put('/:id', validateObjectId, async (req, res) => {
     });
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.body.agency});
-    if (!agency) return res.status(404).send(' The agency with the giving id was not found');
+    if (!agency) return res.status(404).send({message: ' The agency with the giving id was not found'});
     // update the monitor with the giving id
     const monitor = await Monitor.findOneAndUpdate({ _id: req.params.id, agency: req.body.agency}, req.body, { new: true});
     // if the monitor wan not found return an error
-    if (!monitor) return res.status(404).send(' The monitor with the giving id was not found');
+    if (!monitor) return res.status(404).send({message: ' The monitor with the giving id was not found'});
     res.send(monitor);
 });
 
@@ -97,7 +97,7 @@ router.put('/:id', validateObjectId, async (req, res) => {
 router.delete('/:id', validateObjectId, async (req, res) => {
     const monitor = await Monitor.findOneAndDelete({ _id: req.params.id, agency: req.body.agency});
     // if the monitor wan not found return an error
-    if (!monitor) return res.status(404).send(' The monitor with the giving id was not found');
+    if (!monitor) return res.status(404).send({message: ' The monitor with the giving id was not found'});
     res.send(monitor);
 });
 module.exports = router;

@@ -7,14 +7,12 @@ const fs = require('fs');
 const PDFDocument = require('../middleware/pdfkit-tables');
 const moment = require('moment');
 const docDebug = require('debug')('app:doc');
-const Joi = require('joi');
-const __dir__ = __dirname + '/../';
 resolve = require('path').resolve;
 
 router.post('/upload/cin/:id', async function(req, res) {
     let user;
     if (Object.keys(req.files).length === 0) {
-        return res.status(400).send('No files were uploaded.');
+        return res.status(400).send({message: 'No files were uploaded.'});
     }
 
     if (req.user.role === 'client') {
@@ -35,7 +33,7 @@ router.post('/upload/cin/:id', async function(req, res) {
             return res.send('File uploaded!');
         } else {
             console.log('no, The file has not been uploaded!!');
-            return res.status(500).send(err);
+            return res.status(500).send({message: err});
         }
     });
 
@@ -45,7 +43,7 @@ router.post('/upload/license/:id', async function(req, res) {
     let user;
     
     if (Object.keys(req.files).length === 0) {
-        return res.status(400).send('No files were uploaded.');
+        return res.status(400).send({message: 'No files were uploaded.'});
     }
 
     if (req.user.role === 'client') {
@@ -60,13 +58,13 @@ router.post('/upload/license/:id', async function(req, res) {
     let sampleFile = req.files.sampleFile;
 
     // Use the mv() method to place the file somewhere on your server
-    sampleFile.mv(`./upload/permi/${user.drivingLicenceNum}`, function(err) {
+    sampleFile.mv(`./upload/permi/${user.cin}`, function (err) {
         if (!err)  {
             console.log('ok, file has been uploaded');
             return res.send('File uploaded!');
         } else {
             console.log('no, The file has not been uploaded!!');
-            return res.status(500).send(err);
+            return res.status(500).send({message: err});
         }
     });
 

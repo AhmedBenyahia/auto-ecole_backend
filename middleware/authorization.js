@@ -1,7 +1,7 @@
   const jwt = require('jsonwebtoken');
   const config = require('config');
   const authorDebug = require('debug')('app:authorization');
-
+  const _ = require('lodash');
   // Public routes
   const publicRoutes = [
     'POST:/client',
@@ -72,7 +72,7 @@
     'GET:/client/:id',
     'PUT:/client/:id',
     'DELETE:/client/:id',
-    'PUT:/client/suspended/:id',
+      'PUT:/client/suspended/:id',
 
 
     'GET:/car',
@@ -100,7 +100,7 @@
 
   module.exports = function(req, res, next) {
     authorDebug('Debugging authorization middleware');
-    authorDebug('   req:', compact(req.method, req.url));
+      authorDebug('   req: ', compact(req.method, req.url));
     // Exclude option request
     if (req.method === "OPTIONS") return next();
     // verify if it's a public routes

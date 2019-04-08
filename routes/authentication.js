@@ -7,9 +7,10 @@ const bcrypt = require("bcrypt");
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-
+const authenticationDebug = require('debug')('app:authentication');
 // * user login
 router.post('/login', async (req, res) => {
+    authenticationDebug('Debugging /login');
     // validate request body
     const {error} = validate(req.body);
     if (error) return res.status(400).send({message: error.details[0].message});

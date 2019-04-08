@@ -19,7 +19,7 @@ module.exports = function (to, subject, body) {
         html: `<p>${body}</p>`// plain text body
     };
     mailServer.sendMail(mailOptions, (err, info) => {
-        if (err) mailDebug("The mail send was failed:" + err);
-        else mailDebug("Mail successful sent" + info);
+        if (err) mailDebug("The mail send was failed:", err);
+        else mailDebug("Mail successful sent to", info.accepted);
     });
 };
