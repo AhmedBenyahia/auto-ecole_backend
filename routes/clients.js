@@ -154,7 +154,7 @@ router.get('/token/resend', async (req, res) => {
 });
 
 // Request password Reset
-router.get('/password/reset', async (req, res) => {
+router.post('/password/reset', async (req, res) => {
     clientDebug("Debugging /password/reset");
     // verify the req body
     if (!req.body.email) return res.status(400).send({message: "email is required"});

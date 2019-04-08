@@ -9,7 +9,7 @@
     'POST:/login',
       'GET:/client/confirmation/:id',
       'GET:/client/token/resend',
-      'GET:/client/password/reset',
+      'POST:/client/password/reset',
       'PATCH:/client/password/reset/:id',
     'POST:/agency',    //TODO add super admin and delete those
     'GET:/whoami',   //TODO it's public and not in the same time ,
