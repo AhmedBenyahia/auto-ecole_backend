@@ -104,9 +104,9 @@ const clientSchema = new mongoose.Schema({
 clientSchema.post('find', function (result) {
     clientSchemaDebug('Client State checked!!');
     result.forEach(async (res) => {
-        if (res.state === clientState[1] &&
-            verifFileExist('./upload/cin/' + res._id) &&
-            verifFileExist('./upload/permi/' + res._id)) {
+        if (res && res.state === clientState[1] &&
+            checkFileExists('./upload/cin/' + res._id) &&
+            checkFileExists('./upload/permi/' + res._id)) {
             res.state = clientState[2];
             await res.save();
             clientSchemaDebug('client state updated');
@@ -115,14 +115,16 @@ clientSchema.post('find', function (result) {
 });
 
 clientSchema.post('findOne', async function (res) {
-    clientSchemaDebug('Client State checked!!');
-    if (res.state === clientState[1] &&
-        verifFileExist('./upload/cin/' + res._id) &&
-        verifFileExist('./upload/permi/' + res._id)) {
+    clientSchemaDebug('Client State checked!!!');
+    clientSchemaDebug('cin exist: ', await checkFileExists('./upload/cin/' + res.cin));
+    clientSchemaDebug('permi exist: ', await checkFileExists('./upload/permi/' + res.cin));
+    if (res && res.state === clientState[1] &&
+        await checkFileExists('./upload/cin/' + res.cin) &&
+        await checkFileExists('./upload/permi/' + res.cin)) {
         res.state = clientState[2];
         await res.save();
+        clientSchemaDebug('client state updated');
     }
-    clientSchemaDebug('client state updated');
 });
 
 const Client = mongoose.model('Clients', clientSchema);
@@ -200,10 +202,12 @@ function validateSchema(client, newClient) {
     return Joi.validate(client, schema, {context: {condition: newClient}});
 }
 
-function verifFileExist(path) {
-    fs.access(path, fs.F_OK, (err) => {
-        return !err;
-    })
+function checkFileExists(filepath) {
+    return new Promise((resolve, reject) => {
+        fs.access(filepath, fs.F_OK, error => {
+            resolve(!error);
+        });
+    });
 }
 exports.clientSchema = clientSchema;
 exports.Client = Client;
