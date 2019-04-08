@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', validateObjectId, async (req, res) => {
     const absenc = await Absenc.findOne({_id: req.params.id, agency: req.user.agency});
-    if (!absenc) return res.status(404).send(' The Absenc with the giving id was not found');
+    if (!absenc) return res.status(404).send({message: ' The Absence with the giving id was not found'});
     res.send(absenc);
 });
 
@@ -30,10 +30,10 @@ router.post('/reserve',  async (req, res) => {
     if (error) return res.status(400).send({message: error.details[0].message});
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.user.agency});
-    if (!agency) return res.status(404).send(' The agency with the giving id was not found');
+    if (!agency) return res.status(404).send({message: ' The agency with the giving id was not found'});
     // verify that the client exist
     const monitor = await Monitor.findOne({_id: req.body.monitorId, agency: req.user.agency});
-    if (!monitor) return res.status(404).send(' The MONITEUR with the giving id was not found');
+    if (!monitor) return res.status(404).send({message: ' The MONITEUR with the giving id was not found'});
     // verify that the client doesn't have a reservation in the same date and it's APPROVED
     
         
@@ -56,7 +56,7 @@ router.post('/reserve',  async (req, res) => {
 router.delete('/:id',  async (req, res) => {
     const absenc = await Absenc.findOneAndDelete({ _id: req.params.id, agency: req.body.agency});
     // if the car wan not found return an error
-    if (!absenc) return res.status(404).send(' The Absenc objcet  with the giving id was not found');
+    if (!absenc) return res.status(404).send({message: ' The Absenc objcet  with the giving id was not found'});
     res.send(absenc);
 });
 

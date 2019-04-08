@@ -18,6 +18,7 @@ logger = createLogger({
         myFormat
     ),
     transports: [
+        new transports.Console(),
         new transports.File({ filename: 'logfile.log' }),
         new transports.MongoDB({ db: `${config.get('db')}`})
     ],
