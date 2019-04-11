@@ -4,6 +4,7 @@
       <w>agence</w>
       <w>ajout</w>
       <w>ajouter</w>
+      <w>annuler</w>
       <w>assigné</w>
       <w>avez</w>
       <w>bcrypt</w>
@@ -11,6 +12,7 @@
       <w>cliquant</w>
       <w>compte</w>
       <w>conduite</w>
+      <w>consulter</w>
       <w>dddd</w>
       <w>demande</w>
       <w>ecole</w>
@@ -22,6 +24,7 @@
       <w>gmail</w>
       <w>incanceling</w>
       <w>informations</w>
+      <w>inscrit</w>
       <w>jsonwebtoken</w>
       <w>liste</w>
       <w>mmmm</w>
@@ -29,14 +32,18 @@
       <w>nbre</w>
       <w>nodemailer</w>
       <w>nodemon</w>
+      <w>notif</w>
       <w>nouveau</w>
+      <w>nouvelle</w>
       <w>numexam</w>
+      <w>panne</w>
       <w>permi</w>
       <w>poste</w>
       <w>prenom</w>
       <w>printf</w>
       <w>recupiration</w>
       <w>récupération</w>
+      <w>réservation</w>
       <w>sont</w>
       <w>suivant</w>
       <w>traveil</w>
@@ -44,6 +51,7 @@
       <w>verifed</w>
       <w>veuillez</w>
       <w>visite</w>
+      <w>voiture</w>
       <w>votre</w>
       <w>vous</w>
       <w>vérifier</w>

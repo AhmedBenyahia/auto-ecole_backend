@@ -1,5 +1,6 @@
 {
   "jwtPrivateKey": "",
   "db": "",
-  "email": "ahmedbenyahiakanansa@gmail.com"
+  "email": "ahmedbenyahiakanansa@gmail.com",
+  "frontendUrl": "http://localhost:4200/"
 }

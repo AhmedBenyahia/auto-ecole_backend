@@ -7,8 +7,8 @@ const validateObjectId = require('../middleware/validateObjectId');
 const _ = require('lodash');
 const absencDebug = require('debug')('app:Absenc');
 const DAY = 24*60*60*1000;
-
-absencDebug('absenc debugging is enabled');
+const {monitorAbsenceNotif} = require('../middleware/notify');
+absencDebug('absence debugging is enabled');
 
 
 router.get('/', async (req, res) => {
@@ -39,7 +39,7 @@ router.post('/reserve',  async (req, res) => {
         
     
     // add the client, reservation to the new session
-    absenc = new Absenc({
+    let absence = new Absenc({
         monitor:_.pick(monitor, ['_id', 'name', 'surname']),
         debDate: req.body.debDate,
         endDate:req.body.endDate,
@@ -48,8 +48,9 @@ router.post('/reserve',  async (req, res) => {
     });
    
     // save the new session
-    await absenc.save();
-    res.send(absenc);
+    await absence.save();
+    monitorAbsenceNotif(req, absence);
+    res.send(absence);
 });
 
 

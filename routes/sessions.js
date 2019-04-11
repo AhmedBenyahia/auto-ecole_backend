@@ -11,7 +11,8 @@ const sessionDebug = require('debug')('app:session');
 const DAY = 24*60*60*1000;
 const isFullReservation = require('../middleware/isFullReservation');
 const verifyClientState = require('../middleware/verifyClientState');
-
+const notifyDebug = require('debug')('app:notify');
+const {sessionCancelingNotif, sessionReservationNotif} = require('../middleware/notify');
 sessionDebug('session debugging is enabled');
 
 // GET ALL
@@ -114,6 +115,9 @@ router.post('/reserve', isFullReservation, async (req, res) => {
     }
     // save the new session
     await session.save();
+    // send notification to admin
+    sessionReservationNotif(req, session);
+    // send the response
     res.send(session);
 });
 
@@ -262,6 +266,7 @@ router.patch('/cancel/:id', validateObjectId, async (req, res) => {
             // if so change the state of the session to canceled
             session.state = sessionState[2];
             await session.save();
+            sessionCancelingNotif(req, session);
             return res.send(session);
         }
     }

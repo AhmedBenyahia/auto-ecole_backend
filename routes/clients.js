@@ -10,6 +10,7 @@ const JoiExtended = require('../startup/validation');
 const clientDebug = require('debug')('app:client');
 const sendMail = require('../startup/mailer');
 const crypto = require('crypto');
+const {newClientNotif} = require('../middleware/notify');
 // GET ALL
 router.get('/', async (req, res) => {
     res.send(await Client.find({ agency: req.body.agency}));
@@ -50,6 +51,7 @@ router.post('/', async (req, res) => {
         'Confirmation de compte', //TODO: send a link to angular component
         'Bonjour Veuillez vérifier votre compte en cliquant sur le lien suivant: <br>' +
         'http://' + req.headers.host + '/client/confirmation/' + token.token);
+    newClientNotif(req, client);
     res.send(client);
 });
 
