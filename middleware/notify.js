@@ -1,4 +1,6 @@
 const notifyDebug = require('debug')('app:notify');
+const {Notif} = require('../model/notif');
+
 module.exports.connect = (io) => {
     io.connectedUser = [];
     io.on('connection', function (socket) {
@@ -45,24 +47,33 @@ module.exports.connect = (io) => {
     })
 };
 
-module.exports.newClientNotif = (req, client) => {
+module.exports.newClientNotif = async (req, client) => {
     notifyDebug('newClientNotif');
+    const notif = new Notif({
+        subject: 'un nouveau client a inscrit dans votre agence',
+        data: client._id,
+        action: 'ClientRegistered',
+        agency: req.user.agency,
+    });
+    await notif.save();
     req.app.io.to('adminChannel#' + req.body.agency.slice(-4))
-        .emit('news', {
-            subject: 'un nouveau client a inscrit dans votre agence',
-            data: client._id,
-        });
+        .emit('news', notif);
+
 };
 
-module.exports.sessionReservationNotif = (req, session) => {
+module.exports.sessionReservationNotif = async (req, session) => {
     notifyDebug('sessionReservationNotif');
     notifyDebug('send to channel: ' + 'adminChannel#' + req.body.agency.slice(-4));
+    const notif = new Notif({
+        subject: 'une nouvelle demande de réservation a été ajouter par ' +
+            ((!req.body.isFullReservation) ? 'un client' : 'un moniteur'),
+        action: 'RequestSession',
+        data: session._id,
+        agency: req.user.agency,
+    });
+    await notif.save();
     req.app.io.to('adminChannel#' + req.body.agency.slice(-4))
-        .emit('news', {
-            subject: 'une nouvelle demande de réservation a été ajouter par ' +
-                ((!req.body.isFullReservation) ? 'un client' : 'un moniteur'),
-            data: session._id,
-        });
+        .emit('news', notif);
 };
 
 module.exports.sessionCancelingNotif = (req, session) => {
@@ -98,5 +109,36 @@ module.exports.monitorAbsenceNotif = (req, absence) => {
         });
 };
 
+module.exports.sessionValidationNotif = async (req, session) => {
+    notifyDebug('sessionValidationNotif');
+    notifyDebug('send to channel: ' + 'clientChannel#' + req.body.agency.slice(-4));
+    notifyDebug('send to channel: ' + 'monitorChannel#' + req.body.agency.slice(-4));
+    // send notification to monitor
+    let notif = new Notif({
+        subject: 'Vous avez une nouvelle session de traveil le ' +
+            session.reservationDate,
+        action: 'ApproveSession',
+        data: session._id,
+        userId: session.monitor._id,
+        agency: req.user.agency,
+    });
+    await notif.save();
+    req.app.io.to(req.app.io.connectedUser.filter
+    (c => c._id === session.monitor._id.toString())[0].socketId)
+        .emit('news', notif);
+    // send notification to client
+    notif = new Notif({
+        subject: 'votre demande de reservation de session le' +
+            session.reservationDate + ' a ete approuvé', //TODO format date
+        action: 'ApproveSession',
+        data: session._id,
+        userId: session.client._id,
+        agency: req.user.agency,
+    });
+    await notif.save();
+    req.app.io.to(req.app.io.connectedUser.filter(
+        c => c._id === session.client._id.toString())[0].socketId)
+        .emit('news', notif);
+};
 
 

@@ -12,13 +12,11 @@ let absenceSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-
     raison:{
         type: String ,
         required:true
     },
     agency: mongoose.Types.ObjectId,
-
     monitor: {
         type: new mongoose.Schema({
             _id: mongoose.Types.ObjectId,

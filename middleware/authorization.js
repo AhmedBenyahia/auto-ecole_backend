@@ -10,6 +10,7 @@
       'GET:/client/confirmation/:id',
       'GET:/client/token/resend',
       'GET:/client/password/reset',
+      'PATCH:/notify/viewed/:id',
       'PATCH:/client/password/reset/:id',
     'POST:/agency',    //TODO add super admin and delete those
     'GET:/whoami',   //TODO it's public and not in the same time ,
@@ -21,6 +22,7 @@
       { route: "POST:/upload/cin",           secure: true  },
       { route: "GET:/whoami",                secure: true  },
       { route: "GET:/client",                secure: true  },
+      {route: "GET:/notify/client", secure: true},
       { route: "PUT:/client",                secure: true  },
       { route: "PATCH:/client/password",     secure: true  },
       { route: "GET:/session/client",        secure: true  },
@@ -37,6 +39,7 @@
     { route: "PATCH:/monitor/password", secure: true  },
     { route: "GET:/whoami",             secure: true  },
     { route: "GET:/session/monitor",    secure: true  },
+      {route: "GET:/notify/monitor", secure: true},
       {route: "GET:/history/monitor", secure: true},
     { route: "POST:/session/reserve",   secure: false },
     { route: "GET:/session",            secure: false },
@@ -52,6 +55,8 @@
   // Admin routes
   const adminRoutes = [
     '*', //TODO add reg expression support
+
+      'GET:/notify',
 
     'GET:/exam',
     'GET:/exam/:id',

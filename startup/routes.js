@@ -14,7 +14,7 @@ const document  = require('../routes/document');
 const exam = require('../routes/exams');
 const absence = require('../routes/absences');
 const logging = require('../middleware/req-log');
-
+const notif = require('../routes/notifs');
 
 
 module.exports = (app) => {
@@ -35,6 +35,7 @@ module.exports = (app) => {
     app.use('/', document);
     app.use('/exam', exam);
     app.use('/absence', absence);
+    app.use('/notify', notif);
 // handling requests error
     app.use(error);
 };
