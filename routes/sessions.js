@@ -11,7 +11,8 @@ const sessionDebug = require('debug')('app:session');
 const DAY = 24*60*60*1000;
 const isFullReservation = require('../middleware/isFullReservation');
 const verifyClientState = require('../middleware/verifyClientState');
-
+const notifyDebug = require('debug')('app:notify');
+const {sessionCancelingNotif, sessionReservationNotif, sessionValidationNotif} = require('../middleware/notify');
 sessionDebug('session debugging is enabled');
 
 // GET ALL
@@ -112,8 +113,11 @@ router.post('/reserve', isFullReservation, async (req, res) => {
         session.car = _.pick(car, ['_id', 'num', 'mark', 'model']);
         session.monitor = _.pick(monitor, ['_id', 'name', 'surname', 'certification']);
     }
+    // send notification to admin
+    await sessionReservationNotif(req, session);
     // save the new session
     await session.save();
+    // send the response
     res.send(session);
 });
 
@@ -167,12 +171,15 @@ router.patch('/approve/:id', async (req, res) => {
     session.monitor = _.pick(monitor, ['_id','name', 'surname', 'certification']);
     session.state = sessionState[1];
     await session.save();
+    // send notification the client and monitor
+    await sessionValidationNotif(req, session);
     res.send(session);
 });
 
 // TODO: Refactor this method
 // UPDATE Session: change monitor, car or date
 // NOTE: the patch will not pass unless all the passed value are verified
+// Update session
 router.patch('/update/:id', validateObjectId, async (req, res) => {
     sessionDebug('Debugging /update/:id session endpoint');
     // validate the request schema
@@ -183,7 +190,7 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
     if (!session) return res.status(404).send({message: ' The session with the giving id was not found'});
     // verify if the state of the session is APPROVED, PENDING or FINISHED
     sessionDebug('  session state:', session.state);
-    if (!([sessionState[1],sessionState[4],sessionState[5]].find(c => c === session.state))) {
+    if (!([sessionState[1], sessionState[3]].find(c => c === session.state))) {
         return res.status(406).send({message: 'Only update session with APPROVED, PENDING or FINISHED state'});
     }
     // get the reservation date form the request body if provided, or from the session in the db
@@ -262,6 +269,7 @@ router.patch('/cancel/:id', validateObjectId, async (req, res) => {
             // if so change the state of the session to canceled
             session.state = sessionState[2];
             await session.save();
+            sessionCancelingNotif(req, session);
             return res.send(session);
         }
     }
