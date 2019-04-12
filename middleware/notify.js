@@ -156,7 +156,7 @@ module.exports.sessionValidationNotif = async (req, session) => {
     // emit notif to the monitor if he is connected
     let userConnectionInfo = req.app.io.connectedUser
         .filter(c => c._id === session.monitor._id.toString());
-    if (userConnectionInfo) {
+    if (userConnectionInfo[0]) {
         req.app.io.to(userConnectionInfo[0].socketId)
             .emit('news', notif);
     }
@@ -199,7 +199,7 @@ module.exports.sessionRejectNotif = async (req, session) => {
     // send the notification to user
     const userConnectionInfo = req.app.io.connectedUser
         .filter(c => c._id === userId.toString());
-    if (userConnectionInfo) {
+    if (userConnectionInfo[0]) {
         req.app.io.to(userConnectionInfo[0].socketId)
             .emit('news', notif);
     }
