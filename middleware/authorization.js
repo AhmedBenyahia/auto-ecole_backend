@@ -9,12 +9,8 @@
     'POST:/login',
       'GET:/client/confirmation/:id',
       'GET:/client/token/resend',
-<<<<<<< HEAD
-      'POST:/client/password/reset',
-=======
       'GET:/client/password/reset',
       'PATCH:/notify/viewed/:id',
->>>>>>> 8b76ee125c618992bfb8dd3a9bab1169a505dd15
       'PATCH:/client/password/reset/:id',
     'POST:/agency',    //TODO add super admin and delete those
     'GET:/whoami',   //TODO it's public and not in the same time ,

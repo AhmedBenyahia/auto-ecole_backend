@@ -36,11 +36,8 @@ module.exports = (app) => {
     app.use('/', document);
     app.use('/exam', exam);
     app.use('/absence', absence);
-<<<<<<< HEAD
     app.use('/breakdown', breakdown);
-=======
     app.use('/notify', notif);
->>>>>>> 8b76ee125c618992bfb8dd3a9bab1169a505dd15
 // handling requests error
     app.use(error);
 };
