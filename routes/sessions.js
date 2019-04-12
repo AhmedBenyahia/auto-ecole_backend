@@ -176,10 +176,9 @@ router.patch('/approve/:id', async (req, res) => {
     res.send(session);
 });
 
-// TODO: Refactor this method
 // UPDATE Session: change monitor, car or date
 // NOTE: the patch will not pass unless all the passed value are verified
-// Update session
+// TODO: Refactor this method
 router.patch('/update/:id', validateObjectId, async (req, res) => {
     sessionDebug('Debugging /update/:id session endpoint');
     // validate the request schema
@@ -188,7 +187,7 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
     //verify the existence of the session
     let session = await Session.findOne({ _id: req.params.id, agency: req.user.agency});
     if (!session) return res.status(404).send({message: ' The session with the giving id was not found'});
-    // verify if the state of the session is APPROVED, PENDING or FINISHED
+    // verify if the state of the session is APPROVED or FINISHED
     sessionDebug('  session state:', session.state);
     if (!([sessionState[1], sessionState[3]].find(c => c === session.state))) {
         return res.status(406).send({message: 'Only update session with APPROVED, PENDING or FINISHED state'});

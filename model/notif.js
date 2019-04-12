@@ -11,7 +11,6 @@ const notifSchema = new mongoose.Schema({
     data: {
         type: String,
         maxlength: 55,
-        required: true,
         trim: true,
     },
     isViewed: {
