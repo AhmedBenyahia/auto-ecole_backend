@@ -12,8 +12,7 @@ const validateObjectId = require('../middleware/validateObjectId');
 const _ = require('lodash');
 const examDebug = require('debug')('app:exam');
 const DAY = 24*60*60*1000;
-
-
+const {newExamNotif} = require('../middleware/notify');
 // GET ALL
 router.get('/', async (req, res) => {
     res.send(await Exam.find({agency: req.user.agency}));
@@ -29,6 +28,7 @@ router.get('/:id', validateObjectId, async (req, res) => {
 // GET Client exam
 // GET Monitor exam
 
+// Add new Exaxm
 router.post('/scheduled', async (req, res) => {
     examDebug('debugging /exam endpoint');
     // validate the request schema
@@ -43,7 +43,7 @@ router.post('/scheduled', async (req, res) => {
     // verify that the client doesn't have a reservation in the same date and it's APPROVED
     const monitor = await Monitor.findOne({_id: req.body.monitorId, agency: req.user.agency});
     if (!monitor) return res.status(404).send({message: ' The monitor with the giving id was not found'});
-    // verifiey the car ..
+    // verify the car ..
      const car = await Car.findOne({_id: req.body.carId, agency: req.user.agency});
     if (!car) return res.status(404).send({message: ' The car with the giving id was not found'});
     // save the new exam
@@ -56,9 +56,14 @@ router.post('/scheduled', async (req, res) => {
         agency: req.body.agency,
     });
     await exam.save();
+    // send notif to client
+    await newExamNotif(req, exam, exam.client);
+    // send notif to monitor
+    await newExamNotif(req, exam, exam.monitor);
+    // send the response
     res.send(exam);
 });
-
+// Exam result success
 router.patch('/succeed/:id', async (req, res) => {
     examDebug('debugging /exam endpoint');
     // validate the request schema
@@ -81,7 +86,7 @@ router.patch('/succeed/:id', async (req, res) => {
     await exam.save();
     res.send(exam);
 });
-
+// Exam result failed
 router.patch('/failed/:id', async (req, res) => {
     examDebug('debugging /exam endpoint');
     // validate the request schema
@@ -98,7 +103,7 @@ router.patch('/failed/:id', async (req, res) => {
     await exam.save();
     res.send(exam);
 });
-
+// reset Exam state
 router.patch('/reset/:id', async (req, res) => {
     examDebug('debugging /exam endpoint');
     // validate the request schema
@@ -115,7 +120,7 @@ router.patch('/reset/:id', async (req, res) => {
     res.send(exam);
 });
 
-// UPDATE Client
+// UPDATE Exam
 router.put('/:id', async (req, res) => {
     // validate the request schema
     const {error} = validateUpdate(req.body, false);
@@ -132,11 +137,11 @@ router.put('/:id', async (req, res) => {
     // verify that the moniteur exist
     const monitor = await Monitor.findOne({_id: req.body.monitorId});
     if (!monitor) return res.status(404).send({message: ' The monitor with the giving id was not found'});
-    // update the client with the giving id
+    // update the exam with the giving id
     const exam = await Exam.findOneAndUpdate({_id: req.params.id, agency: req.body.agency}, req.body, {new: true});
     // if the client wan not found return an error
     if (!exam) return res.status(404).send({message: ' The exam with the giving id was not found'});
-    res.send(exam);
+    res.send(exam); //TODO add the logic of exam notif here same as in session
 });
 
 module.exports = router;

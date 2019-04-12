@@ -12,7 +12,9 @@ const DAY = 24*60*60*1000;
 const isFullReservation = require('../middleware/isFullReservation');
 const verifyClientState = require('../middleware/verifyClientState');
 const notifyDebug = require('debug')('app:notify');
-const {sessionCancelingNotif, sessionReservationNotif, sessionValidationNotif} = require('../middleware/notify');
+const { adminSessionCancelingNotif, sessionReservationNotif, newSessionNotif,
+        usersSessionCancelingNotif, sessionCarUpdatedNotif, sessionDateUpdatedNotif,
+        } = require('../middleware/notify');
 sessionDebug('session debugging is enabled');
 
 // GET ALL
@@ -37,6 +39,7 @@ router.get('/client/:id', async (req, res) => {
 router.get('/monitor/:id', async (req, res) => {
     res.send(await Session.find({ 'monitor._id': req.params.id}));
 });
+
 // Request Session Reservation
 router.post('/reserve', isFullReservation, async (req, res) => {
     sessionDebug('debugging /reserve endpoint');
@@ -184,7 +187,7 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
     // validate the request schema
     const {error} = validateUpdating(req.body);
     if (error) return res.status(400).send({message: error.details[0].message});
-    //verify the existence of the session
+    // verify the existence of the session
     let session = await Session.findOne({ _id: req.params.id, agency: req.user.agency});
     if (!session) return res.status(404).send({message: ' The session with the giving id was not found'});
     // verify if the state of the session is APPROVED or FINISHED
@@ -196,15 +199,20 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
     let  reservationDate = (req.body.reservationDate)
         ? req.body.reservationDate
         : session.reservationDate;
+    // save the old reservationDate we will need to notification
+    const oldReservationDate = session.reservationDate;
     // get the monitor id from the request body if provided , or from the session in the db
     let  monitorId = (req.body.monitorId)
         ? req.body.monitorId
         : session.monitor._id;
+    // save the old monitor we will need to notification
+    const oldMonitorId = session.monitor._id;
     // get the car id from the request body if provided , or from the session in the db
     let  carId = (req.body.carId)
         ? req.body.carId
         : session.car._id;
-
+    // save the old car we will need to notification
+    const oldCarId = session.car._id;
     // verify that the car exist
     const car = await Car.findOne({_id: carId, agency: req.user.agency});
     sessionDebug('  we are updating the session with this car: ', carId);
@@ -233,6 +241,30 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
     if (req.body.carId) session.car = _.pick(car, ['num', 'mark', 'model']);
     if (req.body.monitorId) session.monitor = _.pick(monitor, ['_id','name', 'surname', 'certification']);
     await session.save();
+    // send notification to everyone
+    /* Scenario */
+    // monitor changed
+    if (monitorId !== oldMonitorId) {
+        // send cancel notif to old monitor
+        await usersSessionCancelingNotif(req, session, oldMonitorId);
+        // send new session notif to the new monitor
+        await newSessionNotif(req, session, session.monitor._id);
+        // if date is updated too
+        if (oldReservationDate !== reservationDate) {
+            // send update notif to client too
+            await sessionDateUpdatedNotif(req, session, oldReservationDate, session.client._id);
+        }
+    } // only date updated
+    else if (oldReservationDate !== reservationDate) {
+        // send notif to monitor && client with the new date
+        await sessionDateUpdatedNotif(req, session, oldReservationDate, session.client._id );
+        await sessionDateUpdatedNotif(req, session, oldReservationDate, session.monitor._id );
+    }
+    // if the car is updated
+    if (oldCarId !== session.car._id) {
+        await sessionCarUpdatedNotif(req, session, session.monitor._id);
+        await sessionCarUpdatedNotif(req, session, session.client._id);
+    }
     res.send(session);
 });
 
@@ -268,7 +300,7 @@ router.patch('/cancel/:id', validateObjectId, async (req, res) => {
             // if so change the state of the session to canceled
             session.state = sessionState[2];
             await session.save();
-            sessionCancelingNotif(req, session);
+            adminSessionCancelingNotif(req, session);
             return res.send(session);
         }
     }

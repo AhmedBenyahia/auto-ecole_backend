@@ -116,7 +116,6 @@ const examSchema = new mongoose.Schema({
 });
 const Exam = mongoose.model('Exam', examSchema);
 
-
 function validatesScheduled(exam) {
     const schema = Joi.object().keys({
         numexam: Joi.string().min(8).max(18).required(),
@@ -125,21 +124,17 @@ function validatesScheduled(exam) {
         agency: JoiExtended.string().objectId().required(),
         monitorId: JoiExtended.string().objectId().required(),
         examDate: Joi.date().iso().min(Date.now()).min(Date.now() + (5*DAY)).required(),
-
 });
     return Joi.validate(exam, schema);
 }
 
 function succeedExam(exam) {
     const schema = {
-      
         examinateur: Joi.string().min(4).max(25).required(),
-        agency: JoiExtended.string().objectId().required(),    
-   
+        agency: JoiExtended.string().objectId().required(),
     };
     return Joi.validate(exam, schema);
 }
-
 
 function failedExam(exam) {
     const schema = {
@@ -156,11 +151,11 @@ function validateUpdate(exam, newExam) {
         .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
-            examDate: Joi.date().iso().min(Date.now()).min(Date.now() + (5*DAY)).required(),
-            carId: JoiExtended.string().objectId().required(),
-            clientId: JoiExtended.string().objectId().required(),        
-            agency: JoiExtended.string().objectId().required(),
-            monitorId: JoiExtended.string().objectId().required(),
+        examDate: Joi.date().iso().min(Date.now()).min(Date.now() + (5*DAY)),
+        carId: JoiExtended.string().objectId(),
+        clientId: JoiExtended.string().objectId(),
+        agency: JoiExtended.string().objectId(),
+        monitorId: JoiExtended.string().objectId(),
         
     });
     return Joi.validate(exam, schema, {context: {condition: newExam}});
