@@ -116,8 +116,6 @@ clientSchema.post('find', function (result) {
 
 clientSchema.post('findOne', async function (res) {
     clientSchemaDebug('Client State checked!!!');
-    clientSchemaDebug('cin exist: ', await checkFileExists('./upload/cin/' + res.cin));
-    clientSchemaDebug('permi exist: ', await checkFileExists('./upload/permi/' + res.cin));
     if (res && res.state === clientState[1] &&
         await checkFileExists('./upload/cin/' + res.cin) &&
         await checkFileExists('./upload/permi/' + res.cin)) {

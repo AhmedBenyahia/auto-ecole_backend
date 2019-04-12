@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const JoiExtended = require('../startup/validation');
 
-const monitorState = ['ACTIVE', 'SUSPENDED', 'RETIRED'];
+const monitorState = ['ACTIVE','ABSENT', 'SUSPENDED', 'RETIRED'];
 
 const monitorSchema = new mongoose.Schema({
     name: {

@@ -13,6 +13,7 @@ const manager  = require('../routes/managers');
 const document  = require('../routes/document');
 const exam = require('../routes/exams');
 const absence = require('../routes/absences');
+const breakdown = require('../routes/breakdowns');
 const logging = require('../middleware/req-log');
 
 
@@ -35,6 +36,7 @@ module.exports = (app) => {
     app.use('/', document);
     app.use('/exam', exam);
     app.use('/absence', absence);
+    app.use('/breakdown', breakdown);
 // handling requests error
     app.use(error);
 };

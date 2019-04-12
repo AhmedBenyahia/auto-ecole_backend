@@ -1,6 +1,6 @@
 const {absenceSchema,Absenc,validateReservationSchema} = require('../model/absence');
 const {Agency} = require('../model/agency');
-const {Monitor} = require('../model/monitor');
+const {Monitor,monitorState} = require('../model/monitor');
 const express = require('express');
 const router = express.Router();
 const validateObjectId = require('../middleware/validateObjectId');

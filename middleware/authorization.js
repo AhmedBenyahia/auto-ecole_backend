@@ -48,6 +48,12 @@
       {route: "GET:/absence", secure: false},
       {route: "DELETE:/absence/:id", secure: false},
 
+      {route: "POST:/breakdown/announced", secure: false},
+      {route: "GET:/breakdown", secure: false},
+      {route: "GET:/breakdown/:id", secure: false},
+      {route: "DELETE:/breakdown/:id", secure: false},
+
+      {route: "PATCH:/breakdown/iscritical/:id", secure: false},
   ];
   // Admin routes
   const adminRoutes = [
@@ -96,6 +102,11 @@
     'PATCH:/session/approve/:id',
     'PATCH:/session/cancel/:id',
     'PATCH:/session/update/:id',
+
+    "GET:/breakdown",
+    'PATCH:/breakdown/fixed/:id',
+
+    'GET:/absence',
   ];
 
   module.exports = function(req, res, next) {
