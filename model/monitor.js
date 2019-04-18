@@ -65,24 +65,27 @@ const monitorSchema = new mongoose.Schema({
         minLength: 4,
         maxLength: 10,
     },
-    drivingLicenceType: {
-        type: String, // TODO: add enum att
-        minLength: 1,
-        maxLength: 6,
-        trim: true,
-        default: null,
-    },
-    drivingLicenceNum: {
-        type: String,
-        minLength: 8,
-        maxLength: 8,
-        trim: true,
-        default: null,
-        unique: true
-    },
-    drivingLicenceDate: {
-        type: Date,
-        required: true,
+    drivingLicence: {
+        type: [new mongoose.Schema({
+            drivingLicenceType: {
+                type: String, // TODO: add enum att
+                minLength: 1,
+                maxLength: 6,
+                trim: true,
+                required: true,
+            },
+            drivingLicenceNum: {
+                type: String,
+                minLength: 8,
+                maxLength: 8,
+                // trim: true,
+                // required: true,
+            },
+            drivingLicenceDate: {
+                type: Date,
+                required: true,
+            },
+        })]
     },
     certification: {
         type: [new mongoose.Schema({
@@ -106,7 +109,6 @@ const monitorSchema = new mongoose.Schema({
             }
         })]
     },
-
     state: {
         type: String,
         trim: true,
@@ -145,18 +147,11 @@ function validateSchema(monitor, newMonitor) {
         .when('$condition', {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()}),
-        drivingLicenceType: Joi.string().min(1).max(6)
-        .when('$condition', {
-                is: Joi.boolean().valid(true), // TODO add enum
-                then: Joi.required()}),
-        drivingLicenceNum: Joi.string().length(8)
-        .when('$condition', {
-                is: Joi.boolean().valid(true),
-                then: Joi.required()}),
-        drivingLicenceDate: Joi.date()
-        .when('$condition', {
-                is: Joi.boolean().valid(true),
-                then: Joi.required()}),
+        drivingLicence: Joi.array().items({
+            drivingLicenceType: Joi.string().required(),
+            drivingLicenceDate: Joi.date().required(),
+            drivingLicenceNum: Joi.string().min(8).max(8).required(),
+        }).min(1),
         address: Joi.string().max(255).min(5),
         phone: JoiExtended.string().phone()
         .when('$condition', {

@@ -29,6 +29,10 @@ const clientSchema = new mongoose.Schema({
        maxLength: 55,
        trim: true,
    },
+   birthday: {
+        type: Date,
+        required: true,
+    },
    cin: {
         type: String,
         minlength: 8,
@@ -179,6 +183,10 @@ function validateSchema(client, newClient) {
                 is: Joi.boolean().valid(true),
                 then: Joi.required()
             }),
+        birthday: Joi.date()
+            .when('$condition', {
+                is: Joi.boolean().valid(true),
+                then: Joi.required()}),
         cin: JoiExtended.string().cin()
             .when('$condition', {
                 is: Joi.boolean().valid(true),

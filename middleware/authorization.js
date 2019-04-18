@@ -56,7 +56,6 @@
       {route: "GET:/breakdown", secure: false},
       {route: "GET:/breakdown/:id", secure: false},
       {route: "DELETE:/breakdown/:id", secure: false},
-
       {route: "PATCH:/breakdown/iscritical/:id", secure: false},
   ];
   // Admin routes
@@ -75,6 +74,7 @@
     'POST:/monitor',
     'PUT:/monitor/:id',
     'DELETE:/monitor/:id',
+    'PATCH:/monitor/password/:id',
 
     'POST:/client',
     'GET:/client',
@@ -82,10 +82,7 @@
     'PUT:/client/:id',
     'DELETE:/client/:id',
     'PUT:/client/suspended/:id',
-      /* This need refactoring */
-      /* Those route are here just for testing */
     'PATCH:/client/password/:id',
-    'GET:/client/confirmation/:id',
 
     'GET:/car',
     'GET:/car/:id',

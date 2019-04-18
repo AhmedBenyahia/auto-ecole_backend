@@ -9,6 +9,7 @@ const bcrypt = require("bcrypt");
 const Joi =require('joi');
 const sendMail = require('../startup/mailer');
 const config = require('config');
+
 // GET ALL
 router.get('/', async (req, res) => {
     res.send(await Monitor.find({ agency: req.body.agency}));
@@ -62,7 +63,7 @@ router.patch('/password/:id', validateObjectId, async (req, res) => {
     });
     if (error) return res.status(400).send({message: error.details[0].message});
     // verify if monitor exist
-    let monitor = await Monitor.findOne({ _id: req.params.id });
+    let monitor = await Monitor.findOne({ _id: req.params.id, agency: req.body.agency });
     if (!monitor) return res.status(404).send({message: ' The monitor with the giving id was not found'});
     // verify if the old password is valid
     if (await bcrypt.compare(req.body.oldPassword, monitor.password)) {
