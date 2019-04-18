@@ -252,24 +252,10 @@ describe('client routes', () => {
         // We need the jwt token to access the route
         let token = '';
         let uri = '/client';
+        let client;
         //NOTE always make sure to clean
         /** your mother isn't here so clean up after yourself **/
-        beforeEach(() => {
-            client = undefined;
-            token = '';
-            uri = '/client';
-        });
-        // client obj
-        let client;
-        // Mosh refactoring method
-        const exec = () => {
-            return request(server)
-                .put(uri)
-                .set('Authorization', token)
-                .send(client);
-        };
-        // The happy path 1
-        it('should update the client with the giving att && return the update client',  async (done) => {
+        beforeEach(async () => {
             // add an agency to db
             const agency = new Agency({
                 title: usernameGenerator.generateUsername(),
@@ -285,7 +271,10 @@ describe('client routes', () => {
                 region: 'Tunis',
             });
             await agency.save();
+            // save the created agency id
             agencyId = agency._id;
+            // set the tmp client agency id to the created agency id
+            tmp[1].agency = agency._id.toString();
             // generate authentication token
             token = jwt.sign({
                 _id: (new mongoose.Types.ObjectId).toString(),
@@ -293,16 +282,27 @@ describe('client routes', () => {
                 role: 'admin',
                 agency: agencyId,
             }, config.get('jwtPrivateKey').toString());
-            // add a client to db with the agencyId we have just created
-            tmp[1].agency = agency._id.toString();
-            client = tmp[1];
+            // create the req object
+            client = _.omit(tmp[1], 'password');
+            // set the uri
+            uri = '/client';
+        });
+
+        // Mosh refactoring method
+        const exec = () => {
+            return request(server)
+                .put(uri)
+                .set('Authorization', token)
+                .send(client);
+        };
+        // The happy path 1
+        it('should update the client with the giving att && return the update client',  async (done) => {
             const clientObj = await new Client(tmp[1]).save();
             // change some att in client obj
             client.surname = 'surname updated';
             client.name = 'name updated';
-            // remove the password from the client obj
             // remove also some other att to make sure the update doesn't need all the att
-            client = _.omit(client, 'password', 'email');
+            client = _.omit(client, 'email');
             // add the client id to request uri
             uri = uri + '/' + clientObj._id;
             // execute the request
@@ -328,17 +328,13 @@ describe('client routes', () => {
         });
         // Other bad path 1
         it('should return 404 if agency not found',  async () => {
-            // create authentication token
-            token = jwt.sign({
-                _id: (new mongoose.Types.ObjectId).toString(),
-                username: 'admin',
-                role: 'admin',
-                agency: agencyId,
-            }, config.get('jwtPrivateKey').toString());
             // append the client id to request uri
             uri = uri + '/' + new mongoose.Types.ObjectId;
+            // agency not found
+            await Agency.deleteMany({}).exec();
             // execute the request
             const res = await exec();
+            console.log(res.text);
             // test the status of the request
             expect(res.status).toBe(404);
             // test the message.
@@ -346,29 +342,6 @@ describe('client routes', () => {
         });
         // Other bad path 2
         it('should return 404 if the client not found',  async () => {
-            // add an agency to db
-            const agency = new Agency({
-                title: usernameGenerator.generateUsername(),
-                address: 'i am an address',
-                phone: '54102879',
-                postalCode: '1458',
-                email: 'ahmes@bj.com',
-                licenceExpirationDate: new Date(Date.now()),
-                taxRegistrationNum: '123456789',
-                taxRegistrationDate: new Date(Date.now()),
-                cin: '12254878',
-                cinDate: new Date(Date.now()),
-                region: 'Tunis',
-            });
-            await agency.save();
-            agencyId = agency._id;
-            // create authentication token
-            token = jwt.sign({
-                _id: (new mongoose.Types.ObjectId).toString(),
-                username: 'admin',
-                role: 'admin',
-                agency: agencyId,
-            }, config.get('jwtPrivateKey').toString());
             // append the client id to request uri
             uri = uri + '/' + new mongoose.Types.ObjectId;
             // execute the request
@@ -380,39 +353,11 @@ describe('client routes', () => {
         });
         // Other bad path 3
         it('should return 400 if we try to update the password',  async () => {
-            // add an agency to db
-            const agency = new Agency({
-                title: usernameGenerator.generateUsername(),
-                address: 'i am an address',
-                phone: '54102879',
-                postalCode: '1458',
-                email: 'ahmes@bj.com',
-                licenceExpirationDate: new Date(Date.now()),
-                taxRegistrationNum: '123456789',
-                taxRegistrationDate: new Date(Date.now()),
-                cin: '12254878',
-                cinDate: new Date(Date.now()),
-                region: 'Tunis',
-            });
-            await agency.save();
-            agencyId = agency._id;
-            // generate authentication token
-            token = jwt.sign({
-                _id: (new mongoose.Types.ObjectId).toString(),
-                username: 'admin',
-                role: 'admin',
-                agency: agencyId,
-            }, config.get('jwtPrivateKey').toString());
-            // add a client to db with the agencyId we have just created
-            tmp[1].agency = agency._id.toString();
-            client = tmp[1];
             const clientObj = await new Client(tmp[1]).save();
             // change some att in client obj
             client.surname = 'surname updated';
             client.name = 'name updated';
-            // remove the password from the client obj
-            // remove also some other att to make sure the update doesn't need all the att
-            client = _.omit(client, 'email');
+            client.password = 'i am a password';
             // add the client id to request uri
             uri = uri + '/' + clientObj._id;
             // execute the request
@@ -429,27 +374,12 @@ describe('client routes', () => {
         // We need the jwt token to access the route
         let token = '';
         let uri = '';
+        let updatePassword = {};
+
         //NOTE always make sure to clean up
         /** your mother isn't here so clean up after yourself **/
-        beforeEach(() => {
-            updatePassword = {
-                oldPassword: '12345678',
-                newPassword: '12345678'
-            };
-            token = '';
-            uri = '/client/password';
-        });
-        // client obj
-        let updatePassword;
         // Mosh refactoring method
-        const exec = () => {
-            return request(server)
-                .patch(uri)
-                .set('Authorization', token)
-                .send(updatePassword);
-        };
-        // The happy path 1
-        it('should update the client password when the old password is provided',  async (done) => {
+        beforeEach(async () => {
             // add an agency to db
             const agency = new Agency({
                 title: usernameGenerator.generateUsername(),
@@ -465,6 +395,7 @@ describe('client routes', () => {
                 region: 'Tunis',
             });
             await agency.save();
+            // save the id of the created agency
             agencyId = agency._id;
             // generate authentication token
             token = jwt.sign({
@@ -473,18 +404,26 @@ describe('client routes', () => {
                 role: 'admin',
                 agency: agencyId,
             }, config.get('jwtPrivateKey').toString());
-            // add a client to db with the agencyId we have just created
+            // set the tmp client agency id to the created agency id
             tmp[1].agency = agency._id.toString();
-            const password = tmp[1].password;
+            // save the pass plain text
+            updatePassword.oldPassword = tmp[1].password;
+            updatePassword.newPassword = '123456789';
+            // hash the tmp client pass
             tmp[1].password = await bcrypt.hash(tmp[1].password, await bcrypt.genSalt(10));
+            uri = '/client/password';
+        });
+        const exec = () => {
+            return request(server)
+                .patch(uri)
+                .set('Authorization', token)
+                .send(updatePassword);
+        };
+        // The happy path 1
+        it('should update the client password when the old password is provided',  async (done) => {
             const clientId = (await new Client(tmp[1]).save())._id;
             // add the client id to request uri
             uri = uri + '/' + clientId;
-            // create the request body
-            updatePassword = {
-                newPassword: '12345678',
-                oldPassword: password,
-            };
             // execute the request
             const res = await exec();
             // test the status of the request
@@ -494,35 +433,12 @@ describe('client routes', () => {
             // test if the client is updated in the db
             setTimeout(async () => {
                 const clientFromDb = await Client.findOne({_id: clientId});
-                expect(await bcrypt.compare('12345678', clientFromDb.password)).toBeTruthy();
+                expect(await bcrypt.compare(updatePassword.newPassword, clientFromDb.password)).toBeTruthy();
                 done();
-            },timeoutDelay);
+            }, timeoutDelay);
         });
         // Other bad path 1
         it('should return 404 if the client not found',  async () => {
-            // add an agency to db
-            const agency = new Agency({
-                title: usernameGenerator.generateUsername(),
-                address: 'i am an address',
-                phone: '54102879',
-                postalCode: '1458',
-                email: 'ahmes@bj.com',
-                licenceExpirationDate: new Date(Date.now()),
-                taxRegistrationNum: '123456789',
-                taxRegistrationDate: new Date(Date.now()),
-                cin: '12254878',
-                cinDate: new Date(Date.now()),
-                region: 'Tunis',
-            });
-            await agency.save();
-            agencyId = agency._id;
-            // create authentication token
-            token = jwt.sign({
-                _id: (new mongoose.Types.ObjectId).toString(),
-                username: 'admin',
-                role: 'admin',
-                agency: agencyId,
-            }, config.get('jwtPrivateKey').toString());
             // append the client id to request uri
             uri = uri + '/' + new mongoose.Types.ObjectId;
             // execute the request
@@ -534,34 +450,11 @@ describe('client routes', () => {
         });
         // Other bad path 2
         it('should return 401 if password is incorrect',  async () => {
-            // add an agency to db
-            const agency = new Agency({
-                title: usernameGenerator.generateUsername(),
-                address: 'i am an address',
-                phone: '54102879',
-                postalCode: '1458',
-                email: 'ahmes@bj.com',
-                licenceExpirationDate: new Date(Date.now()),
-                taxRegistrationNum: '123456789',
-                taxRegistrationDate: new Date(Date.now()),
-                cin: '12254878',
-                cinDate: new Date(Date.now()),
-                region: 'Tunis',
-            });
-            await agency.save();
-            agencyId = agency._id;
-            // generate authentication token
-            token = jwt.sign({
-                _id: (new mongoose.Types.ObjectId).toString(),
-                username: 'admin',
-                role: 'admin',
-                agency: agencyId,
-            }, config.get('jwtPrivateKey').toString());
-            // add a client to db with the agencyId we have just created
-            tmp[1].agency = agency._id.toString();
             const clientId = (await new Client(tmp[1]).save())._id;
             // add the client id to request uri
             uri = uri + '/' + clientId;
+            // password incorrect
+            updatePassword.oldPassword = 'i am incorrect password';
             // execute the request
             const res = await exec();
             // test the status of the request
@@ -578,18 +471,7 @@ describe('client routes', () => {
         let uri = '';
         //NOTE always make sure to clean up
         /** your mother isn't here so clean up after yourself **/
-        beforeEach(() => {
-            token = '';
-            uri = '/client';
-        });
-        // Mosh refactoring method
-        const exec = () => {
-            return request(server)
-                .delete(uri)
-                .set('Authorization', token);
-        };
-        // The happy path 1
-        it('should delete the client with the giving id',  async (done) => {
+        beforeEach(async () => {
             // add an agency to db
             const agency = new Agency({
                 title: usernameGenerator.generateUsername(),
@@ -615,6 +497,16 @@ describe('client routes', () => {
             }, config.get('jwtPrivateKey').toString());
             // add a client to db with the agencyId we have just created
             tmp[1].agency = agency._id.toString();
+            uri = '/client';
+        });
+        // Mosh refactoring method
+        const exec = () => {
+            return request(server)
+                .delete(uri)
+                .set('Authorization', token);
+        };
+        // The happy path 1
+        it('should delete the client with the giving id',  async (done) => {
             const clientId = (await new Client(tmp[1]).save())._id;
             // add the client id to request uri
             uri = uri + '/' + clientId;
@@ -633,30 +525,6 @@ describe('client routes', () => {
         });
         // Other bad path 1
         it('should return 404 if the client not found',  async () => {
-            // add an agency to db
-            const agency = new Agency({
-                title: usernameGenerator.generateUsername(),
-                address: 'i am an address',
-                phone: '54102879',
-                postalCode: '1458',
-                email: 'ahmes@bj.com',
-                licenceExpirationDate: new Date(Date.now()),
-                taxRegistrationNum: '123456789',
-                taxRegistrationDate: new Date(Date.now()),
-                cin: '12254878',
-                cinDate: new Date(Date.now()),
-                region: 'Tunis',
-            });
-            await agency.save();
-            agencyId = agency._id;
-            // create authentication token
-            token = jwt.sign({
-                _id: (new mongoose.Types.ObjectId).toString(),
-                username: 'admin',
-                role: 'admin',
-                agency: agencyId,
-            }, config.get('jwtPrivateKey').toString());
-            // append the client id to request uri
             uri = uri + '/' + new mongoose.Types.ObjectId;
             // execute the request
             const res = await exec();
@@ -674,18 +542,7 @@ describe('client routes', () => {
         let uri = '';
         //NOTE always make sure to clean up
         /** your mother isn't here so clean up after yourself **/
-        beforeEach(() => {
-            token = '';
-            uri = '/client/suspended';
-        });
-        // Mosh refactoring method
-        const exec = () => {
-            return request(server)
-                .put(uri)
-                .set('Authorization', token);
-        };
-        // The happy path
-        it('should suspend the client with the giving id',  async (done) => {
+        beforeEach(async () => {
             // add an agency to db
             const agency = new Agency({
                 title: usernameGenerator.generateUsername(),
@@ -711,6 +568,16 @@ describe('client routes', () => {
             }, config.get('jwtPrivateKey').toString());
             // add a client to db with the agencyId we have just created
             tmp[1].agency = agency._id.toString();
+            uri = '/client/suspended';
+        });
+        // Mosh refactoring method
+        const exec = () => {
+            return request(server)
+                .put(uri)
+                .set('Authorization', token);
+        };
+        // The happy path
+        it('should suspend the client with the giving id',  async (done) => {
             const clientId = (await new Client(tmp[1]).save())._id;
             // add the client id to request uri
             uri = uri + '/' + clientId;
@@ -729,29 +596,6 @@ describe('client routes', () => {
         });
         // Other bad path
         it('should return 404 if the client not found',  async () => {
-            // add an agency to db
-            const agency = new Agency({
-                title: usernameGenerator.generateUsername(),
-                address: 'i am an address',
-                phone: '54102879',
-                postalCode: '1458',
-                email: 'ahmes@bj.com',
-                licenceExpirationDate: new Date(Date.now()),
-                taxRegistrationNum: '123456789',
-                taxRegistrationDate: new Date(Date.now()),
-                cin: '12254878',
-                cinDate: new Date(Date.now()),
-                region: 'Tunis',
-            });
-            await agency.save();
-            agencyId = agency._id;
-            // create authentication token
-            token = jwt.sign({
-                _id: (new mongoose.Types.ObjectId).toString(),
-                username: 'admin',
-                role: 'admin',
-                agency: agencyId,
-            }, config.get('jwtPrivateKey').toString());
             // append the client id to request uri
             uri = uri + '/' + new mongoose.Types.ObjectId;
             // execute the request
@@ -770,18 +614,7 @@ describe('client routes', () => {
         let uri = '';
         //NOTE always make sure to clean up
         /** your mother isn't here so clean up after yourself **/
-        beforeEach(() => {
-            token = '';
-            uri = '/client/confirmation';
-        });
-        // Mosh refactoring method
-        const exec = () => {
-            return request(server)
-                .get(uri)
-                .set('Authorization', token);
-        };
-        // The happy path
-        it('should confirm the client account',  async (done) => {
+        beforeEach(async () => {
             // add an agency to db
             const agency = new Agency({
                 title: usernameGenerator.generateUsername(),
@@ -807,6 +640,16 @@ describe('client routes', () => {
             }, config.get('jwtPrivateKey').toString());
             // add a client to db with the agencyId we have just created
             tmp[1].agency = agency._id.toString();
+            uri = '/client/confirmation';
+        });
+        // Mosh refactoring method
+        const exec = () => {
+            return request(server)
+                .get(uri)
+                .set('Authorization', token);
+        };
+        // The happy path
+        it('should confirm the client account',  async (done) => {
             const clientId = (await new Client(tmp[1]).save())._id;
             // generate a token for the created client
             const validationToken = new VerificationToken({
@@ -832,30 +675,6 @@ describe('client routes', () => {
         });
         // Other bad path
         it('should return 404 if the client not found',  async () => {
-            // add an agency to db
-            const agency = new Agency({
-                title: usernameGenerator.generateUsername(),
-                address: 'i am an address',
-                phone: '54102879',
-                postalCode: '1458',
-                email: 'ahmes@bj.com',
-                licenceExpirationDate: new Date(Date.now()),
-                taxRegistrationNum: '123456789',
-                taxRegistrationDate: new Date(Date.now()),
-                cin: '12254878',
-                cinDate: new Date(Date.now()),
-                region: 'Tunis',
-            });
-            await agency.save();
-            agencyId = agency._id;
-            // create authentication token
-            token = jwt.sign({
-                _id: (new mongoose.Types.ObjectId).toString(),
-                username: 'admin',
-                role: 'admin',
-                agency: agencyId,
-            }, config.get('jwtPrivateKey').toString());
-            // id for client
             const clientId = new mongoose.Types.ObjectId;
             // generate a token for the created client
             const validationToken = new VerificationToken({
@@ -874,29 +693,6 @@ describe('client routes', () => {
         });
         // Other bad path 2
         it('should return 404 if the token not found',  async () => {
-            // add an agency to db
-            const agency = new Agency({
-                title: usernameGenerator.generateUsername(),
-                address: 'i am an address',
-                phone: '54102879',
-                postalCode: '1458',
-                email: 'ahmes@bj.com',
-                licenceExpirationDate: new Date(Date.now()),
-                taxRegistrationNum: '123456789',
-                taxRegistrationDate: new Date(Date.now()),
-                cin: '12254878',
-                cinDate: new Date(Date.now()),
-                region: 'Tunis',
-            });
-            await agency.save();
-            agencyId = agency._id;
-            // create authentication token
-            token = jwt.sign({
-                _id: (new mongoose.Types.ObjectId).toString(),
-                username: 'admin',
-                role: 'admin',
-                agency: agencyId,
-            }, config.get('jwtPrivateKey').toString());
             // append the token id to request uri (we are simulating the token with object id)
             uri = uri + '/' + new mongoose.Types.ObjectId;
             // execute the request
@@ -908,31 +704,6 @@ describe('client routes', () => {
         });
 
         it('should return 400 if the client account is already verified',  async (done) => {
-            // add an agency to db
-            const agency = new Agency({
-                title: usernameGenerator.generateUsername(),
-                address: 'i am an address',
-                phone: '54102879',
-                postalCode: '1458',
-                email: 'ahmes@bj.com',
-                licenceExpirationDate: new Date(Date.now()),
-                taxRegistrationNum: '123456789',
-                taxRegistrationDate: new Date(Date.now()),
-                cin: '12254878',
-                cinDate: new Date(Date.now()),
-                region: 'Tunis',
-            });
-            await agency.save();
-            agencyId = agency._id;
-            // generate authentication token
-            token = jwt.sign({
-                _id: (new mongoose.Types.ObjectId).toString(),
-                username: 'admin',
-                role: 'admin',
-                agency: agencyId,
-            }, config.get('jwtPrivateKey').toString());
-            // add a client to db with the agencyId we have just created
-            tmp[1].agency = agency._id.toString();
             tmp[1].state = 'PROFILE_NOT_COMPLETED';
             const clientId = (await new Client(tmp[1]).save())._id;
             // generate a token for the created client
@@ -1167,7 +938,5 @@ describe('client routes', () => {
         });
 
     });
-
-
 
 });
