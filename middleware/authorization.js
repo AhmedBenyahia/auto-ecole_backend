@@ -7,11 +7,11 @@
     'POST:/client',
     'GET:/agency',
     'POST:/login',
-      'GET:/client/confirmation/:id',
-      'GET:/client/token/resend',
-      'GET:/client/password/reset',
-      'PATCH:/notify/viewed/:id',
-      'PATCH:/client/password/reset/:id',
+    'GET:/client/confirmation/:id',
+    'GET:/client/token/resend',
+    'GET:/client/password/reset',
+    'PATCH:/notify/viewed/:id',
+    'PATCH:/client/password/reset/:id',
     'POST:/agency',    //TODO add super admin and delete those
     'GET:/whoami',   //TODO it's public and not in the same time ,
                     //TODO: so we need the jwt role and id to be send to the method
@@ -22,14 +22,15 @@
       { route: "POST:/upload/cin",           secure: true  },
       { route: "GET:/whoami",                secure: true  },
       { route: "GET:/client",                secure: true  },
-      {route: "GET:/notify/client", secure: true},
+      { route: "GET:/notify/client", secure: true},
       { route: "PUT:/client",                secure: true  },
       { route: "PATCH:/client/password",     secure: true  },
       { route: "GET:/session/client",        secure: true  },
-      {route: "GET:/timetable/client", secure: true},
-      {route: "POST:/session/reserve", secure: false},
+      { route: "GET:/timetable/client", secure: true},
+      { route: "POST:/session/reserve", secure: false},
       { route: "PATCH:/session/cancel/:id",  secure: false },
       { route: "DELETE:/session/reject/:id", secure: false },
+      { route: "POST:/client/password/reset", secure: false },
   ];
   // Monitor only routes
   const monitorRoutes = [
@@ -60,10 +61,7 @@
   ];
   // Admin routes
   const adminRoutes = [
-    '*', //TODO add reg expression support
-
-      'GET:/notify',
-
+    'GET:/notify',
     'GET:/exam',
     'GET:/exam/:id',
     'PUT:/exam/:id',
@@ -83,8 +81,11 @@
     'GET:/client/:id',
     'PUT:/client/:id',
     'DELETE:/client/:id',
-      'PUT:/client/suspended/:id',
-
+    'PUT:/client/suspended/:id',
+      /* This need refactoring */
+      /* Those route are here just for testing */
+    'PATCH:/client/password/:id',
+    'GET:/client/confirmation/:id',
 
     'GET:/car',
     'GET:/car/:id',
@@ -135,7 +136,7 @@
         req.body.agency = req.user.agency;
         authorDebug('   token payload: user role is', req.user.role);
         // if he is a client verify if he has the authorization de visit the req route
-        if (req.user.role.toLowerCase().toLowerCase().indexOf('admin') > -1
+        if (req.user.role.toLowerCase().indexOf('admin') > -1
             && adminRoutes.indexOf(compact(req.method, req.url)) > -1)
         {
             authorDebug('   Access route with admin permission');
@@ -165,7 +166,7 @@
         authorDebug('   --> Forbidden, can access route');
         return res.status(403).send('Access denied. You don\'t have the right permission')
     } catch(err) {
-        res.status(400).send(' Invalid token.') ;
+        return res.status(400).send(' Invalid token.') ;
     }
   };
 

@@ -30,6 +30,6 @@ const {connect} = require('./middleware/notify');
 connect(io);
 // run the server
 const port = process.env.PORT || 3000;
-server.listen(port, () => logger.info(`Listening on port ${port}...`));
-// fg
-module.exports.server = server;
+const serv = server.listen(port, () => logger.info(`Listening on port ${port}...`));
+
+module.exports = serv;

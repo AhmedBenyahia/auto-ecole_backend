@@ -20,23 +20,20 @@ module.exports.connect = (io) => {
         // catch the user connection event and save user info
         socket.on('save-user', function (data) {
             notifyDebug("User (" + data.role + ")connection channel saved: " + socket.id);
-            notifyDebug("joining user to channel: " + data.role + "Channel#" +
-                data.agency.slice(-4));
+            notifyDebug("joining user to channel: " + data.role + "Channel#" + data.agency.slice(-4));
+            // make sure the user is not already registered (not connected twice)
             if (!io.connectedUser.find(c => c.socketId === socket.id)) {
+                // if not save the socketId and user data
                 data.socketId = socket.id;
                 io.connectedUser.push(data); //TODO add jwt validation
                 // notifyDebug('socket.client obj: ', io.connectedUser[data._id]);
             }
+            // join the user to group channel based on his role and agency
+            if (data.role) {
+                socket.join(data.role + 'Channel#' + data.agency.slice(-4));
+            }
+            //TODO: change this with connected user list
             notifyDebug("Connected User: ", io.connectedUser.length, ":");
-            io.connectedUser.forEach((c) => {
-                notifyDebug("   Role: ", c.role, "SocketId:", c.socketId);
-            });
-            if (data.role === 'admin') {
-                socket.join('adminChannel#' + data.agency.slice(-4))
-            } else if (data.role === 'monitor') {
-                socket.join('monitorChannel#' + data.agency.slice(-4))
-            } else socket.join('clientChannel#' + data.agency.slice(-4));
-
             socket.to('adminChannel#' + data.agency.slice(-4))
                 .emit('news', 'New player has joined the game');
         });
@@ -46,9 +43,6 @@ module.exports.connect = (io) => {
             // delete user form connectedUser array
             io.connectedUser = io.connectedUser.filter(c => c.socketId !== socket.id);
             notifyDebug("Connected User: ", io.connectedUser.length, ":");
-            io.connectedUser.forEach((c) => {
-                notifyDebug("   Role: ", c.role, "SocketId:", c.socketId);
-            });
         });
     })
 };
@@ -61,12 +55,11 @@ module.exports.newClientNotif = async (req, client) => {
         subject: 'un nouveau client a inscrit dans votre agence',
         data: client._id,
         action: 'ClientRegistered',
-        agency: req.user.agency,
+        agency: req.body.agency,
     });
     await notif.save();
     req.app.io.to('adminChannel#' + req.body.agency.slice(-4))
         .emit('news', notif);
-
 };
 // on session request
 module.exports.sessionReservationNotif = async (req, session) => {
@@ -257,7 +250,7 @@ module.exports.newExamNotif = async (req, exam, userId) => {
     notifyDebug('newExamNotif');
     // send notification to user
     let notif = new Notif({
-        subject: 'Vous avez un nouveau exam le' + exam.reservationDate, //TODO format date
+        subject: 'Vous avez un nouveau exam le ' + exam.examDate, //TODO format date
         action: 'NewExam',
         data: exam._id,
         userId: userId,
@@ -268,7 +261,7 @@ module.exports.newExamNotif = async (req, exam, userId) => {
     // emit notif to the user if he is connected
     const userConnectionInfo = req.app.io.connectedUser
         .filter(c => c._id === userId.toString());
-    if (userConnectionInfo) {
+    if (userConnectionInfo[0]) {
         req.app.io.to(userConnectionInfo[0].socketId)
             .emit('news', notif);
     }

@@ -58,7 +58,7 @@ function generateAuthToken(user) {
             username: user.username,
             role: user.role,
             agency: user.agency,
-        }, config.get('jwtPrivateKey')
+        }, config.get('jwtPrivateKey').toString()
     );
 }
 

@@ -11,6 +11,12 @@ const clientDebug = require('debug')('app:client');
 const sendMail = require('../startup/mailer');
 const crypto = require('crypto');
 const {newClientNotif} = require('../middleware/notify');
+const Fawn = require('fawn');
+const mongoose = require('mongoose');
+
+//init the atomic task lib
+Fawn.init(mongoose);
+
 // GET ALL
 router.get('/', async (req, res) => {
     res.send(await Client.find({ agency: req.body.agency}));
@@ -34,25 +40,33 @@ router.post('/', async (req, res) => {
     // verify that the agency exist
     const agency = await Agency.findOne({_id: req.body.agency});
     if (!agency) return res.status(404).send({message: ' The agency with the giving id was not found'});
-    // save the new client
+    // create new Client obj
     const client = new Client(_.omit(req.body,['password']));
     const salt = await bcrypt.genSalt(10);
     client.password = await bcrypt.hash(req.body.password, salt);
-    await client.save();
 
-    //create new verification token in the database
+    //  create new verification token in the database
     const token = new VerificationToken({
         _clientId: client._id,
         token: crypto.randomBytes(12).toString('hex')
-    });
-    token.save();
+    }); //check list
+    // save the token and the client
+    try {
+        new Fawn.Task()
+            .save('tokens', token)
+            .save('clients', client)
+            .run();
+    }catch(ex) {
+        // if the Task fail, don't send mail or notification
+        return res.status(500).send('something failed');
+    }
     // send the verification token by mail to client
     sendMail(client.email,
         'Confirmation de compte', //TODO: send a link to angular component
         'Bonjour Veuillez vérifier votre compte en cliquant sur le lien suivant: <br>' +
         'http://' + req.headers.host + '/client/confirmation/' + token.token);
-    newClientNotif(req, client);
-    res.send(client);
+    await newClientNotif(req, client);
+    return res.send(client);
 });
 
 // UPDATE Client
@@ -67,8 +81,9 @@ router.put('/:id', validateObjectId, async (req, res) => {
     // update the client with the giving id
     const client = await Client.findOneAndUpdate({ _id: req.params.id, agency: req.body.agency}, req.body, { new: true});
     // if the client wan not found return an error
-    if (!client) return res.status(404).send({message: ' The client with the giving id was not found'});
-    res.send(client);
+    if (!client)
+        return res.status(404).send({message: ' The client with the giving id was not found'});
+    return res.send(client);
 });
 
 // UPDATE the password
@@ -102,7 +117,7 @@ router.delete('/:id', validateObjectId, async (req, res) => {
     const client = await Client.findOneAndDelete({ _id: req.params.id, agency: req.body.agency});
     // if the client wan not found return an error
     if (!client) return res.status(404).send({message: ' The client with the giving id was not found'});
-    res.send(client);
+    return res.send(client);
 });
 
 // suspend the account of a client
@@ -116,9 +131,9 @@ router.put('/suspended/:id', validateObjectId, async (req, res) => {
 });
 
 // Confirm account
-router.get('/confirmation/:id', async (req, res) => {
+router.get('/confirmation/:id',validateObjectId , async (req, res) => {
     clientDebug("Debugging /confirmation/:id");
-    // find the token in the data base
+    // find the token in the database
     const token = await VerificationToken.findOne({token: req.params.id});
     if (!token) return res.status(404).send({message: "verification token not find!!"});
     //find a matching client
@@ -129,7 +144,7 @@ router.get('/confirmation/:id', async (req, res) => {
     //everything is Ok => confirm the client account
     client.state = clientState[1];
     await client.save();
-    await token.remove();
+    await token.remove(); //TODO change this so the token expire on his own
     res.send({message: 'account verified please log in!'});
 });
 

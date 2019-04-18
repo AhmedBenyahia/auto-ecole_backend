@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
+    "test": "jest --watchAll --verbose --coverage",
     "build:dev": "webpack --display-error-details --config webpack.config.js --progress --color",
     "build:prod": "webpack --env.prod --config webpack.config.js --progress --color"
   },
@@ -17,6 +18,7 @@
     "express": "~4.16.0",
     "express-async-errors": "^3.1.1",
     "express-fileupload": "^1.1.3-alpha.2",
+    "fawn": "^2.1.5",
     "generate-password": "^1.4.1",
     "helmet": "^3.16.0",
     "joi": "^14.3.1",
@@ -28,18 +30,26 @@
     "morgan": "~1.9.0",
     "nodemailer": "^5.1.1",
     "pdfkit": "^0.9.0",
+    "socket.io": "latest",
     "username-generator": "^1.1.0",
     "winston": "^3.2.1",
-    "winston-mongodb": "^4.0.3",
-    "socket.io": "latest"
+    "winston-mongodb": "^4.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "babel-loader": "^8.0.5",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "jest": "^24.7.1",
+    "rewire": "^4.0.1",
+    "supertest": "^4.0.2",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "webpack-cli": "^3.3.0",
+    "superagent": "latest",
+    "socket.io-client": "latest"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

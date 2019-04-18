@@ -57,9 +57,9 @@ router.post('/scheduled', async (req, res) => {
     });
     await exam.save();
     // send notif to client
-    await newExamNotif(req, exam, exam.client);
+    await newExamNotif(req, exam, exam.client._id);
     // send notif to monitor
-    await newExamNotif(req, exam, exam.monitor);
+    await newExamNotif(req, exam, exam.monitor._id);
     // send the response
     res.send(exam);
 });

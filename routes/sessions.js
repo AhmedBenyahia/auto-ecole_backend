@@ -10,8 +10,6 @@ const _ = require('lodash');
 const sessionDebug = require('debug')('app:session');
 const DAY = 24*60*60*1000;
 const isFullReservation = require('../middleware/isFullReservation');
-const verifyClientState = require('../middleware/verifyClientState');
-const notifyDebug = require('debug')('app:notify');
 const { adminSessionCancelingNotif, sessionReservationNotif, newSessionNotif,
         usersSessionCancelingNotif, sessionCarUpdatedNotif, sessionDateUpdatedNotif,
         } = require('../middleware/notify');
@@ -175,7 +173,8 @@ router.patch('/approve/:id', async (req, res) => {
     session.state = sessionState[1];
     await session.save();
     // send notification the client and monitor
-    await sessionValidationNotif(req, session);
+    await newSessionNotif(req, session, session.monitor._id);
+    await newSessionNotif(req, session, session.client._id);
     res.send(session);
 });
 

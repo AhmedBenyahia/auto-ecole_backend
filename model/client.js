@@ -7,7 +7,7 @@ const clientState = ['UNVERIFIED','PROFILE_NOT_COMPLETED','READY','LEARNING',
                      'DRIVING', 'INACTIVE', 'SUSPENDED', 'RETIRED'];
             //TODO: The client state should give you witch phase
            //TODO: the client has reach in his driving licence (code, conduite)
-
+// Client schema
 const clientSchema = new mongoose.Schema({
    username: {
        type: String,
@@ -73,20 +73,28 @@ const clientSchema = new mongoose.Schema({
        minLength: 4,
        maxLength: 10,
    },
-   drivingLicenceType: {
-       type: String, // TODO: add enum att
-       minLength: 1,
-       maxLength: 6,
-       trim: true,
-       default: null,
+   drivingLicence: {
+       type: [new mongoose.Schema({
+           drivingLicenceType: {
+               type: String, // TODO: add enum att
+               minLength: 1,
+               maxLength: 6,
+               trim: true,
+               default: null,
+           },
+           drivingLicenceNum: {
+               type: String,
+               minLength: 8,
+               maxLength: 8,
+               trim: true,
+               default: null,
+           },
+           drivingLicenceDate: {
+               type: Date,
+               required: true,
+           },
+       })]
    },
-   drivingLicenceNum: {
-        type: String,
-        minLength: 8,
-        maxLength: 8,
-        trim: true,
-        default: null,
-    },
    state: {
        type: String, //TODO add enum for client state
        trim: true,
@@ -113,7 +121,6 @@ clientSchema.post('find', function (result) {
         }
     })
 });
-
 clientSchema.post('findOne', async function (res) {
     clientSchemaDebug('Client State checked!!!');
     if (res && res.state === clientState[1] &&
@@ -124,9 +131,10 @@ clientSchema.post('findOne', async function (res) {
         clientSchemaDebug('client state updated');
     }
 });
-
+// compile the model
 const Client = mongoose.model('Clients', clientSchema);
 
+// client account verification  token schema
 const verificationTokenSchema = new mongoose.Schema({
     _clientId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -144,7 +152,7 @@ const verificationTokenSchema = new mongoose.Schema({
         ref: Client,
     }
 });
-
+// compile the model
 const VerificationToken = mongoose.model('Token', verificationTokenSchema);
 
 
@@ -194,8 +202,12 @@ function validateSchema(client, newClient) {
         agency: JoiExtended.string().objectId().required(),
         address: Joi.string().max(255).min(5),
         postalCode: Joi.string().min(4).max(10),
-        drivingLicenceType: Joi.string().min(1).max(6), // TODO: add joi validation for driving licence type with enum
-        drivingLicenceNum: Joi.string().length(8), // TODO add validation of num (number only)
+         // TODO: add joi validation for driving licence type with enum
+        drivingLicence: Joi.array().items({
+            drivingLicenceType: Joi.string().required(),
+            drivingLicenceDate: Joi.date().required(),
+            drivingLicenceNum: Joi.string().min(8).max(8).required(),
+        }).min(1)
     });
     return Joi.validate(client, schema, {context: {condition: newClient}});
 }

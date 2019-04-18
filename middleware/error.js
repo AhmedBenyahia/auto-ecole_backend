@@ -6,5 +6,5 @@ module.exports = (err, req, res, next) => {
         message: 'Something failed:  ' + err.message,
         stack: err.stack
     });
-    res.status(500).send('Something failed')
+    return res.status(500).send('Something failed')
 };

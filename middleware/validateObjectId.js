@@ -5,5 +5,5 @@ module.exports = (req, res, next) => {
         logger.info(` Invalid id ${req.params.id}`);
         return res.status(404).send('Invalid Id');
     }
-    next();
+    return next();
 };
