@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "test": "jest --watchAll --verbose --coverage",
+    "test": "jest --watchAll --verbose --coverage --detectOpenHandles",
     "build:dev": "webpack --display-error-details --config webpack.config.js --progress --color",
     "build:prod": "webpack --env.prod --config webpack.config.js --progress --color"
   },

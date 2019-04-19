@@ -1,5 +1,4 @@
 const usernameGenerator = require('username-generator');
-const passwordGenerator = require('generate-password');
 const {Monitor} = require('../../../model/monitor');
 const {Agency} = require('../../../model/agency');
 const {Notif} = require('../../../model/notif');
@@ -8,7 +7,6 @@ const request = require('supertest');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const bcrypt = require("bcrypt");
-const crypto = require('crypto');
 const _ = require('lodash');
 
 let server;
@@ -73,7 +71,7 @@ describe('monitor routes', () => {
 
     afterEach( async (done) => {
         await cleanDB();
-        server.close();
+        await server.close();
         done();
     });
 
@@ -179,7 +177,7 @@ describe('monitor routes', () => {
         let monitor;
         let token;
         // Mosh refactoring method
-        beforeEach(async () => {
+        beforeEach(async (done) => {
             // add an agency to db
             const agency = new Agency({
                 title: usernameGenerator.generateUsername(),
@@ -205,6 +203,7 @@ describe('monitor routes', () => {
             // set the agency of the monitor we are adding to the created agency id
             tmp[0].agency = agency._id.toString();
             monitor = tmp[0];
+            done();
         });
         const exec = () => {
             return request(server)
@@ -314,7 +313,6 @@ describe('monitor routes', () => {
             uri = uri + '/' + monitorObj._id;
             // execute the request
             const res = await exec();
-            console.log(res.text);
             // test the status of the request
             expect(res.status).toBe(200);
             // test is the body of the request is defined
@@ -344,7 +342,6 @@ describe('monitor routes', () => {
 
             // execute the request
             const res = await exec();
-            console.log(res.text);
             // test the status of the request
             expect(res.status).toBe(404);
             // test the message.
@@ -392,7 +389,7 @@ describe('monitor routes', () => {
         //NOTE always make sure to clean up
         /** your mother isn't here so clean up after yourself **/
         // Mosh refactoring method
-        beforeEach(async () => {
+        beforeEach(async (done) => {
             // add an agency to db
             const agency = new Agency({
                 title: usernameGenerator.generateUsername(),
@@ -420,6 +417,7 @@ describe('monitor routes', () => {
             // set the tmp monitor agency id to the created agency id
             tmp[1].agency = agency._id.toString();
             uri = '/monitor/password';
+            done();
         });
         const exec = () => {
             return request(server)

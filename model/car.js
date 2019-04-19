@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const JoiExtended = require('../startup/validation');
 
-const carState = ['Active', 'SUSPENDED', 'RETIRED'];
+const carState = ['ACTIVE', 'SUSPENDED', 'RETIRED'];
 
 const carSchema = new mongoose.Schema({
     num: {

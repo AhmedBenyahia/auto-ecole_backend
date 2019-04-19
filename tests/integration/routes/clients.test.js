@@ -336,7 +336,6 @@ describe('client routes', () => {
             await Agency.deleteMany({}).exec();
             // execute the request
             const res = await exec();
-            console.log(res.text);
             // test the status of the request
             expect(res.status).toBe(404);
             // test the message.
