@@ -40,7 +40,7 @@ router.post('/reserve',  async (req, res) => {
     
     // add the client, reservation to the new session
     let absence = new Absenc({
-        monitor:_.pick(monitor, ['_id', 'name', 'surname']),
+        monitor:_.pick(monitor, ['_id', 'name', 'surname', 'cin']),
         debDate: req.body.debDate,
         endDate:req.body.endDate,
         raison:req.body.raison,

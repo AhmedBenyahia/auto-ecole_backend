@@ -5,15 +5,6 @@ const breakdownstate = ['announced', 'fixed'];
 
 
 let breakdownSchema = new mongoose.Schema({
-   
-    
-
-    raisonbreakdown:{
-        type: String ,
-        required:true
-    },
-    agency: mongoose.Types.ObjectId,
-
     monitor: {
         type: new mongoose.Schema({
             _id: mongoose.Types.ObjectId,
@@ -31,7 +22,7 @@ let breakdownSchema = new mongoose.Schema({
                 maxLength: 55,
                 trim: true,
             },
-          
+
         }),
     },
     car: {
@@ -60,21 +51,21 @@ let breakdownSchema = new mongoose.Schema({
             },
         }),
     },
+    raisonbreakdown:{
+        type: String ,
+        required:true
+    },
     iscritical: {
         type: Boolean,
         default:false
     },
     state: {
-        type: String, //TODO 
+        type: String, //TODO
         enum: breakdownstate,
         trim: true,
         default: breakdownstate[0],
     },
-
-
-    
-
-
+    agency: mongoose.Types.ObjectId,
 });
 const Breakdown = mongoose.model('breakdown', breakdownSchema);
 
@@ -96,4 +87,4 @@ function validatebreakdownSchema(breakdown) {
 
 exports.Breakdown=Breakdown;
 exports.validatebreakdownSchema=validatebreakdownSchema;
-exports.breakdownstate=breakdownstate
+exports.breakdownstate=breakdownstate;

@@ -10,6 +10,7 @@
       <w>avez</w>
       <w>bcrypt</w>
       <w>bonjour</w>
+      <w>breakdownstate</w>
       <w>cliquant</w>
       <w>compte</w>
       <w>conduite</w>
@@ -26,6 +27,7 @@
       <w>incanceling</w>
       <w>informations</w>
       <w>inscrit</w>
+      <w>iscritical</w>
       <w>jsonwebtoken</w>
       <w>liste</w>
       <w>mmmm</w>
@@ -42,6 +44,7 @@
       <w>poste</w>
       <w>prenom</w>
       <w>printf</w>
+      <w>raisonbreakdown</w>
       <w>recupiration</w>
       <w>registred</w>
       <w>rejecter</w>

@@ -147,7 +147,7 @@ module.exports.newSessionNotif = async (req, session, userId) => {
     // emit notif to the user if he is connected
     const userConnectionInfo = req.app.io.connectedUser
         .filter(c => c._id === userId.toString());
-    if (userConnectionInfo) {
+    if (userConnectionInfo[0]) {
         req.app.io.to(userConnectionInfo[0].socketId)
             .emit('news', notif);
     }
@@ -170,7 +170,7 @@ module.exports.sessionDateUpdatedNotif = async (req, session, oldReservationDate
     // emit notif to the user if he is connected
     const userConnectionInfo = req.app.io.connectedUser
         .filter(c => c._id === userId.toString());
-    if (userConnectionInfo) {
+    if (userConnectionInfo[0]) {
         req.app.io.to(userConnectionInfo[0].socketId)
             .emit('news', notif);
     }

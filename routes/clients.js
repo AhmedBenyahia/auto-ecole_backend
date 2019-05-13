@@ -13,6 +13,7 @@ const crypto = require('crypto');
 const {newClientNotif} = require('../middleware/notify');
 const Fawn = require('fawn');
 const mongoose = require('mongoose');
+const config = require('config');
 
 //init the atomic task lib
 Fawn.init(mongoose);
@@ -29,7 +30,7 @@ router.get('/:id', validateObjectId, async (req, res) => {
     res.send(client);
 });
 
-// ADD New Client
+// Client Register
 router.post('/', async (req, res) => {
     clientDebug('POST:/client');
     // validate the request schema
@@ -44,27 +45,24 @@ router.post('/', async (req, res) => {
     const client = new Client(_.omit(req.body,['password']));
     const salt = await bcrypt.genSalt(10);
     client.password = await bcrypt.hash(req.body.password, salt);
-
     //  create new verification token in the database
     const token = new VerificationToken({
         _clientId: client._id,
         token: crypto.randomBytes(12).toString('hex')
     }); //check list
     // save the token and the client
-    try {
-        new Fawn.Task()
+    // save the client and the verification token
+    // TODO: add "for" att to token to identify the reason for this token
+        await new Fawn.Task()
             .save('tokens', token)
             .save('clients', client)
             .run();
-    }catch(ex) {
-        // if the Task fail, don't send mail or notification
-        return res.status(500).send('something failed');
-    }
+
     // send the verification token by mail to client
     sendMail(client.email,
         'Confirmation de compte', //TODO: send a link to angular component
         'Bonjour Veuillez vérifier votre compte en cliquant sur le lien suivant: <br>' +
-        'http://' + req.headers.host + '/client/confirmation/' + token.token);
+        `http://${config.get('frontendUrl')}/client/confirmation/` + token.token);
     await newClientNotif(req, client);
     return res.send(client);
 });
@@ -163,7 +161,7 @@ router.get('/token/resend', async (req, res) => {
     sendMail(client.email,
         'Confirmation de compte', //TODO: send a link to angular component
         'Bonjour Veuillez vérifier votre compte en cliquant sur le lien suivant: <br>' +
-        'http://' + req.headers.host + '/client/confirmation/' + token.token);
+        `http://${config.get('frontendUrl')}/client/confirmation/` + token.token);
     res.send({message: "the confirmation mail has been send!"});
 });
 
@@ -183,9 +181,9 @@ router.post('/password/reset', async (req, res) => {
     token.save();
     // send the verification token by mail to client
     sendMail(client.email,
-        'Récupération de mot de pass', //TODO: send a link to angular component
+        'Récupération de mot de pass',
         'Bonjour une demande de récupération de votre mot de pass a ete envoyer: <br>' +
-        'http://' + req.headers.host + '/client/password/reset/' + token.token);
+        `http://${config.get('frontendUrl')}/client/password/reset/` + token.token);
     res.send({message: "Reset password mail has been sent"});
 });
 

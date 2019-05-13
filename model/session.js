@@ -55,6 +55,14 @@ let sessionSchema = new mongoose.Schema({
                 maxLength: 55,
                 trim: true,
             },
+            cin: {
+                type: String,
+                minlength: 8,
+                maxlength: 8,
+                trim: true,
+                required: true,
+                unique: true,
+            },
             certification: {
                 type: [new mongoose.Schema({
                     certificationType: {

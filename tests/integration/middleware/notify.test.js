@@ -94,87 +94,87 @@ describe(' notify middleware', () => {
 
     });
 
-    describe('Emit notification', () => {
-        // we are supposing we have an admin log in
-        // user is an ADMIN
-        const userId = (new mongoose.Types.ObjectId).toString();
-        const agencyId = (new mongoose.Types.ObjectId).toString();
-        let data = {
-            _id: userId,
-            role: 'admin',
-            agency: agencyId,
-        };
-        let req = { app: {io : ioServer}, user: {agency: agencyId} };
-        let client = { _id: new mongoose.Types.ObjectId };
-
-        // Setup fake client server
-        beforeEach((done) => {
-            // Setup fake client server
-            const port = process.env.PORT || 3000;
-            socket = io('http://localhost:' + port, { forceNew: true });
-            console.log('connect to socket server');
-            setTimeout(() => {
-                console.log('emit "save-user"');
-                socket.emit('save-user', data);
-                done();
-            },500);
-        });
-
-        // Close fake client server
-        afterEach((done) => {
-            // Cleanup
-            if (socket.connected) {
-                console.log("disconnecting...");
-                socket.disconnect();
-            } else {
-                console.log("no connection to break");
-            }
-            done()
-        });
-
-        describe('newClientNotif', () => {
-
-            afterEach((done) => {
-                socket.on('news', (data) => {
-                    console.log("newClientNotif");
-                });
-                done();
-            });
-
-            // beforeEach( async (done) => {
-            //     await notify.newClientNotif(req, client);
-            //     done();
-            // });
-
-            it('should connect', async (done) => {
-                setTimeout(() => {
-                    expect(ioServer.connectedUser.length).toBe(1);
-                    done();
-                }, 50);
-
-            });
-
-            it('should join user to group channel based on his role and agency', (done) => {
-                setTimeout(() => {
-                    // get the user joined channel
-                    const userRooms = ioServer.sockets.connected[ioServer.connectedUser[0].socketId].rooms;
-                    // the channel that the user should be joining
-                    const userGroupChannel = data.role + 'Channel#' + data.agency.slice(-4);
-                    expect(Object.keys(userRooms).filter(c => c === userGroupChannel).length)
-                        .toBe(1);
-                    done();
-                },50);
-            });
-
-            it('should emit newClientNotif', async (done) => {
-                socket.on('news', () => {
-                    done();
-                });
-                await notify.newClientNotif(req, client);
-                done();
-            });
-        });
-
-    });
+    // describe('Emit notification', () => {
+    //     // we are supposing we have an admin log in
+    //     // user is an ADMIN
+    //     const userId = (new mongoose.Types.ObjectId).toString();
+    //     const agencyId = (new mongoose.Types.ObjectId).toString();
+    //     let data = {
+    //         _id: userId,
+    //         role: 'admin',
+    //         agency: agencyId,
+    //     };
+    //     let req = { app: {io : ioServer}, user: {agency: agencyId} };
+    //     let client = { _id: new mongoose.Types.ObjectId };
+    //
+    //     // Setup fake client server
+    //     beforeEach((done) => {
+    //         // Setup fake client server
+    //         const port = process.env.PORT || 3000;
+    //         socket = io('http://localhost:' + port, { forceNew: true });
+    //         console.log('connect to socket server');
+    //         setTimeout(() => {
+    //             console.log('emit "save-user"');
+    //             socket.emit('save-user', data);
+    //             done();
+    //         },500);
+    //     });
+    //
+    //     // Close fake client server
+    //     afterEach((done) => {
+    //         // Cleanup
+    //         if (socket.connected) {
+    //             console.log("disconnecting...");
+    //             socket.disconnect();
+    //         } else {
+    //             console.log("no connection to break");
+    //         }
+    //         done()
+    //     });
+    //
+    //     describe('newClientNotif', () => {
+    //
+    //         afterEach((done) => {
+    //             socket.on('news', (data) => {
+    //                 console.log("newClientNotif");
+    //             });
+    //             done();
+    //         });
+    //
+    //         // beforeEach( async (done) => {
+    //         //     await notify.newClientNotif(req, client);
+    //         //     done();
+    //         // });
+    //
+    //         it('should connect', async (done) => {
+    //             setTimeout(() => {
+    //                 expect(ioServer.connectedUser.length).toBe(1);
+    //                 done();
+    //             }, 50);
+    //
+    //         });
+    //
+    //         it('should join user to group channel based on his role and agency', (done) => {
+    //             setTimeout(() => {
+    //                 // get the user joined channel
+    //                 const userRooms = ioServer.sockets.connected[ioServer.connectedUser[0].socketId].rooms;
+    //                 // the channel that the user should be joining
+    //                 const userGroupChannel = data.role + 'Channel#' + data.agency.slice(-4);
+    //                 expect(Object.keys(userRooms).filter(c => c === userGroupChannel).length)
+    //                     .toBe(1);
+    //                 done();
+    //             },50);
+    //         });
+    //
+    //         it('should emit newClientNotif', async (done) => {
+    //             socket.on('news', () => {
+    //                 done();
+    //             });
+    //             // await notify.newClientNotif(req, client);
+    //             done();
+    //         });
+    //     });
+    //
+    // });
 });
 

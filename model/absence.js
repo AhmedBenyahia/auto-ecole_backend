@@ -34,13 +34,19 @@ let absenceSchema = new mongoose.Schema({
                 maxLength: 55,
                 trim: true,
             },
-          
+            cin: {
+                type: String,
+                required: true,
+                minLength: 8,
+                maxLength: 8,
+                trim: true,
+            },
         }),
     },
 
 
 });
-const Absenc = mongoose.model('Absenc', absenceSchema);
+const Absenc = mongoose.model('Absence', absenceSchema);
 
 function validateReservationSchema(absenc) {
     const schema = Joi.object().keys({

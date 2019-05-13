@@ -215,7 +215,7 @@ function validateSchema(client, newClient) {
             drivingLicenceType: Joi.string().required(),
             drivingLicenceDate: Joi.date().required(),
             drivingLicenceNum: Joi.string().min(8).max(8).required(),
-        }).min(1)
+        })
     });
     return Joi.validate(client, schema, {context: {condition: newClient}});
 }

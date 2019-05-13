@@ -8,6 +8,7 @@ const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const authenticationDebug = require('debug')('app:authentication');
+const authDebug = require('debug')('app:authentication');
 // * user login
 router.post('/login', async (req, res) => {
     authenticationDebug('Debugging /login');
@@ -22,11 +23,14 @@ router.post('/login', async (req, res) => {
          return res.send(generateAuthToken(client));
     }
     // verify if it's a monitor
+
     const monitor = await Monitor.findOne({ username: req.body.username });
+    authDebug(monitor && await bcrypt.compare(req.body.password, monitor.password));
     if (monitor && await bcrypt.compare(req.body.password, monitor.password)) {
         monitor.role = 'monitor';
         return res.send(generateAuthToken(monitor));
     }
+
     // verify if it's a manager
     const manager = await Manager.findOne({ username: req.body.username });
     if (manager && await bcrypt.compare(req.body.password, manager.password)) {

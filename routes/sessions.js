@@ -1,5 +1,7 @@
 const {Session, validateReservation, validateApproving, validateUpdating, sessionState} = require('../model/session');
 const {Agency} = require('../model/agency');
+const {Exam} = require('../model/exam');
+const {Absenc} = require('../model/absence');
 const {Client, clientState} = require('../model/client');
 const {Monitor} = require('../model/monitor');
 const {Car} = require('../model/car');
@@ -68,6 +70,16 @@ router.post('/reserve', isFullReservation, async (req, res) => {
     if (session.length !== 0) {
         return res.status(400).send({message: ' The giving client has already a session on the reservation date'});
     }
+    // verify that he client doesn't have an exam on the reservation date
+    let exam = await Exam
+        .find({
+            examDate: req.body.reservationDate,
+            'client._id': req.body.clientId, // safer than client: client
+        });
+    sessionDebug('Exam in the same reservationDate and same client:', exam.length !== 0);
+    if (exam.length !== 0) {
+        return res.status(400).send({message: ' The giving client has an exam on the reservation date'});
+    }
     // add the client, reservation to the new session
     session = new Session({
         client: _.pick(client, ['_id', 'name', 'surname', 'state', 'drivingLicenceType']),
@@ -112,7 +124,7 @@ router.post('/reserve', isFullReservation, async (req, res) => {
 
         // add the car and monitor if the session isFullReservation
         session.car = _.pick(car, ['_id', 'num', 'mark', 'model']);
-        session.monitor = _.pick(monitor, ['_id', 'name', 'surname', 'certification']);
+        session.monitor = _.pick(monitor, ['_id', 'name', 'surname', 'certification', 'cin']);
     }
     // send notification to admin
     await sessionReservationNotif(req, session);
@@ -137,7 +149,6 @@ router.patch('/approve/:id', async (req, res) => {
     // verify that the car exist
     const car = await Car.findOne({_id: req.body.carId, agency: req.user.agency});
     if (!car) return res.status(404).send({message: ' The car with the giving id was not found'});
-    // verify that the car is not reserved on the specified date
     let otherSession = await Session
         .find({
             reservationDate: session.reservationDate,
@@ -150,10 +161,19 @@ router.patch('/approve/:id', async (req, res) => {
     sessionDebug('  Duplicated reservation with the same car and same date:',
         otherSession.length !== 0," Nbre: ", otherSession.length);
     if (otherSession.length !== 0) return res.status(400).send({message: 'The giving car is not available on the reservation date'});
+    // verify that the car is not reserved on the specified date By Exam
+    let exam = await Exam
+        .find({
+            examDate: session.reservationDate,
+            'car._id': car._id
+        });
+    sessionDebug('  Exam in the same date for the specified car:',
+        exam.length !== 0," Nbre: ", exam.length);
+    if (exam.length !== 0) return res.status(400).send({message: 'The giving car has am exam on the reservation date'});
     // verify that the monitor exist
     const monitor = await Monitor.findOne({_id: req.body.monitorId, agency: req.user.agency});
     if (!monitor) return res.status(404).send({message: ' The monitor with the giving id was not found'});
-    // verify that the monitor is not reserved on the specified date
+    // verify that the monitor is not reserved on the specified date By Session
      otherSession = await Session
         .find({
             reservationDate: session.reservationDate ,
@@ -166,10 +186,28 @@ router.patch('/approve/:id', async (req, res) => {
     sessionDebug('  Duplicated reservation with the same monitor and same date:',
         otherSession.length !== 0," Nbre: ", otherSession.length);
     if (otherSession.length !== 0) return res.status(400).send({message: 'The giving monitor is not available on the reservation date'});
-
+    // verify that the monitor is not reserved on the specified date By Exam
+    exam = await Exam
+        .find({
+            examDate: session.reservationDate ,
+            'monitor._id': monitor._id
+        });
+    sessionDebug('  Exam for the specified monitor in the same date of the reservation:',
+        exam.length !== 0," Nbre: ", exam.length);
+    if (exam.length !== 0) return res.status(400).send({message: 'The giving monitor has an exam on the reservation date'});
+    // verify that the monitor is not absence on the reservationDate
+    const absence = await Absenc
+        .find({
+            debDate: { $lte: session.reservationDate},
+            endDate: { $gte: session.reservationDate},
+            'monitor._id': monitor._id
+        });
+    sessionDebug('  The specified monitor is absence on the reservation date:',
+        absence.length !== 0," Nbre: ", absence.length);
+    if (absence.length !== 0) return res.status(400).send({message: 'The giving monitor is absence on the reservation date'});
     // update the session
     session.car =  _.pick(car, ['_id','num', 'mark', 'model']);
-    session.monitor = _.pick(monitor, ['_id','name', 'surname', 'certification']);
+    session.monitor = _.pick(monitor, ['_id','name', 'surname', 'certification', 'cin']);
     session.state = sessionState[1];
     await session.save();
     // send notification the client and monitor
@@ -217,28 +255,58 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
     sessionDebug('  we are updating the session with this car: ', carId);
     if (!car) return res.status(404).send({message: ' The car with the giving id was not found'});
     // verify that the car is not reserved on the reservation date
+        // By session
     let otherSession = await Session.find({
         reservationDate: reservationDate,
         'car._id': car._id
     });
     if (otherSession.length > 1) return res.status(400).send({message: 'The giving car is not available on the reservation date'});
+        // By an exam
+    let exam = await Exam.find({
+            examDate: reservationDate,
+            'car._id': car._id
+        });
+    sessionDebug('  Exam in the same date for the specified car:',
+        exam.length !== 0," Nbre: ", exam.length);
+    if (exam.length !== 0) return res.status(400).send({message: 'The giving car has am exam on the reservation date'});
 
     // verify that the monitor exist
     const monitor = await Monitor.findOne({_id: monitorId, agency: req.user.agency});
     sessionDebug('  we are updating the session with this monitor: ', monitorId);
     if (!monitor) return res.status(404).send({message: ' The monitor with the giving id was not found'});
     // verify that the monitor is not reserved on the reservation date
+        // By Session
      otherSession = await Session.find({
         reservationDate: reservationDate,
         'monitor._id': monitor._id
     });
     if (otherSession.length > 1) return res.status(400).send({message: 'The giving monitor is not available on the reservation date'});
+        // By Exam
+    sessionDebug(monitor._id, ' -- ',reservationDate);
+    exam = await Exam
+        .find({
+            examDate: reservationDate,
+            'monitor._id': monitor._id,
+        });
+    sessionDebug('  Exam for the specified monitor in the same date of the reservation:',
+        exam.length !== 0," Nbre: ", exam.length);
+    if (exam.length !== 0) return res.status(400).send({message: 'The giving monitor has an exam on the reservation date'});
+    // verify that the monitor is not absence on the reservationDate
+    const absence = await Absenc
+        .find({
+            debDate: { $lte: reservationDate},
+            endDate: { $gte: reservationDate},
+            'monitor._id': monitor._id
+        });
+    sessionDebug('  The specified monitor is absence on the reservation date:',
+        absence.length !== 0," Nbre: ", absence.length);
+    if (absence.length !== 0) return res.status(400).send({message: 'The giving monitor is absence on the reservation date'});
 
     // update the session if everything is OK
     sessionDebug('  we are updating the session with this dare: ', reservationDate);
     if (req.body.reservationDate) session.reservationDate = reservationDate;
     if (req.body.carId) session.car = _.pick(car, ['num', 'mark', 'model']);
-    if (req.body.monitorId) session.monitor = _.pick(monitor, ['_id','name', 'surname', 'certification']);
+    if (req.body.monitorId) session.monitor = _.pick(monitor, ['_id','name', 'surname', 'certification', 'cin']);
     await session.save();
     // send notification to everyone
     /* Scenario */
