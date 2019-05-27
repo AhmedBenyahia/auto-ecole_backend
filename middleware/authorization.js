@@ -105,11 +105,13 @@
     'PATCH:/session/approve/:id',
     'PATCH:/session/cancel/:id',
     'PATCH:/session/update/:id',
-
+    'DELETE:/session/reject/:id',
     "GET:/breakdown",
     'PATCH:/breakdown/fixed/:id',
-
+    'POST:/breakdown/announced',
+    'PATCH:/breakdown/iscritical/:id',
     'GET:/absence',
+    'DELETE:/exam/:id',
   ];
 
   module.exports = function(req, res, next) {

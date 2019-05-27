@@ -239,7 +239,7 @@ module.exports.sessionCarUpdatedNotif = async (req, session, userId) => {
     // emit notif to the user if he is connected //TODO this is duplicated we can put it is FN
     const userConnectionInfo = req.app.io.connectedUser
         .filter(c => c._id === userId.toString());
-    if (userConnectionInfo) {
+    if (userConnectionInfo[0]) {
         req.app.io.to(userConnectionInfo[0].socketId)
             .emit('news', notif);
     }

@@ -69,10 +69,10 @@ router.patch('/succeed/:id', async (req, res) => {
     // validate the request schema
     const {error} = succeedExam(req.body);
     if (error) return res.status(400).send({message: error.details[0].message});
-    // verify that the session exist
+    // verify that the exam exist
     let exam = await Exam.findOne({_id: req.params.id, agency: req.user.agency});
     if (!exam) return res.status(404).send({message: ' The exam with the giving id was not found'});
-    // verify if the state of the session is REQUESTED
+    // verify if the state of the exam is REQUESTED
     examDebug('  Exam State: ', exam.state);
     if (exam.state !== examState[0]) return res.status(406).send({message: 'Only scheduled exam state'});
     // verify that the car exist
@@ -92,10 +92,10 @@ router.patch('/failed/:id', async (req, res) => {
     // validate the request schema
     const {error} = failedExam(req.body);
     if (error) return res.status(400).send({message: error.details[0].message});
-    // verify that the session exist
+    // verify that the exam exist
     let exam = await Exam.findOne({_id: req.params.id, agency: req.user.agency});
     if (!exam) return res.status(404).send({message: ' The exam with the giving id was not found'});
-    // verify if the state of the session is REQUESTED
+    // verify if the state of the exam is REQUESTED
     if (exam.state !== examState[0]) return res.status(406).send({message: 'Only scheduled exam state'});
     // set the exam
     exam.examinateur = req.body.examinateur;
@@ -106,20 +106,17 @@ router.patch('/failed/:id', async (req, res) => {
 // reset Exam state
 router.patch('/reset/:id', async (req, res) => {
     examDebug('debugging /exam endpoint');
-    // validate the request schema
-
-    // verify that the session exist
+    // verify that the exam exist
     let exam = await Exam.findOne({_id: req.params.id, agency: req.user.agency});
     if (!exam) return res.status(404).send({message: ' The exam with the giving id was not found'});
-    // verify if the state of the session is REQUESTED
+    // verify if the state of the exam is scheduled
     if (exam.state === examState[0]) return res.status(406).send({message: 'Only  exam state for rest'});
-    // set the exam
+    // save the exam
     exam.state = examState[0];
-
+    exam.examinateur = '';
     await exam.save();
     res.send(exam);
 });
-
 // UPDATE Exam
 router.put('/:id', async (req, res) => {
     // validate the request schema
@@ -139,11 +136,20 @@ router.put('/:id', async (req, res) => {
     if (!monitor) return res.status(404).send({message: ' The monitor with the giving id was not found'});
     // update the exam with the giving id
     const exam = await Exam.findOneAndUpdate({_id: req.params.id, agency: req.body.agency}, req.body, {new: true});
-    // if the client wan not found return an error
+    // if the exam wan not found return an error
     if (!exam) return res.status(404).send({message: ' The exam with the giving id was not found'});
-    res.send(exam); //TODO add the logic of exam notif here same as in session
+    res.send(exam); //TODO add the logic of exam notif here same as in exam
 });
-
+// Delete Exam
+router.delete('/:id', async  (req, res) => {
+    // verify that the agency exist
+    const agency = await Agency.findOne({_id: req.body.agency});
+    if (!agency) return res.status(404).send({message: ' The agency with the giving id was not found'});
+    // delete the exam with the giving id
+    const exam = await Exam.findOneAndDelete({ _id: req.params.id, agency: req.user.agency});
+    if (!exam) return res.status(404).send({ message: ' The exam with the giving id was not found'});
+    return res.send(exam);
+});
 module.exports = router;
 
 
