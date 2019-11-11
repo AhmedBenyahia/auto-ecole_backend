@@ -20,12 +20,12 @@ const notif = require('../routes/notifs');
 
 module.exports = (app) => {
 
-// Authorization check
+// Authorization checking
     app.use(express.json()) ;
     app.use(authorization);
-// log middleware
+// logging middleware
     app.use(logging);
-// routes chain goes here
+// routes middleware stack goes here
     app.use('/agency', agency);
     app.use('/car', car);
     app.use('/client', client);
@@ -38,6 +38,6 @@ module.exports = (app) => {
     app.use('/absence', absence);
     app.use('/breakdown', breakdown);
     app.use('/notify', notif);
-// handling requests error
+// handling global error
     app.use(error);
 };

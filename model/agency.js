@@ -4,7 +4,7 @@ const DAY = 24*60*60*1000;
 const joiExtended = require('../startup/validation');
 
 
-const agencySchema = new mongoose.Schema({
+const agencySchema = new mongoose.Schema( {
     title: {
         type: String,
         required: true,
@@ -45,12 +45,12 @@ const agencySchema = new mongoose.Schema({
         type: String, //TODO add enum for agency state
         trim: true,
         default: null,
-    },  // TODO make the state enum
+    },
     logo: {
         type: String,
         minLength: 1,
         maxLength: 255
-    }, //TODO add logo validation
+    },
     taxRegistrationNum: {
         type: String,
         minlength: 9,
@@ -89,7 +89,7 @@ function validateSchema(agency) {
         address: Joi.string().max(255).min(5),
         phone: joiExtended.string().phone().min(8).max(13).required(), //TO DO add phone function
         postalCode: Joi.string().min(4).max(10),
-        state: Joi.string(), // TODO: add joi validation for state enum
+        state: Joi.string(),
         email: joiExtended.string().email().required(),
         taxRegistrationDate: Joi.date().required(),
         cinDate: Joi.date().required(),
@@ -97,7 +97,7 @@ function validateSchema(agency) {
     };
     return Joi.validate(agency, schema);
 }
+exports.validate = validateSchema;
 
 exports.agencySchema = agencySchema;
 exports.Agency = Agency;
-exports.validate = validateSchema;

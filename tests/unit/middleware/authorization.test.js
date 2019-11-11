@@ -70,7 +70,7 @@ describe(' authorization middleware Unit Test', () => {
         });
 
         it('should return 403 if user does not have the right permission', () => {
-            const tmp = clientRoutes[0].route.split(':');
+            const tmp = clientRoutes[1].route.split(':');
             req.method = tmp[0];
             req.url = tmp[1];
             req.header = () => {

@@ -15,11 +15,15 @@ router.post('/', async (req, res) => {
     // validate the request body
     const {error} = validate(req.body);
     if (error) return res.status(400).send({message: error.details[0].message});
-    // save the new agency
+    // create new agency instance
     const agency = new Agency(req.body);
+    // save the new agency in the database
+    await agency.save();
+    // generate a password and hash it
     const password = passwordGenerator.generate({ length: 10, numbers: true });
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
+    // create new manager
     const manager = new Manager({
         username: usernameGenerator.generateUsername('-'),
         email: agency.email,
@@ -27,15 +31,14 @@ router.post('/', async (req, res) => {
         role: "admin",
         agency: agency._id
     });
+    // send the manager connection information by mail to the super admin
     sendMail(agency.email,
         'Ajout d\' un nouveau Manager',
         'Un nouveau agence auto-ecole a ete ajouter, the admin information are: <br>' +
         `Title: ${agency.title}, email: ${agency.email} <br>` +
         `Username: ${manager.username} Password: ${password} <br>`);
-    // TODO put this inside Task
-    await agency.save();
+    // save the manager in database
     await manager.save();
-    agency.password = password;
     res.send(agency);
 });
 

@@ -18,19 +18,20 @@
   ];
   // Client only routes
   const clientRoutes = [
+      { route: "PUT:/client",                secure: true  },
+      { route: "GET:/client",                secure: true  },
+      { route: "POST:/session/reserve", secure: false},
       { route: "POST:/upload/license",       secure: true  },
       { route: "POST:/upload/cin",           secure: true  },
+      { route: "PATCH:/session/cancel/:id",  secure: false },
       { route: "GET:/whoami",                secure: true  },
-      { route: "GET:/client",                secure: true  },
       { route: "GET:/notify/client", secure: true},
-      { route: "PUT:/client",                secure: true  },
       { route: "PATCH:/client/password",     secure: true  },
       { route: "GET:/session/client",        secure: true  },
       { route: "GET:/timetable/client", secure: true},
-      { route: "POST:/session/reserve", secure: false},
-      { route: "PATCH:/session/cancel/:id",  secure: false },
-      { route: "DELETE:/session/reject/:id", secure: false },
+
       { route: "POST:/client/password/reset", secure: false },
+      { route: "DELETE:/session/reject/:id", secure: false },
   ];
   // Monitor only routes
   const monitorRoutes = [

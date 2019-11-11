@@ -153,7 +153,6 @@ const verificationTokenSchema = new mongoose.Schema({
         required: true,
         default: Date.now,
         expires: 3600,
-        ref: Client,
     }
 });
 // compile the model

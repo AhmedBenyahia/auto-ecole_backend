@@ -5,25 +5,25 @@ const JoiExtended = require('../startup/validation');
 const monitorState = ['ACTIVE','ABSENT', 'SUSPENDED', 'RETIRED'];
 
 const monitorSchema = new mongoose.Schema({
-    name: {
+     name: {
         type: String,
         required: true,
         minLength: 4,
         maxLength: 55,
         trim: true,
     },
-    surname: {
+     surname: {
         type: String,
         required: true,
         minLength: 4,
         maxLength: 55,
         trim: true,
     },
-    birthday: {
+     birthday: {
         type: Date,
         required: true,
     },
-    cin: {
+     cin: {
       type: String,
       minlength: 8,
       maxlength: 8,
@@ -31,41 +31,41 @@ const monitorSchema = new mongoose.Schema({
       required: true,
       unique: true,
     },
-    cinDate: {
+     cinDate: {
         type: Date,
         required: true,
     },
-    username: {
+     username: {
         type: String,
         required: true,
         minLength: 4,
         maxLength: 55,
         unique: true
     },
-    password: {
+     password: {
         type: String,
         required: true,
         minlength: 8,
         maxlength: 255,
     },
-    address: {
+     address: {
         type: String,
         maxLength: 255,
         trim: true,
     },
-    phone: {
+     phone: {
         type: String,
         required: true,
         minLength: 8,
         maxLength: 13,
         trim: true,
     },
-    postalCode: {
+     postalCode: {
         type: String,
         minLength: 4,
         maxLength: 10,
     },
-    drivingLicence: {
+     drivingLicence: {
         type: [new mongoose.Schema({
             drivingLicenceType: {
                 type: String, // TODO: add enum att
@@ -109,7 +109,7 @@ const monitorSchema = new mongoose.Schema({
             }
         })]
     },
-    state: {
+     state: {
         type: String,
         trim: true,
         enum: monitorState,

@@ -40,7 +40,7 @@ router.get('/monitor/:id', async (req, res) => {
     res.send(await Session.find({ 'monitor._id': req.params.id}));
 });
 
-// Request Session Reservation
+// Request Appointment
 router.post('/reserve', isFullReservation, async (req, res) => {
     sessionDebug('debugging /reserve endpoint');
     // validate the request schema
@@ -134,7 +134,7 @@ router.post('/reserve', isFullReservation, async (req, res) => {
     res.send(session);
 });
 
-// Approve Session Reservation
+// Approve Appointment Reservation
 router.patch('/approve/:id', async (req, res) => {
     sessionDebug('debugging /approve endpoint');
     // validate the request schema
@@ -214,6 +214,21 @@ router.patch('/approve/:id', async (req, res) => {
     await newSessionNotif(req, session, session.monitor._id);
     await newSessionNotif(req, session, session.client._id);
     res.send(session);
+});
+
+
+// REJECT Appointment
+router.delete('/reject/:id', validateObjectId, async (req, res) => {
+    sessionDebug('Debugging /session/reject/:id');
+    const session = await Session.findOne({ _id: req.params.id, agency: req.user.agency });
+    // if the session was not found return an error
+    if (!session) return res.status(404).send({message: ' The session with the giving id was not found'});
+    // if the status of the session is REQUESTED
+    if (session.state === sessionState[0]){
+        await session.delete();
+        return res.send(session);
+    }
+    return res.status(409).send({message: 'deleting is allowed only if the session is in REQUESTING state '});
 });
 
 // UPDATE Session: change monitor, car or date
@@ -333,20 +348,6 @@ router.patch('/update/:id', validateObjectId, async (req, res) => {
         await sessionCarUpdatedNotif(req, session, session.client._id);
     }
     res.send(session);
-});
-
-// REJECT Session
-router.delete('/reject/:id', validateObjectId, async (req, res) => {
-    sessionDebug('Debugging /session/reject/:id');
-    const session = await Session.findOne({ _id: req.params.id, agency: req.user.agency });
-    // if the session was not found return an error
-    if (!session) return res.status(404).send({message: ' The session with the giving id was not found'});
-    // if the status of the session is REQUESTED
-    if (session.state === sessionState[0]){
-        await session.delete();
-        return res.send(session);
-    }
-    return res.status(409).send({message: 'deleting is allowed only if the session is in REQUESTING state '});
 });
 
 // CANCEL Session

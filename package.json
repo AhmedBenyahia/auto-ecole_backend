@@ -1,7 +1,7 @@
 {
   "name": "back",
   "version": "0.0.0",
-  "private": true,
+  "privae": true,
   "scripts": {
     "start": "node app.js",
     "test": "jest --watchAll --verbose --coverage --detectOpenHandles",

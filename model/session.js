@@ -60,7 +60,6 @@ let sessionSchema = new mongoose.Schema({
                 minlength: 8,
                 maxlength: 8,
                 trim: true,
-                required: true,
             },
             certification: {
                 type: [new mongoose.Schema({
