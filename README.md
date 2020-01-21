@@ -8,7 +8,7 @@
 
 ### Run the server with the default configuration
 #### For Windows user:
-set auto_ecole_db="mongodb://localhost:3200/auto-ecole-dev";  set auto_ecole_jwtPrivateKey="secretKe_y"; nodemon app.js ;
+`set auto_ecole_db="mongodb://localhost:3200/auto-ecole-dev";  set auto_ecole_jwtPrivateKey="secretKe_y"; nodemon app.js ;`
 #### For Linux user
-export auto_ecole_db="mongodb://localhost:3200/auto-ecole-dev" && export auto_ecole_jwtPrivateKey="secretKe_y" && nodemon
-hello
+`export auto_ecole_db="mongodb://localhost:3200/auto-ecole-dev" && export auto_ecole_jwtPrivateKey="secretKe_y" && nodemon
+hello`
