@@ -18,7 +18,7 @@
     "debug": "^2.6.9",
     "express": "~4.16.0",
     "express-async-errors": "^3.1.1",
-    "express-fileupload": "^1.1.3-alpha.2",
+    "express-fileupload": "^1.1.9",
     "fawn": "^2.1.5",
     "generate-password": "^1.4.1",
     "helmet": "^3.16.0",
