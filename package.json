@@ -10,7 +10,7 @@
     "debug:": "ndb nodemon app.js"
   },
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "compression": "^1.7.4",
     "config": "^3.0.1",
     "cookie-parser": "~1.4.3",
