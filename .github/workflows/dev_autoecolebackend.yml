@@ -24,7 +24,6 @@ jobs:
       run: |
         npm install
         npm run build --if-present
-        npm run test --if-present
         export auto_ecole_db="mongodb+srv://dev:AutoEcole.TN@cluster0.ftvww.mongodb.net/<dbname>?retryWrites=true&w=majority"
         export auto_ecole_jwtPrivateKey="secretKe_y"
     - name: 'Deploy to Azure Web App'
