@@ -1,6 +1,6 @@
 {
-  "name": "back",
-  "version": "0.0.0",
+  "name": "auto-ecole-api",
+  "version": "1.0.0",
   "privae": true,
   "scripts": {
     "start": "node app.js",
@@ -8,6 +8,15 @@
     "build:dev": "webpack --display-error-details --config webpack.config.js --progress --color",
     "build:prod": "webpack --env.prod --config webpack.config.js --progress --color",
     "debug:": "ndb nodemon app.js"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "net": false,
+    "tls": false,
+    "dns": false,
+    "aws-sdk": false
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
@@ -32,7 +41,7 @@
     "mpath": "^0.5.1",
     "nodemailer": "^5.1.1",
     "pdfkit": "^0.9.0",
-    "socket.io": "latest",
+    "socket.io": "^2.3.0",
     "username-generator": "^1.1.0",
     "winston": "^3.2.1",
     "winston-mongodb": "^4.0.3"
@@ -44,12 +53,13 @@
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "jest": "^24.7.1",
     "rewire": "^4.0.1",
+    "socket.io-client": "latest",
+    "superagent": "latest",
     "supertest": "^4.0.2",
     "uglifyjs-webpack-plugin": "^2.1.2",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "superagent": "latest",
-    "socket.io-client": "latest"
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^2.5.2"
   },
   "jest": {
     "testEnvironment": "node"
