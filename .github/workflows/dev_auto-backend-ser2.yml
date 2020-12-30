@@ -24,7 +24,6 @@ jobs:
       run: |
         npm install
         npm run build --if-present
-        npm run test --if-present
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
@@ -32,4 +31,4 @@ jobs:
         app-name: 'auto-backend-ser2'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_080eb5f9da4a4da8a09416c463ccbaaa }}
-        package: .
+        package: ./auto-ecole_backend/
