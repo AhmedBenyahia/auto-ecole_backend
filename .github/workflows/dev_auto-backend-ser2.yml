@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - auto-backend-ser2
+name: Deploy backend to App Serv 2 - auto-backend-ser2
 
 on:
   push:
@@ -31,4 +31,4 @@ jobs:
         app-name: 'auto-backend-ser2'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_080eb5f9da4a4da8a09416c463ccbaaa }}
-        package: ./auto-ecole_backend/
+        package: ./dist/
