@@ -29,7 +29,7 @@
     "moment": "^2.24.0",
     "mongoose": "^5.7.5",
     "morgan": "~1.9.0",
-    "mpath": "^0.5.1",
+    "mpath": "^0.8.4",
     "nodemailer": "^5.1.1",
     "pdfkit": "^0.9.0",
     "socket.io": "latest",
